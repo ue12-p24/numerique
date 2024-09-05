@@ -42,8 +42,9 @@ parts:
   - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-tps/covid/README-covid-nb.html
     title: TP Covid
     # double check after dedup on the exos side
-  - url: https://flotpython-exos-ds.readthedocs.io/en/main/geo-tps/addresses/README-addresses-nb.html
-    title: TP géoloc addresses
+  # - url: https://flotpython-exos-ds.readthedocs.io/en/main/geo-tps/addresses/README-addresses-nb.html
+  #   title: TP géoloc addresses
+  - file: 2-13-addresses-nb.md
 - caption: visualisation
   chapters:
   - glob: 3-[0-9]*-nb
