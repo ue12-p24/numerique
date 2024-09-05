@@ -66,15 +66,62 @@ S1
 #
 # Oui:
 #
-# |  +  | &#124; | 1 | 2 | 3 | 4 | 5 | 6 |
-# |:---:|:------:|:-:|:-:|:-:|:-:|:-:|:-:|
-# | *1* | &#124; | 2 | 3 | 4 | 5 | 6 | 7 |
-# | *2* | &#124; | 3 | 4 | 5 | 6 | 7 | 8 |
-# | *3* | &#124; | 4 | 5 | 6 | 7 | 8 | 9 |
-# | *4* | &#124; | 5 | 6 | 7 | 8 | 9 |10 |
-# | *5* | &#124; | 6 | 7 | 8 | 9 |10 |11 |
-# | *6* | &#124; | 7 | 8 | 9 |10 |11 |12 |
+# ```{list-table}
+# :header-rows: 1
+# :stub-columns: 1
+# :widths: 40 20 20 20 20 20 20
+# :align: center
 #
+# * - &plus;
+#   - 1
+#   - 2
+#   - 3
+#   - 4
+#   - 5
+#   - 6
+# * - 1
+#   - 2
+#   - 3
+#   - 4
+#   - 5
+#   - 6
+#   - 7
+# * - 2
+#   - 3
+#   - 4
+#   - 5
+#   - 6
+#   - 7
+#   - 8
+# * - 3
+#   - 4
+#   - 5
+#   - 6
+#   - 7
+#   - 8
+#   - 9
+# * - 4
+#   - 5
+#   - 6
+#   - 7
+#   - 8
+#   - 9
+#   - 10
+# * - 5
+#   - 6
+#   - 7
+#   - 8
+#   - 9
+#   - 10
+#   - 11
+# * - 6
+#   - 7
+#   - 8
+#   - 9
+#   - 10
+#   - 11
+#   - 12
+# ```
 #
 # Construisez alors un `numpy.ndarray` contenant les tirages de `n=2` dès à `s=6` faces. Un indice ? Utilisez le `broadcasting`:
 #
@@ -85,6 +132,9 @@ S1
 # \begin{pmatrix} a_{1} & a_{2} & a_{3} \end{pmatrix} + \begin{pmatrix} b_1 \\ b_2 \\ b_3 \end{pmatrix} = \begin{pmatrix} a_{1} + b_1 & a_{2} + b_1 & a_{3} + b_1 \\ a_{1} + b_2 & a_{2} + b_2 & a_{3} + b_2 \\ a_{1} + b_3 & a_{2} + b_3 & a_{3}  + b_3\\ a_{1} + b_4 & a_{2} + b_4 & a_{3} + b_4 \end{pmatrix}
 #
 # $$
+
+# %% [markdown]
+#
 
 # %%
 # votre code ici
@@ -135,16 +185,7 @@ S3
 # %% [markdown] {"tags": ["level_advanced"]}
 # On étudie les probabilités d'obtenir une certaine somme avec plusieurs dés.
 #
-# Tout le monde connaît le cas classique avec deux dés à 6 faces, ou l'on construit mentalement la grille suivante:
-#
-# |  +  | &#124; | 1 | 2 | 3 | 4 | 5 | 6 |
-# |:---:|:------:|:-:|:-:|:-:|:-:|:-:|:-:|
-# | *1* | &#124; | 2 | 3 | 4 | 5 | 6 | 7 |
-# | *2* | &#124; | 3 | 4 | 5 | 6 | 7 | 8 |
-# | *3* | &#124; | 4 | 5 | 6 | 7 | 8 | 9 |
-# | *4* | &#124; | 5 | 6 | 7 | 8 | 9 |10 |
-# | *5* | &#124; | 6 | 7 | 8 | 9 |10 |11 |
-# | *6* | &#124; | 7 | 8 | 9 |10 |11 |12 |
+# Tout le monde connaît le cas classique avec deux dés à 6 faces, ou l'on construit mentalement la grille de 6 sur 6 qui liste les tirages possibles - voir ci-dessus
 #
 # Imaginons que vous êtes un étudiant, vous venez de faire un exercice de maths qui vous a mené à une formule qui permet de calculer, pour un jeu à `nb_dice` dés, chacun à `sides` faces, le nombre de tirages qui donnent une certaine somme `target`.
 #
@@ -161,9 +202,6 @@ S3
 # Dans ce cas-là par exemple, on voit, en comptant la longueur des diagonales sur la figure, que `dice(7)` doit valoir 6, puisque le tableau comporte 6 cases contenant 7 sur la diagonale.
 #
 # À nouveau, on demande explicitement ici un parcours de type force brute; c'est-à-dire de créer sous la forme d'un tableau `numpy`, un hypercube qui énumère toutes les combinaisons possibles; et sans faire de `for` sur les éléments d'un tableau.
-
-# %% [markdown] {"tags": ["level_advanced"]}
-# <https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w7/w7-s05-x4-dice>
 
 # %% [markdown] {"tags": ["level_advanced"]}
 # **Indice**
@@ -250,3 +288,8 @@ def dice_2(target, nb_dice=2, nb_sides=6):
 
     # une autre façon de faire le décompte
     return np.count_nonzero(cube == target)
+
+# %% [markdown] {"tags": ["level_advanced"]}
+# also available here (requires a login):
+#
+# <https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w7/w7-s05-x4-dice>
