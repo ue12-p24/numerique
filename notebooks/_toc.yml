@@ -38,8 +38,9 @@ parts:
   - file: 2-09-collages-nb.md
     title: TP collages
   - file: 2-10-timeseries-nb.py
-  - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-howtos/fremont-bridge/HOWTO-fremont-bridge-nb.html
-    title: les vélos sur le pont de Fremont
+  # - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-howtos/fremont-bridge/HOWTO-fremont-bridge-nb.html
+  - file: 2-11-fremont-bridge-nb.md
+    title: "HOWTO: timeseries (les vélos)"
   - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-tps/covid/README-covid-nb.html
     title: TP Covid
     # double check after dedup on the exos side
