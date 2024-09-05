@@ -23,13 +23,6 @@
 # %% [markdown]
 # # les données covid
 
-# %% [markdown]
-# ````{admonition} pour travailler localement sur votre PC
-#
-# {download}`commencez par télécharger les artefacts <ARTEFACTS-covid.zip>`
-#
-# ````
-
 # %%
 import matplotlib.pyplot as plt
 import pandas as pd
