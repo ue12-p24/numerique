@@ -41,7 +41,8 @@ parts:
   # - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-howtos/fremont-bridge/HOWTO-fremont-bridge-nb.html
   - file: 2-11-fremont-bridge-nb.md
     title: "HOWTO: timeseries (les vélos)"
-  - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-tps/covid/README-covid-nb.html
+  # - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-tps/covid/README-covid-nb.html
+  - file: 2-12-covid-nb.py
     title: TP Covid
     # double check after dedup on the exos side
   # - url: https://flotpython-exos-ds.readthedocs.io/en/main/geo-tps/addresses/README-addresses-nb.html
