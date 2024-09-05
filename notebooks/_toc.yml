@@ -10,17 +10,17 @@ parts:
   - file: 1-04-numpy-vectorization-nb.py
   - file: 1-05-numpy-indexing-slicing-nb.py
   # - url: https://flotpython-exos-ds.readthedocs.io/en/main/numpy-tps/images/README-images1-nb.html
-  #   title: TP images (1/2)
   - file: 1-06-images1-nb.md
+    title: TP images (1/2)
   - file: 1-07-numpy-aggregate-nb.py
   - file: 1-08-numpy-broadcast-nb.py
   - file: 1-09-numpy-array-testing-nb.py
   # - url: https://flotpython-exos-ds.readthedocs.io/en/main/numpy-tps/images/README-images2-nb.html
-  #   title: TP images (2/2)
   - file: 1-10-images2-nb.md
-  - file: 1-11-numpy-TP-dices-advanced-nb.py
+    title: TP images (2/2)
   # - url: https://flotpython-exos-ds.readthedocs.io/en/main/numpy-tps/sounds/README-sounds-nb.html
-  #   title: TP sons
+  - file: 1-11-numpy-TP-dices-advanced-nb.py
+    title: TP sons
   - file: 1-12-sounds-nb.md
   - file: 1-13-numpy-linalg-optional-nb.py
   - file: 1-14-numpy-optional-indexing-nb.py
@@ -35,8 +35,8 @@ parts:
   - file: 2-07-pandas-group-by-nb.py
   - file: 2-08-pandas-create-dataframe-nb.py
   # - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-tps/collages/README-collages-nb.html
-  #   title: TP collages
   - file: 2-09-collages-nb.md
+    title: TP collages
   - file: 2-10-timeseries-nb.py
   - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-howtos/fremont-bridge/HOWTO-fremont-bridge-nb.html
     title: les vélos sur le pont de Fremont
