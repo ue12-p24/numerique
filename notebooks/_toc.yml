@@ -20,8 +20,8 @@ parts:
     title: TP images (2/2)
   # - url: https://flotpython-exos-ds.readthedocs.io/en/main/numpy-tps/sounds/README-sounds-nb.html
   - file: 1-11-numpy-TP-dices-advanced-nb.py
-    title: TP sons
   - file: 1-12-sounds-nb.md
+    title: TP sons
   - file: 1-13-numpy-linalg-optional-nb.py
   - file: 1-14-numpy-optional-indexing-nb.py
 - caption: pandas
