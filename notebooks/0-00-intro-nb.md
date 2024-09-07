@@ -78,7 +78,7 @@ si tout cela est bien en place il ne vous reste plus alors que deux choses à fa
   ```{admonition} solution
   :class: dropdown
   ```bash
-  git clone https://github.com/ue12-p24/numerique.git
+  git clone git@github.com:ue12-p24/numerique.git
   ```
   ````
 * installer les dépendances
