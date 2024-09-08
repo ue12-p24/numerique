@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # ---
 # jupyter:
+#   jupytext:
 #     text_representation:
 #       extension: .py
 #       format_name: percent
@@ -150,7 +151,7 @@ def scalar_function(x):
 # ## les `ufunc`
 
 # %% [markdown] tags=["framed_cell"]
-# ## qu'est-ce qu'une `ufunc`
+# ### qu'est-ce qu'une `ufunc`
 #
 # ````{admonition} →
 # Le mécanisme général qui applique une fonction à un tableau  
@@ -304,11 +305,12 @@ np.power
 
 # %% tags=["raises-exception"]
 # le code
-tab = np.array([10, -30, 56.5])
 absolute_vect = np.vectorize(absolute)
 
 # %% tags=["raises-exception"]
 # le code
+
+tab = np.array([10, -30, 56.5])
 absolute_vect(tab)
 
 # %% [markdown] tags=["raises-exception"]

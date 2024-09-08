@@ -52,20 +52,19 @@ from matplotlib import pyplot as plt
 # pour appliquer une fonction à tous les éléments d'un tableau `numpy`
 #
 # * de ne **jamais** utiliser une boucle `for-python`  
-# (qui calcule une indirection à chaque accès à un élément)
 #
 # * mais d'appliquer la fonction directement au tableau  
 # de manière *vectorisée*  
-# (`numpy` utilise alors un **décalage** pour passer d'un élément du tableau à un autre)
 #
-# * c'est plus concis, vos codes sont plus rapides et plus lisibles !
+# * c'est plus concis à écrire, vos codes sont plus rapides, plus lisibles !
+# et pourront être optimisés en temps
 #
 # **OUI**
 # ```python
 # n = 10000000
 # x = np.linspace(0, 2*np.pi, n)
 #
-# y = np.sin(x) # np.sin appliquée au tableau x
+# y = np.sin(x)
 # ```
 #
 # **NON**
@@ -78,7 +77,7 @@ from matplotlib import pyplot as plt
 #     y.append(np.sin(e))
 # ```
 #
-# la vectotrisation est **la seule manière** d'écrire du code en `numpy`  
+# la vectorisation est **la seule manière** d'écrire du code en `numpy`  
 # pour avoir des **temps d'exécution acceptables**
 #
 # **conclusion**  
@@ -94,7 +93,7 @@ from matplotlib import pyplot as plt
 # %%timeit
 n = 1000000
 x = np.linspace(0, 2*np.pi, n)
-y = np.sin(x) # np.sin appliquée au tableau x
+np.sin(x) # np.sin appliquée au tableau x
 
 # %%
 # %%timeit
@@ -167,7 +166,7 @@ scalar_function(theta)
 # ## les `ufunc`
 
 # %% [markdown] tags=["framed_cell"]
-# ## qu'est-ce qu'une `ufunc`
+# ### qu'est-ce qu'une `ufunc`
 #
 # ````{admonition} →
 # Le mécanisme général qui applique une fonction à un tableau  
@@ -180,7 +179,7 @@ scalar_function(theta)
 #
 # * même si ça vous paraît plus difficile
 # * même si vous utilisiez des `for-python` en prépa
-# * par souci de la **performance en temps**, vous ne pouvez plus y échapper
+# * par souci de la **performance en temps**, et de propreté de votre code, vous ne pouvez plus y échapper
 #
 #
 #
@@ -328,6 +327,11 @@ except ValueError as e:
 # absolute_vect(tab)
 # -> array([10. , 30. , 56.5])
 # ```
+#
+# ```python
+# # autre version de la fonction absolute
+# def absolute (x):
+#     return -x if x < 0 else x
 # ````
 
 # %% tags=["raises-exception"]
@@ -336,6 +340,8 @@ absolute_vect = np.vectorize(absolute)
 
 # %% tags=["raises-exception"]
 # le code
+
+tab = np.array([10, -30, 56.5])
 absolute_vect(tab)
 
 # %% [markdown] tags=["raises-exception"]
@@ -343,7 +349,6 @@ absolute_vect(tab)
 
 # %% tags=["raises-exception"]
 absolute_vect([-10, -20, 30])
-
 
 # %% [markdown]
 # **exercice**
@@ -354,6 +359,19 @@ absolute_vect([-10, -20, 30])
 
 # %% [markdown] tags=["level_intermediate"]
 # ## pour les avancés ou les rapides
+
+# %% [markdown]
+# ````{admonition} → abs de Python ?
+# `abs` de Python recherche la méthode `__abs__`  
+# cette méthode est implémentée pour le type `numpy.ndarray` mais pas sur le type `list` de Python
+
+# %%
+print(abs(np.array([-1, -34.7])))      # ok
+try:
+    abs([-1, 34])                      # erreur
+except TypeError as e:
+    print(e)
+
 
 # %% [markdown] tags=["framed_cell"]
 # ### résultats intermédiaires lors de calculs
