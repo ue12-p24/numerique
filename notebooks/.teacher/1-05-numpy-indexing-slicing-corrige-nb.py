@@ -703,18 +703,58 @@ M
 # %% [markdown]
 # ### le damier
 #
-# Écrivez une fonction *checkers*, qui prend en argument la taille *n* du damier, et un paramètre optionnel qui indique la valeur de la case (0, 0), et qui crée un tableau `numpy` carré de coté `n`, et le remplit avec des 0 et 1 comme un damier (0 pour les cases noires et 1 pour les cases blanches).
+# Écrivez une fonction *checkers*, qui prend en argument la taille *n* du damier, et un paramètre optionnel qui indique la valeur de la case (0, 0), et qui crée un tableau `numpy` carré de coté `n`, et le remplit avec des 0 et 1 comme un damier.
 #
+# vous devez obtenir par exemple
 #
-# <https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w7/w7-s05-x1-checkers>
+# ```python
+# >>> checkers(4)
+#
+# array([[1, 0, 1, 0],
+#        [0, 1, 0, 1],
+#        [1, 0, 1, 0],
+#        [0, 1, 0, 1]])
+#
+# >>> checkers(5, False)
+#
+# array([[0, 1, 0, 1, 0],
+#        [1, 0, 1, 0, 1],
+#        [0, 1, 0, 1, 0],
+#        [1, 0, 1, 0, 1],
+#        [0, 1, 0, 1, 0]])
+# ```
+
+# %%
+# a vous de jouer
+
+def checkers(n, up_left=True):
+    pass
+
+
+# %%
+# prune-cell
+
+def checkers(n, up_left = True):
+    I, J = np.indices((n, n))
+    return (I + J + up_left) % 2
+
+
+# %%
+# pour tester
+
+checkers(4)
+
+# %%
+checkers(5, False)
+
 
 # %% [markdown] {"tags": ["level_advanced"]}
-# ### le damier (variante)
+# ### le super damier par blocs
 
 # %% [markdown] {"tags": ["level_advanced"]}
-# Il y a beaucoup de méthodes pour faire cet exercice de damier; elles ne vont pas toutes se généraliser pour la variante :
+# Il y a beaucoup de méthodes pour faire cet exercice de damier; elles ne vont pas toutes se généraliser pour cette variante du super damier :
 #
-# **Variante** écrivez une fonction `super_checkers` qui crée
+# **Variante** écrivez une fonction `block_checkers(n, k)` qui crée et retourne
 #
 # * un damier de coté `k*n x k*n`
 # * composé de blocs de `k x k` homogènes (tous à 0 ou tous à 1)
@@ -724,29 +764,45 @@ M
 # c'est-à-dire par exemple pour `n=4` et `k=3` cela donnerait ceci :
 #
 # ```
-# 0 0 0 1 1 1 0 0 0 1 1 1
-# 0 0 0 1 1 1 0 0 0 1 1 1
-# 0 0 0 1 1 1 0 0 0 1 1 1
-# 1 1 1 0 0 0 1 1 1 0 0 0
-# 1 1 1 0 0 0 1 1 1 0 0 0
-# 1 1 1 0 0 0 1 1 1 0 0 0
-# 0 0 0 1 1 1 0 0 0 1 1 1
-# 0 0 0 1 1 1 0 0 0 1 1 1
-# 0 0 0 1 1 1 0 0 0 1 1 1
-# 1 1 1 0 0 0 1 1 1 0 0 0
-# 1 1 1 0 0 0 1 1 1 0 0 0
-# 1 1 1 0 0 0 1 1 1 0 0 0
+# >>> block_checkers(4, 3)
+#
+# array([[0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+#        [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+#        [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+#        [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+#        [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+#        [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+#        [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+#        [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+#        [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+#        [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+#        [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+#        [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0]])
 # ```
 
 # %% {"tags": ["level_advanced"]}
-def super_checkers(n, k):
-    ...
+#  vous de jouer
 
+def block_checkers(n, k):
+    pass
+
+
+# %% {"tags": ["level_advanced"]}
+# prune-cell
+def block_checkers(n, k):
+    N = k*n
+    I, J = np.indices((N, N))
+    return ( (I//k) + (J//k) ) % 2
+
+
+# %% {"tags": ["level_advanced"]}
+block_checkers(3, 2)
 
 # %% {"tags": ["level_advanced"]}
 # doit vous donner la figure ci-dessus
 # éventuellement avec des False/True au lieu de 0/1
-super_checkers(4, 3)
+
+block_checkers(4, 3)
 
 
 # %% [markdown]
@@ -754,9 +810,62 @@ super_checkers(4, 3)
 
 # %% [markdown]
 # Écrivez une fonction *escalier*, qui prend en argument un entier *n*, qui crée un tableau de taille *2n+1*, et qui le remplit de manière à ce que:
-#    - aux quatre coins du tableau on trouve la valeur *0*
-#    - dans la case centrale on trouve la valeur *2n*
-#    - et si vous partez de n'importe quelle case  et que vous vous déplacez d'une case (horizontalement ou verticalement), en vous dirigeant vers une case plus proche du centre, la valeur que vous trouvez est *1* de plus que la valeur de la case où vous étiez.
+#
+# - aux quatre coins du tableau on trouve la valeur *0*
+# - dans la case centrale on trouve la valeur *2n*
+# - et si vous partez de n'importe quelle case  et que vous vous déplacez d'une case (horizontalement ou verticalement),
+#  en vous dirigeant vers une case plus proche du centre, la valeur augmente de 1
+#
+# par exemple
+#
+# ```python
+# >>> stairs(4)
+#
+# array([[0, 1, 2, 3, 4, 3, 2, 1, 0],
+#        [1, 2, 3, 4, 5, 4, 3, 2, 1],
+#        [2, 3, 4, 5, 6, 5, 4, 3, 2],
+#        [3, 4, 5, 6, 7, 6, 5, 4, 3],
+#        [4, 5, 6, 7, 8, 7, 6, 5, 4],
+#        [3, 4, 5, 6, 7, 6, 5, 4, 3],
+#        [2, 3, 4, 5, 6, 5, 4, 3, 2],
+#        [1, 2, 3, 4, 5, 4, 3, 2, 1],
+#        [0, 1, 2, 3, 4, 3, 2, 1, 0]])
+# ```
+
+# %%
+# à vous de jouer
+
+def stairs(n):
+    pass
+
+
+# %%
+# prune-cell
+
+def stairs(taille):
+    """
+    la pyramide en escaliers
+    """
+    # on calcule la taille totale
+    total = 2 * taille + 1
+    # on calcule les deux tableaux d'indices
+    # tous les deux de dimension total
+    I, J = np.indices((total, total))
+    # on dÃ©cale et dÃ©forme avec valeur absolue, pour obtenir
+    # deux formes dÃ©jÃ  plus propices
+    I2, J2 = np.abs(I-taille), np.abs(J-taille)
+    # si ajoute on obtient un nÃ©gatif,
+    # avec 0 au centre et taille aux 4 coins
+    negatif = I2 + J2
+    # ne retse plus qu'Ã  renverser
+    return 2 * taille - negatif
+    
+
+
+# %%
+# pour vérifier
+stairs(4)
+
 
 # %% [markdown]
 # <https://nbhosting.inria.fr/auditor/notebook/python-mooc:exos/w7/w7-s05-x3-stairs>
