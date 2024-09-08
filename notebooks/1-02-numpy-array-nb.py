@@ -353,7 +353,7 @@ mat = np.array(matrice)
 print(mat.min(), mat.max())
 print(mat.dtype)
 
-# %%
+# %% scrolled=true
 # le code avec type
 matrice = [
     [-128, -78, -32],
