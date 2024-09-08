@@ -59,7 +59,7 @@ HTML(filename="_static/style.html")
 #
 #
 # la taille (en nombre d'octets) des éléments d'un `numpy.ndarray` existant est constante  
-# une modification peut causer une conversion de la valeur
+# une modification peut causer une conversion de la valeur ou une erreur
 #
 #
 # calculs de temps d'exécution avec `%timeit`
@@ -328,8 +328,8 @@ print(mat.ndim, len(mat.shape))
 #
 #
 # **trompons-nous** et demandons un type `numpy.uint8`  
-# naturellement, `numpy` vous obéit aveuglement ...  
-# si il rencontre un problème avec une valeur: il modifie la valeur, pas le type que vous imposez !
+# - ancienne librairie `numpy` vous obéit et,  
+# si elle rencontre un problème avec une valeur: elle modifie la valeur !
 #
 # ```python
 # mat = np.array(matrice, dtype=np.uint8)
@@ -338,6 +338,8 @@ print(mat.ndim, len(mat.shape))
 #                      # (complément à 2)
 #     [ 17,   5, 127]], dtype=uint8
 # ```
+# - nouvelle librairie `numpy`  
+#    la conversion implicite n'est plus effectuée: le code échoue
 # ````
 
 # %%
@@ -351,7 +353,7 @@ mat = np.array(matrice)
 print(mat.min(), mat.max())
 print(mat.dtype)
 
-# %% scrolled=true
+# %%
 # le code avec type
 matrice = [
     [-128, -78, -32],
@@ -366,10 +368,13 @@ matrice = [
     [-128, -78, -32],
     [17, 5, 127]
 ]
-mat = np.array(matrice, dtype=np.uint8)
-# note that new version of NumPy "will stop allowing conversion of out-of-bound Python integers to integer arrays.
-# The conversion of -128 to uint8 will fail in the future."
-mat
+try:
+    mat = np.array(matrice, dtype=np.uint8)
+    # soit affichage du tableau avec les négatifs convertis implicitement par complément à 2
+    # soit échec: "Python integer -128 out of bounds for uint8"
+    mat
+except OverflowError as e:
+    print(e)
 
 # %% [markdown]
 # **exercice**
@@ -380,8 +385,6 @@ mat
 # l = [[  0,   8,  34,   8],
 #      [255,  61, 128, 254]]
 # ```
-#
-# 2. puis, essayez avec le type `numpy.int8`
 
 # %%
 # votre code ici
@@ -404,7 +407,7 @@ mat
 #
 #
 # `mat` et `mat1` ne partagent **pas** le tableau d'éléments sous-jacent  
-# `mat1` est **une copie indépendante** avec la nouvelle taille  
+# `mat1` est **une copie indépendante** avec la nouvelle taille et les éventuelles conversions  
 # l'ancien `mat` existe toujours avec sa taille initiale
 # ````
 
@@ -415,7 +418,7 @@ l = [[  0,   8,  34,   8],
 
 mat = np.array(l)
 print(    mat     )
-mat1 = mat.astype(np.int8)
+mat1 = mat.astype(np.int8) # des conversions sont effectuées
 print(    mat1    )
 print(    mat     )
 
@@ -478,7 +481,7 @@ print(    mat     )
 # %%
 # le code
 l = [-1, 2, 3]
-mat = np.array(l)
+mat = np.array(l) # vous laissez numpy inférer le type
 print(    mat    )
 print(    mat*100    )
 print(    mat.dtype    )
@@ -486,7 +489,7 @@ print(    mat.dtype    )
 # %%
 # le code
 l = [-1, 2, 3]
-mat = np.array(l, np.int8)
+mat = np.array(l, np.int8) # vous imposez le type
 print(    mat    )
 print(    mat*100    )
 
