@@ -374,9 +374,9 @@ tab
 # ### 2-dimension
 #
 # ````{admonition} →
-# créons un tableau de dimension 2, par exemple de `shape=(5, 6)`
+# créons un tableau de dimension 2, par exemple de `shape=(3, 10)`
 # ```python
-# seg = np.ones(shape=(5, 6))
+# seg = np.ones(shape=(3, 10))
 # ```
 #
 # il faut 2 index pour le parcourir  
@@ -385,21 +385,15 @@ tab
 # <div class="memory">
 #
 # ```
-#
-#    ☐☐☐☐☐☐
-#    ☐☐☐☐☐☐
-# i  ☐☐☐☐☐☐
-#    ☐☐☐☐☐☐
-#    ☐☐☐☐☐☐
-#       ↑
-#       j
-#
+#         j
+#    ☐☐☐☐☐☐☐☐☐☐
+# i  ☐☐☐☐☐☐☐☐☐☐
+#    ☐☐☐☐☐☐☐☐☐☐
 # ```
 #
 # </div>
 #
-# 0 <= i <= 4
-# 0 <= j <= 5
+# avec $i \in [0..3[$ et $j \in [0..10[$
 # ````
 
 # %% [markdown]
@@ -409,9 +403,9 @@ tab
 # ### 3-dimension
 #
 # ````{admonition} →
-# créons un tableau de dimension 3, par exemple de `shape=(4, 5, 6)`
+# créons un tableau de dimension 3, par exemple de `shape=(2, 3, 10)`
 # ```python
-# seg = np.ones(shape=(4, 5, 6))
+# seg = np.ones(shape=(2, 3, 10))
 # ```
 #
 # 3 index pour le parcourir `seg[i, j, k]`  
@@ -420,24 +414,63 @@ tab
 # <div class="memory">
 #
 # ```
-#                   i
-#
-#    ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐
-#    ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐
-#  j ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐
-#    ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐
-#    ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐   ☐☐☐☐☐☐
-#       k
+#            k
+#       ☐☐☐☐☐☐☐☐☐☐
+#     j ☐☐☐☐☐☐☐☐☐☐
+#       ☐☐☐☐☐☐☐☐☐☐
+#  i
+#       ☐☐☐☐☐☐☐☐☐☐
+#       ☐☐☐☐☐☐☐☐☐☐
+#       ☐☐☐☐☐☐☐☐☐☐
 #
 # ```
 #
 # </div>
 #
+# avec $i \in [0..2[$ et $j \in [0..3[$ et $k \in [0..10[$
 #
 # et ainsi de suite
 # ````
 
-# %% [markdown]
+# %% [markdown] tags=["framed_cell"] slideshow={"slide_type": ""}
+# ### les lignes et colonnes
+#
+# ````{admonition} →
+# sachez qu'en dimension élevée (>=3), l'affichage de numpy fonctionne comme ceci:  
+# ce sont les **deux dernières valeurs de leur forme `tab.shape`**  
+# qui servent à déterminer le nombre **de lignes et de colonnes (resp.)**
+#
+# ```{admonition} seulement une convention !
+# :class: warning
+#
+# c'est un **choix assez arbitraire** en fait; par exemple lorsqu'on construira des images on sera amenés à faire des tableaux de (100, 100, 3)  
+# mais cette image en fait fera 100 pixels de haut et 100 pixels de large, la dimension 3 ce sera pour les couleurs !
+#
+# cela n'est important **que** quand vous regardez le tableau avec un `print()` !  
+# (et aussi quand vous faites des produits tensoriels avec `.dot()`, mais c'est une autre histoire; on en reparlera..
+# ```
+#
+# **exercice**
+#
+# 1. faites un tableau de `ones` de forme `(1, 2, 3, 4, 5)`
+# 1. affichez-le
+# 1. observez notamment la taille des rectangles qui sont affichés
+# 1. corrélez cela avec la dimension du tableau
+# ````
+
+# %% slideshow={"slide_type": ""} tags=[]
+# votre code ici
+
+# %%
+# prune-cell
+
+multi = np.zeros(shape=(1,2,3,4,5))
+multi
+
+# %% [markdown] slideshow={"slide_type": ""} tags=["prune-cell"]
+# les rectangles affichés sont de taille (4 lignes, 5 colonnes), les deux derniers éléments de la *shape*
+
+# %% [markdown] slideshow={"slide_type": ""} tags=[]
 # ## changer la forme d'un tableau
 
 # %% [markdown] tags=["framed_cell"]
@@ -449,15 +482,17 @@ tab
 #
 # deux fonctions pour *réindexer* un tableau: `ndarray.reshape` et `ndarray.resize`
 #
-# `np.ndarray.reshape`  
-# renvoie un tableau contenant les mêmes données avec une nouvelle forme
+# * `np.ndarray.reshape`  
+#   renvoie un tableau contenant les mêmes données avec une nouvelle forme
+# * `np.ndarray.resize`  
+#   modifie la forme du tableau *en-place* (directement dans le tableau)  
+#   et ne renvoie donc rien
 #
-# `np.ndarray.resize`  
-# modifie la forme du tableau *en-place* (directement dans le tableau)  
-# et ne renvoie donc rien
+# ```{admonition} pas de copie des données
 #
-# aucune des deux fonction ne crée un nouveau segment de données  
-# elle ne recréent que l'indexation  
+# NB: **aucune des deux fonctions ne crée un nouveau segment de données**  
+# elle ne font que créer (reshape) ou modifier (resize) l'indexation  
+# ```
 #
 # **reshape**
 #
@@ -524,36 +559,26 @@ print(seg)
 # * sont des objets différents (leurs index sont différents)
 # * mais ils ont le même segment sous-jacent de données
 # * toucher l'un a pour effet de modifier l'autre
+#
+# ````{admonition} indice pour créer un tuple de dimension 1
+# :class: dropdown
+#
+# si vous écrivez `(1)` dans un programme Python, les parenthèses sont interprétées comme dans un calcul, i.e. comme dans `(2+3)`, du coup le résultat c'est l'entier `1`  
+# du coup pour contruire un **tuple** qui ne contient que un élément, je vous recommande d'écrire `(1,)`
+# ````
 
 # %%
 # votre code
 
 # %%
 # prune-cell
+tab = np.ones(shape=(6,))
 tab = np.ones(shape=(6))
-print(    tab    )
+print(f"before {tab=}")
 
 tab1 = tab.reshape(3, 2)
-print(    tab1    )
+print(f"before {tab1=}")
 
 tab[0] = 99
-print(    tab    )
-print(    tab1    )
-
-# %% [markdown] tags=["framed_cell"]
-# ## les lignes et colonnes
-#
-# ````{admonition} →
-# pour les tableaux `numpy.ndarray` en dimension supérieure ou égale à 2
-#
-# * les deux dernières valeurs de leur forme  `tab.shape`  
-# sont leur nombre de ligne et leur nombre de colonne
-#
-# **exercice**
-#
-# 1. faites un tableau de `ones` de forme `(1, 2, 3, 4, 5)`
-# 1. afficher son nombre de lignes et son nombre de colonnes
-# ````
-
-# %%
-# votre code ici
+print(f"after {tab=}")
+print(f"after {tab1=}")
