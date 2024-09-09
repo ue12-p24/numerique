@@ -32,7 +32,7 @@ from matplotlib import pyplot as plt
 # %% [markdown]
 # # indexation et *slicing*
 
-# %% [markdown]
+# %% [markdown] {"tags": ["framed_cell"]}
 # ## contenu de ce notebook (sauter si déjà acquis)
 #
 #
@@ -84,7 +84,7 @@ from matplotlib import pyplot as plt
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### accès à un tableau de dimension 1
 #
-# ````{admonition} →
+# ``````{admonition} →
 # vous avez besoin d'**un seul index**
 #
 # ```python
@@ -107,7 +107,22 @@ from matplotlib import pyplot as plt
 # tab1 = tab.astype(np.float64)
 # tab1[0] = np.pi # 3.141592653589793
 # ```
+#
+# `````{admonition} quiz pour les forts
+# :class: dropdown
+# à votre avis est-ce qu'on pourrait écrire aussi ceci ?
+# ```python
+# tab1[0,]
+# ```
+# ````{admonition} réponse
+# :class: dropdown tip
+# OUI on peut, parce que  
+# - pour indexer un tableau de dimension par exemple 2, on peut utiliser un tuple de taille 2
+# - du coup par continuité si on veut, on peut aussi indexer un tableau de dimension 1 avec un tuple de taille 1
+# - or en Python `0,` ça représente justement un tuple avec un seul élément `0` dedans  
 # ````
+# `````
+# ``````
 
 # %% {"scrolled": true}
 # le code
@@ -124,32 +139,35 @@ tab1[0].dtype, tab1[0]
 # %% [markdown] {"tags": ["framed_cell"]}
 # ### accès à un tableau de dimension > à 1
 #
-# ````{admonition} →
+# `````{admonition} →
 # l'accès à un élément du tableau dépend de la forme du tableau  
 #
-# il y aura un indice par dimension
+# il y aura - au plus - un indice par dimension (voir plus bas pourquoi *au plus*)
+#
+# ***
 #
 # en dimension 2
 # ```python
 # tab = np.arange(12).reshape((2, 6))
 #
 # # première ligne, deuxième colonne
-#     line, col = 0, 1
-#     tab[line, col] = 1000
+# line, col = 0, 1
 #
+# tab[line, col] = 1000
 # tab
 # -> array([[ 0, 1000,  2,  3,  4,  5],
 #           [ 6,    7,  8,  9, 10, 11]])
 # ```
 #
+# ***
 #
 # en dimension 3
 # ```python
 # tab.resize((2, 3, 2))
 #
 # # deuxième matrice, troisième ligne, première colonne
-#
 # mat, line, col = 1, 2, 0
+#
 # tab[mat, line, col] = 2000
 # tab
 # -> array([[[   0, 10],
@@ -161,37 +179,60 @@ tab1[0].dtype, tab1[0]
 #            [2000, 11]]])
 # ```
 #
-# nombre d'éléments dans chaque dimension
-# ```python
-# [tab.shape[i] for i in range(tab.ndim)]
-# -> [2, 3, 2]
-# ```
+# ````{admonition} rappel
+# :class: seealso
 #
-# remarque  en dimension >= 2
-# les deux dernières dimensions sont les lignes et les colonnes
-#
-# * ainsi le nombre de lignes c'est `tab.shape[-2]`
-# * et de colonne`tab.shape[-1]`
+# le nombre d'éléments dans chaque dimension est donné par `tab.shape`
 # ````
+#
+# ````{admonition} pourquoi "au plus" ?
+#
+# on a dit qu'il peut y avoir **au plus** un indice par dimension, car on peut en donner moins  
+# dans ce cas vous obtenez un sous-tableau au lieu d'une valeur scalaire 
+#
+# par exemple si le tableau `a` a pour `shape=(2, 3, 4, 5)`  
+# alors `a[i, j]` va, bien sûr, désigner .. un tableau de `shape=(4, 5)`  
+# ````
+#
+# ````{admonition} rappel: lignes et colonnes
+# :class: dropdown
+#
+# * en dimension >=2, les deux dernières dimensions sont les lignes et les colonnes, dans cet ordre  
+#   (enfin plus exactement, c'est la convention pour l'affichage des tableaux)  
+# * du coup en dimension 2, voici un idiome pour ranger ça dans deux variables:  
+#   ```python
+#   rows, columns = tab.shape
+#   ```
+# ````
+# `````
 
 # %%
-# le code
+# le code en dimension 2
+
 tab = np.arange(12).reshape((2, 6))
 
 # première ligne, deuxième colonne
 line, col = 0, 1
+
 tab[line, col] = 1000
 tab
 
 # %%
-# le code
+# le code en dimension 3
 tab.resize((2, 3, 2))
 
 # deuxième matrice, troisième ligne, première colonne
-
 mat, line, col = 1, 2, 0
+
 tab[mat, line, col] = 2000
 tab
+
+# %%
+[tab.shape[i] for i in range(tab.ndim)]
+
+
+# %%
+tab.shape
 
 # %% [markdown]
 # ### exercices
@@ -227,11 +268,12 @@ tab
 # 3. affichez le nombre des éléments des deux dernières dimensions
 #
 #
-# indice
+# ````{admonition} indice
+# :class: tip dropdown
 #
-# * utilisez `numpy.random.randint`
-# * son `help` vous dira comment passer la forme au tableau à sa création  
-# (celui de `np.random.randint` selon la manière d'importation de `numpy` )
+# * voyez `np.random.randint` pour créer un tableau aléatoire
+# * tapez `np.random.randint?` pour avoir de l'aide en ligne
+# ````
 
 # %%
 # votre code ici
@@ -407,28 +449,37 @@ print(    tab[0, 1, :, 3]    )
 #
 # * quand vous voulez la valeur par défaut de `from`, `to` et `step` vous ne mettez rien
 # * quand les valeurs par défaut sont en fin d'expression, elles sont optionnelles
-# * `::` devient `:`
+# * du coup pour prendre tous les éléments dans une dimension  
+#   on peut mettre simplement la slice universelle `::`, que généralement on abrège encore en juste `:`
 #
 # **exemples**
 #
-# la première matrice de tous les groupes de matrice
-# ```python
-# tab[::, 0, ::, ::]
-# ```
-# tous les groupes  
-# la première matrice  
-# toutes les lignes  
-# toutes les colonnes
+# la première matrice de tous les groupes de matrice, c'est-à-dire:
+# - tous les groupes  
+# - la première matrice  
+# - toutes les lignes  
+# - toutes les colonnes
 #
-# qui s'écrit aussi
 # ```python
-# tab[:, 0, :, :]
-# tab[:, 0] # ou encore, plus simplement
+# # en version longue où on épelle bien tout
+# tab[::, 0, ::, ::]
+#
+# # en version courte on abrège et ça donne simplement
+# tab[:, 0]        
 # ```
 # ````
 
 # %%
 tab = np.arange(120).reshape(2, 3, 4, 5)
+
+# %%
+# en version longue
+
+tab[::, 0, ::, ::]
+
+# %%
+# en version courte
+
 tab[:, 0]
 
 # %% [markdown]
@@ -439,7 +490,7 @@ tab[:, 0]
 # tab = np.arange(120).reshape(2, 3, 4, 5)
 # ```
 #
-# la sous-matrice du milieu (garder deux lignes et 3 colonnes, au centre) des premières matrices de tous les groupes
+# la sous-matrice au milieu (i.e. garder deux lignes et 3 colonnes, au centre) des premières matrices de tous les groupes
 #
 # $\begin{bmatrix}\begin{bmatrix} 6 & 7 & 8\\ 11 & 12 & 13 \end{bmatrix}, \begin{bmatrix} 66 & 67 & 68 \\ 71 & 72 & 73 \end{bmatrix}\end{bmatrix}$  
 #
