@@ -27,7 +27,7 @@ HTML(filename="_static/style.html")
 # %% [markdown]
 # # vectorisation
 
-# %% [markdown]
+# %% [markdown] tags=["framed_cell"]
 # ## contenu de ce notebook (sauter si déjà acquis)
 #
 # la **vectorisation** (c'est-à-dire appliquer une fonction `numpy` à tout un tableau sans passer par un `for-python`)
@@ -46,36 +46,42 @@ from matplotlib import pyplot as plt
 # %% [markdown] tags=["framed_cell"]
 # ## qu'est-ce que la vectorisation ?
 #
-# ````{admonition} →
+# `````{admonition} →
 #
 # **l'idée**  
 # pour appliquer une fonction à tous les éléments d'un tableau `numpy`
 #
 # * de ne **jamais** utiliser une boucle `for-python`  
 #
-# * mais d'appliquer la fonction directement au tableau  
-# de manière *vectorisée*  
+# * mais d'appliquer la fonction (ou l'opérateur)  
+#   **directement au tableau** - de manière *vectorisée*
 #
 # * c'est plus concis à écrire, vos codes sont plus rapides, plus lisibles !
 # et pourront être optimisés en temps
 #
-# **OUI**
+# ````{admonition} la bonne façon 
+# :class: seealso
+#
 # ```python
 # n = 10000000
 # x = np.linspace(0, 2*np.pi, n)
 #
-# y = np.sin(x)
+# y = np.sin(x)  # OUI c'est la bonne façon
 # ```
+# ````
 #
-# **NON**
+# ````{admonition} la mauvaise façon
+# :class: danger
+#
 # ```python
 # n = 10000000
 # x = np.linspace(0, 2*np.pi, n)
 #
 # y = []
-# for e in x:   # NON MAL FAUX
+# for e in x:   # NON IL NE FAUT PAS FAIRE UN FOR !!`
 #     y.append(np.sin(e))
 # ```
+# ````
 #
 # la vectorisation est **la seule manière** d'écrire du code en `numpy`  
 # pour avoir des **temps d'exécution acceptables**
@@ -87,21 +93,25 @@ from matplotlib import pyplot as plt
 #
 # vérifiez en comparant les temps d'exécution des deux codes `%%timeit`  
 # attention c'est très long...
-# ````
-
-# %%
-# %%timeit
-n = 1000000
-x = np.linspace(0, 2*np.pi, n)
-np.sin(x) # np.sin appliquée au tableau x
+# `````
 
 # %%
 # %%timeit
 n = 1000000
 x = np.linspace(0, 2*np.pi, n)
 
+# la bonne façon
+np.sin(x)         # np.sin appliquée au tableau x
+
+# %%
+# %%timeit
+n = 1000000
+x = np.linspace(0, 2*np.pi, n)
+
+# la mauvaise façon
 y = []
-for e in x:
+for e in x:             # une boucle for sur un tableau numpy
+                        # c'est toujours une mauvaise idée
     y.append(np.sin(e))
 
 # %% [markdown]
@@ -125,6 +135,7 @@ for e in x:
 
 # %%
 # prune-cell
+
 theta = np.linspace(0, 2*np.pi, 1000)
 r = 1.5
 x = r * np.sin(theta)
@@ -141,15 +152,12 @@ plt.axis('equal');
 #
 # 1. faites une fonction qui retourne le calcul d'un polynome  
 #    par exemple $x^3 + 2x^2 -5x +1$  
-#    (puissance: `**` ou `numpy.power`)
+#    (puissance: `**` ou `np.power`)
 #
-# 2. appliquez la à un `np.ndarray`
+# 2. appliquez la directement à un `np.ndarray` (sans faire de `for`)
+#    qu'obtenez-vous en retour ?
 #
-# 3. que se passe-t-il ? (1)
-#
-# 4. affichez la fonction
-#
-# (1) tout se passe très bien
+# 4. tracez la courbe de la fonction
 
 # %%
 # votre code ici
@@ -158,9 +166,21 @@ def scalar_function(x):
 
 # %%
 # prune-cell
+
+# 1.
 def scalar_function(x):
     return x**3+2*x**2-5*x+1
-scalar_function(theta)
+
+# 2. 
+x = np.linspace(-10, 10)
+y = scalar_function(x)
+
+print(f"{x.shape=} - {y.shape=}")
+print(f"{x.dtype=} - {y.dtype=}")
+
+# y is an array with the same geometry as x
+
+plt.plot(x,y);
 
 # %% [markdown]
 # ## les `ufunc`
@@ -170,10 +190,7 @@ scalar_function(theta)
 #
 # ````{admonition} →
 # Le mécanisme général qui applique une fonction à un tableau  
-# est connu sous le terme de *Universal function*  
-# ou `ufunc`
-#
-# (ce terme `ufunc` est utile pour des recherches sur Internet)
+# est connu sous le terme de *Universal function* - ou encore `ufunc`  
 #
 # En conclusion, vous **devez** toujours utiliser les `ufunc` et plus jamais les `for-python`
 #
@@ -181,10 +198,16 @@ scalar_function(theta)
 # * même si vous utilisiez des `for-python` en prépa
 # * par souci de la **performance en temps**, et de propreté de votre code, vous ne pouvez plus y échapper
 #
-#
+# Une habitude à prendre:
 #
 # * c'est juste une autre manière de penser le code  
 # * vos codes seront compacts et lisibles (élégants)
+#
+# ```{admonition} utile pour les recherches
+# :class: tip
+#
+# Souvenez-vous du terme `ufunc` car c'est utile pour des recherches sur Internet
+#
 # ````
 
 # %% [markdown]
@@ -249,19 +272,19 @@ np.power
 # %% [markdown]
 # **exercice**
 #
-# 1. sans utiliser ni `numpy` ni `abs` de Python  
-#    écrivez la fonction qui calcule la valeur absolue d'un scalaire x  
-#    `absolute(x)`
+# ````{admonition} consigne
+# :class: admonition-small
 #
+# le but du jeu ici c'est de voir comment vectoriser une fonction **que vous écrivez vous**  
+# on s'interdit donc, dans cet exercice, d'utiliser des fonctions de `numpy`, ni la fonction *builtin* `abs` de Python
 #
+# si vous préférez, vous pouvez choisir d'implémenter une fonction définie par morceaux  
+# genre $x**2$ sur les nombres négatifs et $x^3$ sur les positifs
+# ````
 #
+# 1. écrivez une fonction qui calcule la valeur absolue d'un scalaire x  `absolute(x)`
 # 2. testez votre fonction sur des scalaires
-#
-#
-#
 # 3. créez un `np.ndarray` de scalaires et appliquez-lui la fonction
-#
-#
 # 4. que se passe-t-il ?
 
 # %%
@@ -282,10 +305,11 @@ try:
 except ValueError as e:
     print('PROBLÈME:', e)
 
+
 # %% [markdown] tags=["framed_cell"]
 # ### problème de la fonction `absolute`
 #
-# ````{admonition} →
+# `````{admonition} →
 # ```python
 # ----> if x >= 0:
 # ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
@@ -300,7 +324,8 @@ except ValueError as e:
 #     return -x
 #
 # tab = np.array([10, -30, 56.5])
-# absolute(tab)
+#
+# absolute(tab)                   # --> BOOM
 # ```
 #
 # l'expression `x >= 0` appliquée à `tab` rend le tableau `array([False, True, False])`
@@ -320,35 +345,58 @@ except ValueError as e:
 #
 # * demander à  `numpy` de **vectoriser** la fonction avec `np.vectorize`
 # * il considérera l'argument comme un tableau
-# * sur lequel les fonctions seront appelées de manière vectorisée
+# * sur lequel le code Python "normal" sera appelé de manière vectorisée
 #
 # ```python
-# absolute_vect = np.vectorize(absolute)
-# absolute_vect(tab)
+# @np.vectorize
+# def absolute (x):
+#     if x >= 0:
+#         return x
+#     return -x
+#
+# absolute(tab)
 # -> array([10. , 30. , 56.5])
 # ```
 #
+# ````{admonition} c'est quoi cette syntaxe ?
+# :class: admonition-small dropdown info
+#
+# le `@np.vectorize` en première ligne, c'est ce qu'en Python on appelle **un décorateur**  
+# c'est comme si on avait fait ceci:
+#
 # ```python
-# # autre version de la fonction absolute
-# def absolute (x):
-#     return -x if x < 0 else x
+# def absolute(x):
+#     if x >= 0:
+#         return x
+#     return -x
+#
+# # et le décorateur produit une fonction (vectorisée) 
+# # à partir de votre fonction "naive"
+#
+# absolute = np.vectorize(absolute)
+# ```
 # ````
 
 # %% tags=["raises-exception"]
 # le code
-absolute_vect = np.vectorize(absolute)
+@np.vectorize
+def absolute (x):
+    if x >= 0:
+        return x
+    return -x
+
 
 # %% tags=["raises-exception"]
 # le code
 
 tab = np.array([10, -30, 56.5])
-absolute_vect(tab)
+absolute(tab)
 
 # %% [markdown] tags=["raises-exception"]
 # elle fonctionne aussi sur une `list` `python`
 
 # %% tags=["raises-exception"]
-absolute_vect([-10, -20, 30])
+absolute([-10, -20, 30])
 
 # %% [markdown]
 # **exercice**
@@ -357,7 +405,19 @@ absolute_vect([-10, -20, 30])
 #
 # 2. la fonction `abs` de Python est-elle une `ufunc` ?
 
-# %% [markdown] tags=["level_intermediate"]
+# %%
+# prune-cell
+
+# oui 
+np.abs
+
+# %%
+# prune-cell
+
+# non 
+abs
+
+# %% [markdown]
 # ## pour les avancés ou les rapides
 
 # %% [markdown]
