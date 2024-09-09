@@ -411,7 +411,7 @@ mat.nbytes
 # et ainsi de suite
 # ````
 
-# %% [markdown] tags=["framed_cell"] slideshow={"slide_type": ""}
+# %% [markdown] tags=["framed_cell"]
 # ### les lignes et colonnes
 #
 # ````{admonition} →
@@ -437,10 +437,10 @@ mat.nbytes
 # 1. corrélez cela avec la dimension du tableau
 # ````
 
-# %% slideshow={"slide_type": ""} tags=[]
+# %%
 # votre code ici
 
-# %% [markdown] slideshow={"slide_type": ""} tags=[]
+# %% [markdown]
 # ## changer la forme d'un tableau
 
 # %% [markdown] tags=["framed_cell"]

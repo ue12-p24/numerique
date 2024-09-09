@@ -432,7 +432,7 @@ tab
 # et ainsi de suite
 # ````
 
-# %% [markdown] tags=["framed_cell"] slideshow={"slide_type": ""}
+# %% [markdown] tags=["framed_cell"]
 # ### les lignes et colonnes
 #
 # ````{admonition} →
@@ -458,7 +458,7 @@ tab
 # 1. corrélez cela avec la dimension du tableau
 # ````
 
-# %% slideshow={"slide_type": ""} tags=[]
+# %%
 # votre code ici
 
 # %%
@@ -467,10 +467,10 @@ tab
 multi = np.zeros(shape=(1,2,3,4,5))
 multi
 
-# %% [markdown] slideshow={"slide_type": ""} tags=["prune-cell"]
+# %% [markdown] tags=["prune-cell"]
 # les rectangles affichés sont de taille (4 lignes, 5 colonnes), les deux derniers éléments de la *shape*
 
-# %% [markdown] slideshow={"slide_type": ""} tags=[]
+# %% [markdown]
 # ## changer la forme d'un tableau
 
 # %% [markdown] tags=["framed_cell"]
