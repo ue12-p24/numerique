@@ -204,7 +204,7 @@ np.count_nonzero(tab%2==0, axis=0)
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## les masques/filtres booléens
 #
-# ````{admonition} →
+# `````{admonition} →
 # le tableau des résultats des tests est un **masque booléen**  
 #
 # * il a la **même forme** que le tableau initial
@@ -238,9 +238,19 @@ np.count_nonzero(tab%2==0, axis=0)
 # tab # n'a plus que des éléments négatifs ou nuls
 # ```
 #
-# on peut aussi construire les indices des éléments sélectionnés  
-# pour les repérer dans le tableau original
+# ````{admonition} pour trouver les indices: np.argwhere()
+#
+# un peu plus avancé, mais si vous avez besoin de construire **les indices** des éléments sélectionnés, pour les repérer dans le tableau original, utilisez `np.argwhere()`
+#
+# par exemple pour trouver les indices des cases nulles dans le tableau (on vient de mettre tous les positifs à 0):
+# ```python
+# # renvoie un tableau contenant les triplets d'indices
+# # qui correspondent aux éléments nuls dans tab
+#
+# np.argwhere(tab == 0)
+# ```
 # ````
+# `````
 
 # %%
 # le code
@@ -248,6 +258,7 @@ tab = np.random.randint(-10, 10, size=(2, 3, 4))
 tab
 
 # %% {"scrolled": true}
+# le code
 print(tab[np.greater(tab, 0)])
 print(tab[tab > 0])
 
@@ -255,6 +266,10 @@ print(tab[tab > 0])
 # le code
 tab [tab > 0] = 0
 tab
+
+# %%
+# le code
+np.argwhere(tab==0)
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## composition des conditions
