@@ -104,16 +104,32 @@ x = np.linspace(0, 2*np.pi, n)
 np.sin(x)         # np.sin appliquée au tableau x
 
 # %%
+# pour comparer les choses comparables
+import math
+
+# %%
 # %%timeit
 n = 1000000
 x = np.linspace(0, 2*np.pi, n)
 
 # la mauvaise façon
-y = []
 for e in x:             # une boucle for sur un tableau numpy
                         # c'est toujours une mauvaise idée
-    y.append(np.sin(e))
+    math.sin(e)
 
+
+# %% [markdown]
+# ````{admonition} pourquoi math.sin et pas np.sin ?
+# :class: admonition-small
+#
+# dans une première version de ce notebook, pour cette deuxième - et mauvaise - façon de faire on avait artificiellement forcé le trait car:
+#
+# - on avait utilisé `np.sin` au lieu de `math.sin`; merci à Damien Corral qui a remarqué que `np.sin` appliqué à un scalaire Python ajoute une inefficacité !  
+# - et de plus on rangeait les résultats dans une liste, ce qui aggrave encore les écarts
+#
+# après ces corrections, qui permettent de mieux isoler la perte d'efficacité, on observe toujours un rapport de 1 à 10 !
+# (et en plus on ne garde même pas les résultats du calcul)
+# ````
 
 # %% [markdown]
 # ### dessiner un cercle de rayon `r`
