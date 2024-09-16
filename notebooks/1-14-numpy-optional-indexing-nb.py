@@ -166,19 +166,21 @@ print("si on faisait une indexation complète on obtiendrait", indices_i.shape)
 print("l'indexation partielle nous donne ici", r.shape)
 
 # %% [markdown]
-# ### exemple d'application
+# ## exemple: une colormap
 
 # %% [markdown]
 # c'est cette technique que nous avons utilisée dans le TP 'image-2', pour coder la fonction `patchwork`
 #
-# imaginons qu'on avait en entrée 4 couleurs; on doit remplir un rectangle de 2 x 3 patches
+# imaginons qu'on a en entrée 5 couleurs (en comptant la couleur de remplissage);  
+# et qu'on doit remplir un rectangle de 2 x 3 patches
 #
-# et faisons pour simplifier abstraction de la taille de chaque patch
+# et faisons pour commencer abstraction de la taille de chaque patch
 #
-# * on commence par calculer un array de forme 6 x 3 qui contient les rgb des 4 couleurs  
-#   (et pour les 2 dernières couleurs on met la couleur de fond)
+# * on commence par calculer un array de forme 5 x 3 qui contient les rgb des 5 couleurs;
+#   on l'appelle la colormap parce que chaque couleur va pouvoir
+#   ensuite être codée par un index (entre 0 et 4)
 #
-# * puis on fabrique un tableau qui a la forme du patchwork,
+# * puis on fabrique un tableau qui a la forme du patchwork (2x3 donc pour commencer)
 #   et dans chaque case le rang de la couleur qu'on veut
 #
 # * et on obtient le résultat par simple indexation
@@ -190,13 +192,12 @@ colormap = np.array([
     [0, 0, 255],     # 'blue'
     [0, 255, 255],   # 'cyan'
     [127, 127, 127], # 'grey background'
-    [127, 127, 127], # 'grey background'
 ])
 
 # %%
 pattern = np.array([
     [0, 1, 2],
-    [3, 4, 5],
+    [3, 4, 4],
 ])
 
 # %%
@@ -210,8 +211,8 @@ plt.imshow(colormap[pattern]);
 pattern2 = np.array([
     [0, 0, 1, 1, 2, 2],
     [0, 0, 1, 1, 2, 2],
-    [3, 3, 4, 4, 5, 5],
-    [3, 3, 4, 4, 5, 5],
+    [3, 3, 4, 4, 4, 4],
+    [3, 3, 4, 4, 4, 4],
 ])
 
 # %%
