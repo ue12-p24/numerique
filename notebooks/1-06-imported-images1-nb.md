@@ -89,7 +89,7 @@ il y a plein de façons de le faire, google et/ou stackoverflow sont vos amis...
 
 **Exercices**
 
-1. Créez un tableau blanc, de 91 pixels de côté, d'entiers non-signés 8 bits et affichez-le  
+1. Créez un tableau de 91 pixels de côté, d'entiers non-signés 8 bits et affichez-le  
    indices:  
    . le tableau n'est pas forcément initialisé à ce stade  
    . il vous faut pouvoir stocker 3 uint8 par pixel pour ranger les 3 couleurs
@@ -98,13 +98,13 @@ il y a plein de façons de le faire, google et/ou stackoverflow sont vos amis...
 # votre code
 ```
 
-2. Transformez le en tableau noir (en un seul slicing) et affichez-le
+2. Transformez le en tableau blanc (en un seul slicing) et affichez-le
 
 ```{code-cell} ipython3
 # votre code
 ```
 
-3. Transformez le en tableau jaune (en un seul slicing) et affichez-le
+3. Transformez le en tableau vert (en un seul slicing) et affichez-le
 
 ```{code-cell} ipython3
 # votre code

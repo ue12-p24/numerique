@@ -101,7 +101,7 @@ plt.rc('figure', figsize=(2, 2))
 
 **Exercices**
 
-1. Créez un tableau blanc, de 91 pixels de côté, d'entiers non-signés 8 bits et affichez-le  
+1. Créez un tableau de 91 pixels de côté, d'entiers non-signés 8 bits et affichez-le  
    indices:  
    . le tableau n'est pas forcément initialisé à ce stade  
    . il vous faut pouvoir stocker 3 uint8 par pixel pour ranger les 3 couleurs
@@ -121,7 +121,7 @@ plt.imshow(img)
 plt.show()
 ```
 
-2. Transformez le en tableau noir (en un seul slicing) et affichez-le
+2. Transformez le en tableau blanc (en un seul slicing) et affichez-le
 
 ```{code-cell} ipython3
 # votre code
@@ -130,14 +130,19 @@ plt.show()
 ```{code-cell} ipython3
 # prune-cell
 # 2.
-img[:, :, :] = 0
+img[:, :, :] = 255
+
 # ou encore
-img[...] = 0
+img[:, :] = [255, 255, 255] 
+img[:] = 255   # pas super lisible mais ça marche par broadcasting
+img[...] = 255
+
+# 
 plt.imshow(img)
 plt.show()
 ```
 
-3. Transformez le en tableau jaune (en un seul slicing) et affichez-le
+3. Transformez le en tableau vert (en un seul slicing) et affichez-le
 
 ```{code-cell} ipython3
 # votre code
@@ -146,9 +151,15 @@ plt.show()
 ```{code-cell} ipython3
 # prune-cell
 # 3.
-img[:, :, 0:2] = 255
+# ici on on garde le G à 255, et on écrit les plans R (0) et B (2)
+img[:, :, [0, 2]] = 0
+
 # ou encore
-img[:, :] = (255, 255, 0)
+img[:, :, ::2] = 0
+# ici c'est plus robuste car on récrit les 3 canaux - mais c'est possiblement plus long
+img[:, :] = (0, 255, 0)
+
+#
 plt.imshow(img)
 plt.show()
 ```
