@@ -113,12 +113,19 @@ for c in ['Red', 'Lime', 'Blue']:
     print(c, colors_dict[c])
 ```
 
-3. Faites une fonction `patchwork` qui  
+3. Faites une fonction `patchwork` qui prend deux paramètres obligatoires:
+   * une liste de couleurs
+   * et la structure donnant le code des couleurs RGB qu'on a obtenue à l'étape 1  
+   et retourne un tableau `numpy` avec un patchwork de ces couleurs
 
-   * prend une liste de couleurs et la structure donnant le code des couleurs RGB
-   * et retourne un tableau `numpy` avec un patchwork de ces couleurs  
-   * (pas trop petits les patchs - on doit voir clairement les taches de couleurs  
-   si besoin de compléter l'image mettez du blanc
+   Testez votre fonction en affichant le résultat obtenu sur un jeu de couleurs fourni
+
+````{admonition} consignes supplémentaires
+* chacun des carrés de couleur a une certaine "épaisseur" - pour fixer les idées disons 10 pixels  
+  ça pourrait être - comme on le suggère ci-dessous - un paramètre optionnel de la fonction `patchwork`
+* si besoin de compléter l'image, mettez du blanc; ici aussi si vous voulez améliorer un peu,
+  vous pouvez accepter un paramètre optionnel qui est le nom de la couleur de remplissage
+````
 
 +++
 
@@ -148,10 +155,17 @@ for c in ['Red', 'Lime', 'Blue']:
 
 ```{code-cell} ipython3
 # votre code
+def rectangle_size(n):
+    """
+    return a tuple lines, cols for
+    the smallest rectangle that contains n cells
+    """
+    ...
 ```
 
 ```{code-cell} ipython3
-# prune-cell
+# prune-cell 3.a
+
 # a rougher approach would just use a square
 def rectangle_size(n):
     '''
@@ -168,7 +182,16 @@ for n in range(1, 18):
 ```
 
 ```{code-cell} ipython3
-# prune-cell
+# votre code 
+def patchwork(colors, colormap, side=10):
+    """
+    """
+    ...
+```
+
+```{code-cell} ipython3
+# prune-cell 3.b
+
 def patchwork (col_list, col_dict, side=5, background='White'):
     '''
     create an image with a patchwork of the col_list colors
@@ -214,12 +237,23 @@ def patchwork (col_list, col_dict, side=5, background='White'):
     # so all we are left with is .. a simple array-by-array indexation
     return colormap[pattern]
 
+```{code-cell} ipython3
+# votre code
+
+# affichez le résultat obtenu avec ce jeu de couleurs
 
 colors = [
     'DarkBlue', 'AntiqueWhite', 'LimeGreen', 'NavajoWhite',
     'Tomato', 'DarkGoldenrod', 'LightGoldenrodYellow', 'OliveDrab',
     'Red', 'Lime',
 ]
+
+# plt.imshow(...)
+```
+
+```{code-cell} ipython3
+# prune-cell
+
 plt.imshow(patchwork(colors, colors_dict, side=5, background='DarkGray'));
 ```
 
@@ -231,6 +265,7 @@ plt.imshow(patchwork(colors, colors_dict, side=5, background='DarkGray'));
 
 ```{code-cell} ipython3
 # prune-cell 4.
+
 import random
 k = 19
 im = patchwork(random.sample(list(colors_dict.keys()), k),
@@ -249,6 +284,7 @@ même chose pour des jaunes
 
 ```{code-cell} ipython3
 # prune-cell 5.
+
 for s in ['white', 'red']: #, 'blue', 'medium', 'light', 'brown'
     colors = [k for k in colors_dict.keys() if s in k.lower()]
     print(f'{len(colors)} "{s}" colors')
@@ -265,6 +301,7 @@ et sauver ce patchwork dans le fichier `patchwork.png` avec `plt.imsave`
 
 ```{code-cell} ipython3
 # prune-cell 6.
+
 im_all = patchwork(list(colors_dict.keys()), colors_dict, side=100)
 plt.imshow(im_all);
 ```
