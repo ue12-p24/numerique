@@ -182,38 +182,45 @@ def patchwork (col_list, col_dict, side=5, background='White'):
 
     # we create the ndarray of the colors
     # (each color has an indice from 0 to len(col_list)-1)
+    
     # initialized with the background color
-    colormap = np.array(l*c*[col_dict[background]], dtype=np.uint8)
-    # at this point col_tab is of shape (l*c), 3
-    # because col_dict[background itself has 3 values]
-
-    # we assign the array with the resolved colors
-    colormap[0:len(col_list)] = [col_dict[k] for k in col_list]
     # if this puzzles you, evaluate 10 * [[255, 0, 0]]
-    print(f"{colormap.shape=}")
+    colormap = np.array(l*c*[col_dict[background]], dtype=np.uint8)
+
+    # at this point col_tab is of shape (l*c), 3
+    # because col_dict[background] itself has 3 values
+
+    # we assign the array with the provided colors
+    # remember the remaining ones are already set with the background
+    colormap[0:len(col_list)] = [col_dict[k] for k in col_list]
+
+    # again this is (l*c), 3
+    # print(f"{colormap.shape=}")
 
     # the final image is a rectangle of (l*side, c*side) of pixels
     # we compute its indices
     i, j = np.indices((l*side, c*side))
-    # we pass the indices in the patchwork of l*c patches (i.e. //side)
+    # change of coordinates: in the patchwork of l*c patches (i.e. //side)
     I, J = i//side, j//side
+    # if you are curious
+    # print(f"{j[:2]=}")
+    # print(f"{J[:2]=}")
 
     # c*I + J transforms I and J in the corresponding color indices in the colormap
     # its shape is the same as the final image
-    # print(f"{j[:2]=}")
-    # print(f"{J[:2]=}")
-    # print(f"{c*I+J=}")
+    pattern = c*I + J
+    # print(f"{pattern}")
 
     # so all we are left with is .. a simple array-by-array indexation
-    return colormap[c*I + J]
+    return colormap[pattern]
 
 
 colors = [
-    'DarkBlue', 'AntiqueWhite', 'LimeGreen',
-    'NavajoWhite', 'Tomato', 'DarkGoldenrod',
-    'LightGoldenrodYellow', 'OliveDrab',
+    'DarkBlue', 'AntiqueWhite', 'LimeGreen', 'NavajoWhite',
+    'Tomato', 'DarkGoldenrod', 'LightGoldenrodYellow', 'OliveDrab',
+    'Red', 'Lime',
 ]
-plt.imshow(patchwork(colors, colors_dict, side=5));
+plt.imshow(patchwork(colors, colors_dict, side=5, background='DarkGray'));
 ```
 
 4. Tirez aléatoirement une liste de couleurs et appliquez votre fonction à ces couleurs.
