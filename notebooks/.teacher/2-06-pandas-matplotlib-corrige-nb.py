@@ -132,7 +132,7 @@ df.plot();
 #
 # ````{admonition} →
 # un `boxplot` montre:  
-# le minimun, le maximum, la médiane, le premier et le troisième quartile  
+# le minimum, le maximum, la médiane, le premier et le troisième quartile  
 # les (éventuels) outliers
 #
 # les **outliers**  
