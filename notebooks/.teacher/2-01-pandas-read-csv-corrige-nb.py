@@ -304,7 +304,7 @@ pd.options.display.precision = 2
 df.describe()
 
 # %%
-df[['Age', 'SibSp', 'Parch', 'Fare']].describe()
+df[['Age', 'Fare']].describe()
 
 # %%
 # le code
@@ -619,20 +619,20 @@ df['Name'][552]
 #
 # ````{admonition} →
 # les **indices** c'est quand on compte nos éléments à partir de `0`  
-# (les colonnes comme les lignes ont aussi des indices)
+# (c'est valable pour les colonnes comme pour les lignes)
 #
 # les **index** c'est quand on utilise des valeurs fournies par l'utilisateur, comme
 #
 # * les **noms** de colonnes
 # * ou les **identifiants** de lignes  
-#   par ex. plus haut `552` est l'index de la première ligne parce que  
-#  dans la colonne-index `PassengerId`, la première ligne contient `552`
+#   par ex. plus haut `552` est l'index de la première ligne, parce que dans la colonne-index `PassengerId`,  
+#   la première ligne contient `552`
 #
-# si une table n'a **pas d'index** particulier,  
-# i.e. avant qu'on fasse un `set_index()`  
-# pandas crée automatiquement un index de type `RangeIndex`  
-# dans ce cas l'**index commence à 0**, et du coup  
-# incidemment les **indices** et les **index coincident**
+# lorsqu'une table n'a **pas d'index** particulier - i.e. avant qu'on fasse un `set_index()`:
+#
+# * dans ce cas l'**index commence à 0**, 
+# * et du coup, par accident, les **indices** et les **index coincident**
+# * pour information, pandas crée automatiquement un index de type `RangeIndex`  
 # ````
 
 # %% [markdown] tags=["framed_cell"]
@@ -677,7 +677,7 @@ df = pd.read_csv('data/titanic.csv').set_index('PassengerId')
 df.index
 
 # %% [markdown] tags=["framed_cell"]
-# ## **résumé** à propos des types
+# ## **résumé** à propos des types DataFrame et Series
 #
 # ````{admonition} →
 #
@@ -694,20 +694,10 @@ df.index
 # ***
 
 # %% [markdown] tags=["framed_cell"]
-# ## dimension et forme de la table
+# ## forme et dimension de la table
 #
-# ````{admonition} →
-# `pandas` est fondé sur `numpy`  
-# cela pourrait changer dans le futur
-#
-# la **dimension** de la table est donnée par l'attribut `pandas.DataFrame.ndim`
-#
-# ```python
-# df.ndim
-# -> 2
-# ```
-#
-# une `pandas.dataFrame` est une table donc a deux dimensions
+# `````{admonition} →
+# `pandas` est fondé sur `numpy` (cela pourrait changer dans le futur)
 #
 # la **forme** de la table est donnée par l'attribut `pandas.DataFrame.shape`
 #
@@ -716,21 +706,32 @@ df.index
 # -> (891, 11)
 # ```
 #
-# on retrouve là les attributs classiques de `numpy` `ndim`, `shape`
-#
-# `numpy` s'occupe de stocker et manipuler des tableaux de dimension 2
-#
+# `numpy` s'occupe de stocker et manipuler des tableaux de dimension 2  
 # `pandas` apporte
 #
 # * l'indexation du tableau
 # * des fonctions pratiques et de haut-niveau pour manipuler cette table de données
+#
+# ````{admonition} et la dimension ?
+# :class: admonition-small tip
+#
+# une `pandas.dataFrame` est donc toujours une table à deux dimensions  
+# on peut le vérifier par l'attribut `pandas.DataFrame.ndim`
+#
+# ```python
+# df.ndim
+# -> 2
+# ```
+#
+# on retrouve là les attributs classiques de `numpy` `ndim`, `shape`
 # ````
+# `````
 
 # %%
 # le code
 df = pd.read_csv('data/titanic.csv', index_col='PassengerId')
-print(df.ndim)
 print(df.shape)
+print(df.ndim)
 
 # %% [markdown]
 # ## **exercice** basique
@@ -744,7 +745,7 @@ print(df.shape)
 
 # %cat data/petit-titanic.csv
 
-# remarquez qu'on peut aussi le faire en Python pur
+# remarquez qu'on peut aussi voir ce contenu en Python pur
 #with open("data/petit-titanic.csv") as f:
 #    for line in f:
 #        print(line, end="")
@@ -761,6 +762,7 @@ print(df.shape)
 
 # %%
 # prune-cell 1.
+
 file = 'data/petit-titanic.csv'
 df = pd.read_csv(file)
 df.head(2)
@@ -768,15 +770,19 @@ df.head(2)
 # %% [markdown]
 # 2. passez le **bon séparateur** à la méthode `pandas.read_csv`  
 #    indiquez lui que l'entête **ne contient pas** la liste des noms des colonnes  
-#    passez-lui la **liste des noms des colonnes** puisqu'elles ne sont pas  
-#      mentionnées dans le fichier (à récupérer plus haut)  
-#   *spoiler*: voyez les paramètres `sep`, `header` et `names`
+#    passez-lui la **liste des noms des colonnes** puisqu'elles ne sont pas  mentionnées dans le fichier (à récupérer plus haut)  
+#   ````{admonition} *spoiler*
+#   :class: dropdown tip
+#   
+#    voyez les paramètres `sep`, `header` et `names`
+#    ````
 
 # %%
 # votre code
 
 # %%
 # prune-cell 2.
+
 COLUMNS = [
     'PassengerId', 'Survived', 'Pclass', 'Name',
     'Sex', 'Age', 'SibSp', 'Parch',
@@ -787,13 +793,15 @@ df = pd.read_csv(file, sep=';', header=None, names=COLUMNS)
 df.head(2)
 
 # %% [markdown]
-# 3. appliquer la méthode `describe` aux colonnes `Age` et `Fare`
+# 3. appliquer la méthode `describe` aux colonnes `Age` et `Fare`  
+#    (ou plus exactement à une dataframe qui contient ces colonnes)
 
 # %%
 # votre code
 
 # %%
 # prune-cell 3.
+
 df[['Age', 'Fare']].describe()
 
 # %% [markdown]
@@ -804,7 +812,9 @@ df[['Age', 'Fare']].describe()
 
 # %%
 # prune-cell 4.
-len(df.columns), len(df.index), df.shape,
+
+# plusieurs solutions
+df.shape, len(df.columns), len(df.index), 
 
 # %% [markdown]
 # 5. affichez les index des colonnes et des lignes
@@ -814,6 +824,7 @@ len(df.columns), len(df.index), df.shape,
 
 # %%
 # prune-cell 5.
+
 df.columns, df.index
 
 # %% [markdown]
@@ -829,6 +840,7 @@ df.columns, df.index
 
 # %%
 # prune-cell 6.
+
 # remarquez qu'on peut aussi changer
 # les noms des colonnes après le chargement
 # comme ceci

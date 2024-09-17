@@ -51,6 +51,7 @@ HTML(filename="_static/style.html")
 
 # %%
 # prune-cell
+
 import pandas as pd
 import numpy as np
 
@@ -63,11 +64,13 @@ import numpy as np
 
 # %%
 # prune-cell
+
 df = pd.read_csv('data/objects-on-the-moon.csv')
 print(df.shape)
 
 # %%
 # prune-cell
+
 df.head(2)
 
 # %% [markdown]
@@ -80,15 +83,19 @@ df.head(2)
 
 # %% {"scrolled": true}
 # prune-cell
+
 df.drop(['Unnamed: 0'], axis=1, inplace=True)
 # ou aussi
 #df.drop(columns=['Unnamed: 0'], inplace = True)
 
 df.head(2)
 
+# %%
+# prune-cell
+df.shape
+
 # %% [markdown]
-# 4. 1. appelez la méthode `info` des dataframes  
-#    (`non-null` signifie `non-nan` i.e. non manquant)
+# 4. 1. appelez la méthode `info` des dataframes (`non-null` signifie `non-nan` i.e. non manquant)
 #    1. remarquez une colonne entièrement vide
 
 # %%
@@ -96,12 +103,12 @@ df.head(2)
 
 # %%
 # prune-cell
+
 df.info()
 
 # %% [markdown]
-# 5. 1. utilisez la méthode `dropna` des dataframes  
-#      pour supprimer *en place* les colonnes qui ont toutes leurs valeurs manquantes  
-#      (et pas uniquement la colonne `'Size'`)
+# 5. 1. utilisez la méthode `dropna` des dataframes pour supprimer *en place* les colonnes qui ont toutes leurs valeurs manquantes  
+#      (on s'interdit un code qui enlèverait uniquement la colonne `'Size'`)
 #    2. vérifiez que vous avez bien enlevé la colonne `'Size'`
 
 # %%
@@ -109,6 +116,7 @@ df.info()
 
 # %%
 # prune-cell
+
 df.dropna(how='all', axis=1, inplace=True)
 'Size' in df.columns
 
@@ -124,6 +132,7 @@ df.dropna(how='all', axis=1, inplace=True)
 
 # %%
 # prune-cell
+
 df.loc[88]
 
 # %%
@@ -140,6 +149,7 @@ df.shape
 
 # %%
 # prune-cell
+
 df.dtypes
 
 # %% [markdown]
@@ -158,8 +168,8 @@ df['Mass (lb)'].unique()
 # %% [markdown]
 # 9. 1. conservez la colonne `'Mass (lb)'` d'origine  
 #       (par exemple dans une colonne de nom `'Mass (lb) orig'`)  
-#    1. utilisez la fonction `pd.to_numeric` pour convernir  la colonne `'Mass (lb)'` en numérique    
-#    (en remplaçant  les valeurs invalides par la valeur manquante)
+#    1. utilisez la fonction `pd.to_numeric` pour convertir  la colonne `'Mass (lb)'` en numérique  
+#       en remplaçant les valeurs invalides par la valeur manquante (NaN)
 #    1. naturellement vous vérifiez votre travail en affichant le type de la série `df['Mass (lb)']`
 
 # %%
@@ -167,15 +177,21 @@ df['Mass (lb)'].unique()
 
 # %%
 # prune-cell
+
 df['Mass (lb) orig'] = df['Mass (lb)']
 
 # %%
 # prune-cell
+
 df['Mass (lb)'] = pd.to_numeric(df['Mass (lb)'], errors='coerce')
 
 # %%
 # prune-cell
+
 df['Mass (lb)'].dtype
+
+# %%
+df['Mass (lb)'].isna().sum()
 
 # %% [markdown]
 # 10. 1. cette solution ne vous satisfait pas, vous ne voulez perdre aucune valeur  
@@ -197,6 +213,7 @@ df['Mass (lb)'].dtype
 
 # %%
 # prune-cell
+
 df['Mass (lb) clean'] = df['Mass (lb) orig'].str.replace('<', '').str.replace('>', '').astype(int)
 
 # %%
@@ -205,7 +222,7 @@ df['Mass (lb) clean'] = df['Mass (lb) orig'].str.replace('<', '').str.replace('>
 # REMARQUE - pour les avancés
 # il existe en Pandas un type qui contient les entiers ET nan
 # donc si par exemple on n'avait pas nettoyé la dernière ligne ci-dessus
-# on aurait donc une valeur nan dans la colonne des masses
+# on aurait une valeur nan dans la colonne des masses
 # et dans ce cas-là on ne peut pas faire .astype(int)
 # MAIS on peut le faire avec ce type:
 
@@ -217,6 +234,7 @@ df['Mass (lb) orig'].str.replace('<', '').str.replace('>', '').astype(int_with_n
 
 # %%
 # prune-cell
+
 df['Mass (lb) clean'].dtype
 
 # %% [markdown]
@@ -229,6 +247,7 @@ df['Mass (lb) clean'].dtype
 
 # %%
 # prune-cell
+
 df['Mass (kg)'] = (df['Mass (lb) clean'] / 2.205).astype(int)
 
 # %% [markdown]
@@ -241,10 +260,12 @@ df['Mass (kg)'] = (df['Mass (lb) clean'] / 2.205).astype(int)
 
 # %% {"scrolled": true}
 # prune-cell
+
 df['Country'].unique()
 
 # %% {"scrolled": true}
 # prune-cell
+
 df['Country'].value_counts(normalize=True)
 
 # %% [markdown]
@@ -256,14 +277,17 @@ df['Country'].value_counts(normalize=True)
 
 # %%
 # prune-cell
+
 df['Mass (kg)'].sum()
 
 # %% {"scrolled": true}
 # prune-cell
+
 df.loc[df['Country'] == 'United States', 'Mass (kg)'].sum()
 
 # %%
 # prune-cell
+
 # plus tard on fera plutôt
 df.groupby(by=['Country'], axis=0)['Mass (kg)'].sum()
 

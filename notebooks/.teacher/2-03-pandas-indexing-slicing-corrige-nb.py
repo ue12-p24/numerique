@@ -35,8 +35,7 @@ import numpy as np # pandas reposant sur numpy on a souvent besoin des deux libr
 # ## introduction
 #
 # ````{admonition} →
-# manipuler des **parties** (vues) de nos données  
-# est une opération fréquente en traitement des données
+# manipuler des **parties** (vues) de nos données est une **opération fréquente** en traitement des données
 #
 # d'où l'importance de savoir localiser dans nos tables `pandas` des sous-parties  
 # (élément, ligne, colonne, sous-séries, sous dataframes)  
@@ -137,8 +136,7 @@ df.head(1)
 #
 # les opérations sur les colonnes peuvent utiliser la forme `df[nom_de_colonne]`
 #
-# dans la dataframe du titanic  
-# créons une colonne des décédés (donc 1 - les survivants)
+# dans la dataframe du titanic, créons une colonne des décédés (donc 1 - les survivants)
 #
 # ```python
 # df['Deceased'] = 1 - df['Survived']
@@ -175,8 +173,7 @@ df.head(3)
 # * ou d'utiliser l'accès à un tableau par une paires d'**indices**  
 # comme vous le feriez en `numpy`
 #
-#     créons une matrice `numpy` (4, 4)  
-#     et modifions une sous-matrice
+#   créons une matrice `numpy` (4, 4), et modifions une sous-matrice
 #
 # ```python
 # mat = np.arange(12).reshape((4, 3))
@@ -189,16 +186,14 @@ df.head(3)
 # ```
 #
 # * ou encore enfin, en passant par la colonne puis la ligne  
-#   ça fonctionne, on l'a même peut-être déjà fait  
-#   mais **ATTENTION** il ne **FAUT PAS** faire comme ça !
+#   il se peut que ça fonctionne, mais **ATTENTION** il ne **FAUT PAS** faire comme ça !
 #
 # ```python
 # df['Age'][552]
 # 27.0
 # ```
 #
-# ***mais ATTENTION  
-# ce n'est pas comme ça que ça fonctionne en pandas!!!***
+# ***bref, ATTENTION: ce n'est pas comme ça que ça fonctionne en pandas!!!***
 # ````
 
 # %%
@@ -396,8 +391,7 @@ df.loc[:, ['Name', 'Pclass']]
 # il y a une **grande différence** entre `loc` et `iloc`  
 #
 # * **avec `loc`: la slice contient les bornes**  
-# * alors que avec `iloc` la borne supérieure est exclue  
-#   comme c'est l'habitude en Python
+# * alors que avec `iloc` la borne supérieure *est exclue*, comme c'est l'habitude en Python
 #
 # ````
 
@@ -571,6 +565,7 @@ df.iloc[:, 0].shape
 
 # %%
 # prune-cell
+
 df = pd.read_csv('data/titanic.csv', index_col='PassengerId')
 
 # %% [markdown]
@@ -597,6 +592,7 @@ print(f"their name is also {df.loc[40, 'Name']}")
 
 # %%
 # prune-cell
+
 df.iloc[-2].loc['Name']
 
 # %% [markdown]
@@ -607,6 +603,7 @@ df.iloc[-2].loc['Name']
 
 # %%
 # prune-cell
+
 df.loc[40].iloc[-3:]
 
 # %% [markdown]
@@ -629,6 +626,7 @@ df['Cabin'].iloc[-4:]
 
 # %%
 # prune-cell
+
 df.iloc[-10:][['Name', 'Pclass', 'Survived']]
 
 # %% [markdown]
@@ -638,8 +636,8 @@ df.iloc[-10:][['Name', 'Pclass', 'Survived']]
 # ### rappel sur les conditions
 #
 # ````{admonition} →
-# nous avons vu comment appliquer des conditions  
-# à une colonne ou à une data-frame  
+# nous avons vu [les masques](#label-pandas-mask), qui permettent  
+# d'appliquer des conditions à une colonne ou à une data-frame  
 # et comment utiliser ce tableau de booléens pour des décomptes
 #
 # ```python
@@ -653,8 +651,8 @@ df.iloc[-10:][['Name', 'Pclass', 'Survived']]
 # :class: seealso
 #
 # on a vu comment combiner ces conditions  
-# vous ne pouvez **pas** utiliser `and`, `or` et `not` python (pas vectorisés)  
-# et devez utiliser `&`, `|` et `~`  
+# vous ne **pouvez pas** utiliser `and`, `or` et `not` python (pas vectorisés)  
+# et **devez** utiliser `&`, `|` et `~`  
 # ou `np.logical_and`, `np.logical_or` et `np.logical_not`
 # ```
 #

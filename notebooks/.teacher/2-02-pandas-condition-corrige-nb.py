@@ -35,30 +35,21 @@ import numpy as np
 # ## conditions sur une dataframe
 #
 # ````{admonition} →
-# dans les analyses de tables de données  
-# il est fréquent de **sélectionner des données par des conditions**
+# dans les analyses de données, il est fréquent de **sélectionner des données par des conditions**  
+# (qui peuvent s'appliquer, selon le contexte, à tout un tableau, ou un morceau précis comme une colonne, une ligne, un sous-tableau...)
 #
-# les conditions peuvent s'appliquer, selon le contexte
-#
-# * à tout un tableau
-# * ou à toute une colonne
-# * ou à toute une ligne
-# * ou à tout un sous-tableau, sous-colonne, sous-ligne
-#
-# en `pandas`, comme en `numpy`, les fonctions sont **vectorisées**  
-# par souci de rapidité du code
-#
-# il ne faut **jamais itérer avec un `for-python`** sur les valeurs d'une table  
+# en `pandas`, comme en `numpy`, les fonctions sont **vectorisées** par souci de rapidité du code  
+# → il ne faut **jamais itérer avec un `for-python`** sur les valeurs d'une table  
 # (les itérations se font dans le code des fonctions `numpy` et `pandas`)
 #
-# comme en `numpy`, une expression conditionnelle va s'appliquer à toute la structure
-# et retourner une structure du même type  
-# où seul le type des valeurs à changé puisque les conditions retournent des booléens `True` et `False`
+# comme en `numpy`, une expression conditionnelle va s'appliquer à toute la structure  
+# et retourner une structure du même forme, mais avec des résultats booléens  
+# comme [on avec les masques `numpy`](#label-numpy-mask)
 #
 # exemple:
 #
 # * `titanic['Age']` : un objet de type `Series` à valeurs entières
-# * `titanic['Age'] > 12` : un objet de type `Series` à valeurs booléennes
+# * `titanic['Age'] < 12` : un objet de type `Series` à valeurs booléennes
 #
 # (voir ci-dessous)
 #
@@ -68,6 +59,8 @@ import numpy as np
 # ***
 
 # %% [markdown] slideshow={"slide_type": "slide"} tags=["framed_cell"]
+# (label-pandas-mask)=
+#
 # ## conditions et masques
 #
 # ````{admonition} →
@@ -90,9 +83,9 @@ import numpy as np
 #     Name: Age, Length: 891, dtype: bool
 # ```
 #
-# cette expression retourne des **booléens** - appelé **un masque**  
-# dans une `pandas.Series` dont le type est naturellement `bool`  
-# avec, pour chaque valeur de la colonne, la réponse au test
+# cette expression retourne une `pandas.Series`  
+# dont le type est `bool` - appelée **un masque**   
+# avec, pour chaque ligne, la réponse au test
 #
 # en `pandas` comme en `numpy` pour combiner les conditions  
 #
@@ -149,22 +142,17 @@ girls.sum()
 # -> 68
 # ```
 #
-# ou utiliser la méthode `value_counts()`  
-# qui compte les occurrences dans une colonne  
+# ou utiliser la méthode `value_counts()` qui compte les occurrences dans une colonne  
 #
 # ```python
 # children = df['Age'] < 12
 # children.value_counts()
 # -> False    823
 #    True      68
-#    Name: Age, dtype: int64
+#    Name: count, dtype: int64
 # ```
 #
-# la méthode vous indique la colonne `Age`  
-# le type `int64` est le type des quantités
-#
-# ainsi parmi les passagers dont on connait l'âge  
-# `68` passagers,  ont moins de `12` ans  
+# ainsi parmi les passagers dont on connait l'âge, **`68` passagers,  ont moins de `12` ans**  
 # on reviendra tout de suite sur les données manquantes
 # ````
 
@@ -188,10 +176,8 @@ children.value_counts()
 #
 # `NA` signifie Non-Available et `NaN` Not-a-Number
 #
-# sur les `DataFrame` et les `Series`  
-# la méthode `isna()` construit **un masque**  
-# du même type (DataFrame ou Series donc),
-# et à valeurs booléennes  où
+# sur les `DataFrame` et les `Series`, la méthode `isna()` construit **un masque**  
+# du même type (DataFrame ou Series donc), et à valeurs booléennes où
 #
 # * `True` signifie que la valeur est manquante
 # * `False` que la valeur ne l'est pas
@@ -299,7 +285,7 @@ df.isna()
 #
 # ````{admonition} →
 # comme en `numpy` je peux appliquer une fonction - ici `sum()` - en précisant l'`axis`  
-# `0` on applique la fonction dans l'axe des lignes (le défaut)  
+# `0` on applique la fonction dans l'axe des lignes (le défaut): on obtient un résultat par colonne  
 # `1` on applique la fonction dans l'axe des colonnes  
 # l'objet retourné est une série contenant le résultat de la fonction
 #
@@ -324,6 +310,8 @@ df.isna()
 # dtype: int64
 # ```
 #
+# nous remarquons des valeurs manquantes dans les colonnes `Cabin`, `Age` et `Embarked`
+#
 # ```{admonition} note
 # :class: attention
 #
@@ -333,8 +321,6 @@ df.isna()
 # * et `df.sum()`  
 # (on y revient ci-dessous)
 # ```
-#
-# nous remarquons des valeurs manquantes dans les colonnes `Cabin`, `Age` et `Embarked`
 # ````
 
 # %% [markdown] tags=["framed_cell"]
@@ -417,7 +403,8 @@ df.isna().sum(axis=1)
 # ```{admonition} note
 # :class: attention
 #
-# remarque: contrairement à ce qu'on avait vu en `numpy`, ici on ne pourrait pas faire `df.isna().sum(axis=(0, 1))`
+# remarque: contrairement à ce qu'on avait vu en `numpy`, ici on ne pourrait pas faire `df.isna().sum(axis=(0, 1))`  
+# il faut faire en deux fois `df.isna().sum().sum()`
 # ```
 # ````
 
@@ -478,8 +465,10 @@ for c in cols:
 
 # %%
 # prune-cell 3.
+
 minidf = df[cols]
 print(f"{minidf.dtypes=}")
+
 # du coup on pourrait faire
 for c in minidf.columns:
     print(f"column {c:>12} has type {minidf.dtypes[c]} =?= {df[c].dtype}")
@@ -511,11 +500,12 @@ for c in minidf.columns:
 
 # %%
 # prune-cell 1.
+
 df = pd.read_csv('data/titanic.csv', index_col='PassengerId')
 # df.isna().to_numpy().sum(), df.isna().sum(axis=1), df.isna().sum(axis=0),
 
 # %% [markdown]
-# 2. calculez les valeurs manquantes: totales, des colonnes et des lignes
+# 2. comptez les valeurs manquantes: dans toute la table, par colonne et par ligne
 
 # %%
 # votre code
@@ -538,6 +528,7 @@ print(df.isna().sum().sum())
 
 # %%
 # prune-cell 3.
+
 len(df['Pclass'].unique())
 
 # %% [markdown]
@@ -549,7 +540,9 @@ len(df['Pclass'].unique())
 
 # %%
 # prune-cell 4.
+
 df['Sex'].value_counts()/len(df)
+
 # ou encore
 df['Sex'].value_counts(normalize=True)#/len(df)
 
@@ -561,6 +554,7 @@ df['Sex'].value_counts(normalize=True)#/len(df)
 
 # %%
 # prune-cell 5.
+
 ((df['Age'] >= 20) & (df['Age'] <= 40)).sum()/len(df)
 
 # %% [markdown]
@@ -571,11 +565,12 @@ df['Sex'].value_counts(normalize=True)#/len(df)
 
 # %%
 # prune-cell 6.
+
 (df.Survived == 1).mean()
 
 # %% [markdown]
 # 7. calculez le taux de survie des hommes et des femmes par classes  
-# on reverra ces décomptes d'une autre manière
+#    (notez qu'on reverra ces décomptes d'une autre manière)
 
 # %%
 # votre code
