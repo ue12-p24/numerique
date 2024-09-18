@@ -37,7 +37,10 @@ HTML(filename="_static/style.html")
 # **N'oubliez pas d'utiliser le help en cas de problème.**
 
 # %% [markdown]
-# 1. importez les librairies `pandas`et `numpy`
+# ## tri et affichage
+
+# %% [markdown]
+# 1. importez les librairies `numpy` et `pandas`
 
 # %%
 # votre code
@@ -59,7 +62,7 @@ HTML(filename="_static/style.html")
 # votre code
 
 # %% [markdown]
-# 4. en utilisant la méthode `pd.DataFrame.plot`  
+# 4. en utilisant la méthode `df.plot()`  
 #    plottez la dataframe (pas la série) réduite à la colonne des ages  
 #    utilisez le paramètre de `style` `'rv'` (`r` pour rouge et `v` pour le style: points triangulaires)
 #
@@ -108,7 +111,12 @@ HTML(filename="_static/style.html")
 # votre code
 
 # %% [markdown]
-# ## tri des lignes *égales* au sens d'un premier critère d'une dataframe
+# ## tri des lignes selon plusieurs critères
+#
+# quand on trie, que faire en cas d'égalité ?  
+# en général on choisit plusieurs critères, on trie selon le premier, puis en cas d'égalité selon le second, etc..
+#
+# *note*: on appelle cela un ordre lexicographique, car c'est - un peu - comme dans un dictionnaire
 
 # %% [markdown]
 # 0. rechargez la dataframe
@@ -119,20 +127,20 @@ HTML(filename="_static/style.html")
 # %% [markdown]
 # 2. utilisez `df.sort_values()` pour trier la dataframe suivant la colonne (`'Pclass'`)  
 #    et trier les lignes identiques (passagers de même classe) suivant la colonne (`'Age'`)  
-#    *note*: on appelle cela un ordre lexicographique, car c'est un peu comme dans un dictionnaire
 
 # %%
 # votre code
 
 # %% [markdown]
-# 3. sélectionnez, dans la nouvelle dataframe, la sous-dataframe dont les ages ne sont pas définis  
-#    *hint*: utiliser la méthode `isna` sur une série, pour créer un masque booléens, et appliquer ce masque à la dataframe   
+# 3. sélectionnez, dans la nouvelle dataframe, la sous-dataframe des gens dont les ages ne sont pas définis  
+#
+# *hint*: utiliser la méthode `isna` sur une série, pour créer un masque de booléens, et appliquer ce masque à la dataframe   
 
 # %%
 # votre code
 
 # %% [markdown]
-# 4. combien manque-il d'ages ?
+# 4. combien nous manque-t-il d'ages ?
 
 # %%
 # votre code
@@ -155,19 +163,17 @@ HTML(filename="_static/style.html")
 # 7. produire une nouvelle dataframe en ne gardant que les ages connus,
 #    et triée selon les ages, puis les prix de billet
 
-# %% [markdown] {"tags": ["level_intermediate"]}
+# %% [markdown] {"tags": []}
 # ## tri d'une dataframe selon l'index
-#
-# (optionnel)
 #
 # en utilisant `df.sort_index()` il est possible de trier une dataframe  
 # dans l'axe de ses index de ligne (ou même de colonnes)  
 
-# %% [markdown] {"tags": ["level_intermediate"], "cell_style": "center"}
+# %% [markdown] {"tags": [], "cell_style": "center"}
 # 1. reprenez la dataframe du Titanic, en choisissant toujours comme index `PassengerId`  
 #    utilisez la méthode des dataframe `sort_index` pour la trier dans l'ordre des index 
 
-# %% {"tags": ["level_intermediate"]}
+# %% {"tags": []}
 # votre code
 
 # %% [markdown]
