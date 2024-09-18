@@ -259,6 +259,8 @@ df['Age'][552]
 #
 # ```python
 # df = pd.read_csv('data/titanic.csv', index_col='PassengerId')
+# #  NB: PassengerId comme index       ^^^^^^^^^^^^^^^^^^^^^^^
+#
 # df.head(2)
 # ->              Survived  Pclass                         Name  ...   Fare  Cabin  Embarked
 # PassengerId                                                 ...

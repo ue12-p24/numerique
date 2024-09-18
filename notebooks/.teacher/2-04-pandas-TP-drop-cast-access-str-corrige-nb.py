@@ -108,7 +108,7 @@ df.info()
 
 # %% [markdown]
 # 5. 1. utilisez la méthode `dropna` des dataframes pour supprimer *en place* les colonnes qui ont toutes leurs valeurs manquantes  
-#      (on s'interdit un code qui enlèverait uniquement la colonne `'Size'`)
+#      (on s'interdit un code qui ferait explicitement référence à la colonne `'Size'`)
 #    2. vérifiez que vous avez bien enlevé la colonne `'Size'`
 
 # %%
@@ -122,16 +122,17 @@ df.dropna(how='all', axis=1, inplace=True)
 
 # %% [markdown]
 # 6. 1. affichez la ligne d'`index` $88$, que remarquez-vous ?
-#    2. toutes ses valeurs sont manquantes  
-#      utilisez la méthode `dropna` des dataframes  
-#      pour supprimer *en place* les lignes qui ont toutes leurs valeurs manquantes
-#      (et pas uniquement la ligne d'index $88$)
+#    2. utilisez la méthode `dropna` des dataframes pour supprimer
+#       *en place* les lignes qui ont toutes leurs valeurs manquantes
+#       (et de nouveau sans faire référence à une ligne en particulier)
 
 # %%
 # votre code
 
 # %%
 # prune-cell
+
+# toutes les valeurs sont manquantes
 
 df.loc[88]
 
@@ -150,12 +151,13 @@ df.shape
 # %%
 # prune-cell
 
+# la colonne des masses devrait être de type numérique
+# mais elle est de type 'object'
+
 df.dtypes
 
 # %% [markdown]
-# 8. 1. la colonne des masses n'est pas de type numérique mais de type `object`  
-#       (ici des `str`)   
-#    1. utilisez la méthode `unique` des `Series`pour en regarder le contenu
+# 8. 1. utilisez la méthode `unique` des `Series`pour en regarder le contenu de la colonne des masses
 #    2. que remarquez vous ?
 
 # %%
@@ -163,6 +165,10 @@ df.dtypes
 
 # %%
 # prune-cell
+
+# on remarque la présence de choses comme '>400'
+# que pandas ne peut pas transformer en nombres, d'où les chaines de caractères
+
 df['Mass (lb)'].unique()
 
 # %% [markdown]
@@ -171,6 +177,7 @@ df['Mass (lb)'].unique()
 #    1. utilisez la fonction `pd.to_numeric` pour convertir  la colonne `'Mass (lb)'` en numérique  
 #       en remplaçant les valeurs invalides par la valeur manquante (NaN)
 #    1. naturellement vous vérifiez votre travail en affichant le type de la série `df['Mass (lb)']`
+#    1. combien y a-t-il de données manquantes dans cette colonne ?
 
 # %%
 # votre code
@@ -191,6 +198,8 @@ df['Mass (lb)'] = pd.to_numeric(df['Mass (lb)'], errors='coerce')
 df['Mass (lb)'].dtype
 
 # %%
+# prune-cell
+
 df['Mass (lb)'].isna().sum()
 
 # %% [markdown]

@@ -73,7 +73,7 @@ HTML(filename="_static/style.html")
 
 # %% [markdown]
 # 5. 1. utilisez la méthode `dropna` des dataframes pour supprimer *en place* les colonnes qui ont toutes leurs valeurs manquantes  
-#      (on s'interdit un code qui enlèverait uniquement la colonne `'Size'`)
+#      (on s'interdit un code qui ferait explicitement référence à la colonne `'Size'`)
 #    2. vérifiez que vous avez bien enlevé la colonne `'Size'`
 
 # %%
@@ -81,10 +81,9 @@ HTML(filename="_static/style.html")
 
 # %% [markdown]
 # 6. 1. affichez la ligne d'`index` $88$, que remarquez-vous ?
-#    2. toutes ses valeurs sont manquantes  
-#      utilisez la méthode `dropna` des dataframes  
-#      pour supprimer *en place* les lignes qui ont toutes leurs valeurs manquantes
-#      (et pas uniquement la ligne d'index $88$)
+#    2. utilisez la méthode `dropna` des dataframes pour supprimer
+#       *en place* les lignes qui ont toutes leurs valeurs manquantes
+#       (et de nouveau sans faire référence à une ligne en particulier)
 
 # %%
 # votre code
@@ -97,9 +96,7 @@ HTML(filename="_static/style.html")
 # votre code
 
 # %% [markdown]
-# 8. 1. la colonne des masses n'est pas de type numérique mais de type `object`  
-#       (ici des `str`)   
-#    1. utilisez la méthode `unique` des `Series`pour en regarder le contenu
+# 8. 1. utilisez la méthode `unique` des `Series`pour en regarder le contenu de la colonne des masses
 #    2. que remarquez vous ?
 
 # %%
@@ -111,12 +108,10 @@ HTML(filename="_static/style.html")
 #    1. utilisez la fonction `pd.to_numeric` pour convertir  la colonne `'Mass (lb)'` en numérique  
 #       en remplaçant les valeurs invalides par la valeur manquante (NaN)
 #    1. naturellement vous vérifiez votre travail en affichant le type de la série `df['Mass (lb)']`
+#    1. combien y a-t-il de données manquantes dans cette colonne ?
 
 # %%
 # votre code
-
-# %%
-df['Mass (lb)'].isna().sum()
 
 # %% [markdown]
 # 10. 1. cette solution ne vous satisfait pas, vous ne voulez perdre aucune valeur  
