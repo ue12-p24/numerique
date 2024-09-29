@@ -2,6 +2,7 @@
 # ---
 # jupyter:
 #   jupytext:
+#     custom_cell_magics: kql
 #     text_representation:
 #       extension: .py
 #       format_name: percent
@@ -552,6 +553,39 @@ df.loc['2019':]
 # vous avez un signal échantillonné à 44.100 kHz et vous voulez le ré-échantillonner (littéralement: *resample*) à une fréquence 4 fois plus basse.
 #
 # il suffit de faire un resample avec une durée de corbeille égale à exactement 4 x la période de la fréquence originale, et agréger avec la moyenne
+
+# %% [markdown]
+# ### même type d'usages: `to_period()`
+#
+# avec `resample()` on peut donc grouper les données par période  
+# signalons un autre outil qui peut aider à faire cela aussi en `pandas`, il s'agit de `to_period()` qui convertit un `Timestamp` en `Period` (un intervalle de temps), ce qui permet de faire ensuite un `groupby()` sur ces périodes.
+#
+# voici un exemple simple pour illustrer cela;
+
+# %%
+# une table contenant des données éparpillées sur l'année 2024
+ticks = pd.read_csv('data/ticks.csv')
+ticks['time'] = pd.to_datetime(ticks.time)
+ticks.head(4)
+
+# %% [markdown]
+# avec `to_period()`, on peut facilement ajouter une colonne qui va contenir, disons par exemple le mois calendaire correspondant
+
+# %%
+ticks['month'] = ticks.time.dt.to_period('M')
+ticks.head(4)
+
+# %% [markdown]
+# ````{admonition} autres fréquences utiles
+#
+# on peut utiliser cette fonction avec des fréquences comme `'W'` (week) ou `'Y'` (year) ou même `'Q'` (quarter)
+# ````
+
+# %% [markdown]
+# ce qu'il faut remarquer c'est que les nouveaux champs sont donc **de type `Period`**, qui contient un début et une fin (et pas simplement un instant comme un `Datetime`)
+
+# %%
+ticks.dtypes
 
 # %% [markdown]
 # ## `rolling()`
