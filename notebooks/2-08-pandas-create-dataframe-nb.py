@@ -231,44 +231,97 @@ df.values
 
 # %% [markdown]
 # 1. créer un `numpy.ndarray` à partir de la liste suivante
-# ```python
-# animals = [['snail', 0.1, 2.0],
-#            ['pig', 17.5, 8.0],
-#            ['elephant', 40.0, 70.0],
-#            ['rabbit', 48.0, 1.5],
-#            ['giraffe', 52.0, 25.0],
-#            ['coyote', 69.0, 12.0],
-#            ['horse', 88.0, 28.0]]
-# ```
-# 1. Affichez le type des éléments de la table  
-# Que constatez-vous ? (U = Unicode)
+
+# %%
+animals = [['snail', 0.1, 2.0],
+           ['pig', 17.5, 8.0],
+           ['elephant', 40.0, 70.0],
+           ['rabbit', 48.0, 1.5],
+           ['giraffe', 52.0, 25.0],
+           ['coyote', 69.0, 12.0],
+           ['horse', 88.0, 28.0]]
+
+# %%
+# votre code
+
+# %% [markdown]
+# 2. Affichez le type des éléments de la table  
+#    Que constatez-vous ? (U = Unicode)
+#    Que se passe-t-il si on essaie d'affecter dans la case (2, 0) la chaine `"grey elephant more than 32 charaters long"`
+#    Remettez-y le mot `"elephant"`
+
+# %%
+# votre code
+
+# %% [markdown]
+# 3. créez une `pandas.DataFrame` **à partir du tableau numpy**  
+#    et avec pour noms de colonnes `'names'`, `'speed'` et `'lifespan'`
 #
-# 1. Créez une `pandas.DataFrame` à partir de la table précédente  
-# avec pour noms de colonnes `'names'`, `'speed'` et `'lifespan'`
+# ````{admonition} le passage par numpy est-il une bonne idée ?
+# :class: dropdown
 #
-# 1. affichez la valeur et le type du `'lifespan'` de l'éléphant  
+# dans cet exercice on vous impose de passer par le tableau numpy, ce qui en l'espèce n'est pas forcément la meilleure idée  
+# mais ça peut être intéressant de voir ce que ça donne ... :)
+# ````
+
+# %%
+# votre code
+
+# %% [markdown]
+# 4. affichez la valeur et le type du `'lifespan'` de l'éléphant  
 # Que constatez-vous ?  
 # (`object` signifie ici `str`)
-#
-# 1. affichez la valeur et le type du `'names'` de l'éléphant  
+
+# %%
+# votre code
+
+# %% [markdown]
+# 5. affichez la valeur et le type du `'names'` de l'éléphant  
 # Que constatez-vous ?
-#
-# 1. avec `loc` ou `iloc`, modifiez la valeur `elephant` par `'grey elephant'`  
+
+# %%
+# votre code
+
+# %% [markdown]
+# 6. avec `loc` ou `iloc`, modifiez la valeur `elephant` par `'grey elephant more than 32 charaters long'`  
 # affichez la valeur et le type du `'names'` de l'éléphant  
 # un constat ?
-#
-# 1. affichez le type des colonnes  
+
+# %%
+# votre code
+
+# %% [markdown]
+# 7. affichez le type des colonnes  
 # utilisez l'attribut `dtypes` des `pandas.DataFrame`
-#
-# 1. avec la méthode `pandas.DataFrame.to_numpy`  
+
+# %%
+# votre code
+
+# %% [markdown]
+# 8. avec la méthode `pandas.DataFrame.to_numpy`  
 # affichez le tableau `numpy` sous-jacent de votre data-frame  
 # affichez le type du tableau  
 # que constatez-vous ?
-#
-# 1. modifiez les colonnes `'speed'` et `'lifespan'` de manière à leur donner le type `float`  
-# (utilisez `pandas.Series.astype` voir les **rappels** en fin de cellule)
-#
-# **rappel**
+
+# %%
+# votre code
+
+# %% [markdown]
+# 9. modifiez les colonnes `'speed'` et `'lifespan'` de manière à leur donner le type `float`  
+# (utilisez `pandas.Series.astype` voir les **rappels** en fin d'exercice)
+
+# %%
+# votre code
+
+# %% [markdown]
+# 10. pour comparer, construisez directement une dataframe à partir de l'objet liste  
+#     a-t-on besoin dans ce cas de convertir les types des colonnes ?
+
+# %%
+# your code
+
+# %% [markdown]
+# ````{admonition} rappels
 #
 # * `astype`  
 # la méthode `pandas.Series.astype`, à laquelle vous indiquez un type `float`  
@@ -276,18 +329,18 @@ df.values
 #
 # * rajouter ou modifier une colonne dans une `pandas.DataFrame`  
 # revient à modifier ou rajouter une clé à un `dict`
-#
-# **explication**
+# ````
+
+# %% [markdown]
+# ````{admonition} explications
 #
 # * quand les types des colonnes `numpy` ne sont pas homogènes  
-# `numpy` met un tableau de caractères `Unicode` de la *plus grande taille*
+# `numpy` met un tableau de caractères `Unicode` avec une taille qui permet de tout contenir
 #
 # * quand les types des colonnes `pandas` ne sont pas homogènes  
-# sans indication, `pandas` met `str` `Python`
+# sans indication, `pandas` met un `str` Python
 #
 # * quand dans une data-frame `pandas` on mélange des types de colonnes - genre `float` et `str`  
 # `pandas` et son tableau `numpy` sous-jacent indiqueront `O` ou `object`  
 # pour **mixed data types in columns**
-
-# %% [markdown]
-# ***
+# ````
