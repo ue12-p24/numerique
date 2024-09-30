@@ -248,7 +248,7 @@ df['Age'][552]
 # ````{admonition} →
 # première chose à retenir donc, les accès dans la dataframe  
 # se font **au travers de 2 accessoires `loc`** et `iloc`  
-# qui prennent cette fois-ci leurs arguments *dans le bon sens*
+# qui prennent cette fois-ci **leurs arguments *dans le bon sens*** (ligne, colonne)
 #
 # `df.loc[index_ligne, index_colonne]` **OUI**  
 # `df.iloc[indice_ligne, indice_colonne]` **OUI**  
@@ -463,14 +463,13 @@ df.columns.get_loc('Pclass'), df.index.get_loc(261)
 # `df.iloc[start:stop:step, start:stop:step]`
 #
 # ce cas est simple car il est conforme aux habitude Python/numpy  
-# la borne supérieure `stop` est exclue  
-# et donc en particulier le nombre d'items sélectionnés  
-# coincide avec `stop-start`
+# **ici la borne supérieure `stop` est exclue**  
+# et donc en particulier le nombre d'items sélectionnés coincide avec `stop-start`
 #
 # **exemple**  
 # si on prend les lignes d'indice `1` à `7`  
 # et les colonnes d'indice `1` à `4`  
-# on obient 6 lignes et 3 colonnes
+# on obtient 6 lignes et 3 colonnes
 #
 # ```python
 # df.iloc[1:7, 1:4].shape
