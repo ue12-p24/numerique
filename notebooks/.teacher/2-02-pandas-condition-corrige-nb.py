@@ -63,6 +63,8 @@ import numpy as np
 #
 # ## conditions et masques
 #
+# ### structure d'un masque
+#
 # ````{admonition} →
 # regardons cet exemple en détail:  
 # quels passagers avaient moins de 12 ans ?
@@ -112,8 +114,6 @@ import numpy as np
 #
 # * pour leur appliquer des fonctions (comme `sum`)  
 # * ou comme des masques pour sélectionner des sous-tableaux
-#
-#
 # ````
 
 # %%
@@ -128,6 +128,47 @@ children.dtype
 # %%
 girls = (df['Age'] < 12) & (df['Sex'] == 'female')
 girls.sum()
+
+# %% [markdown] tags=["framed_cell"]
+# ### indexation par un masque
+#
+# ````{admonition} →
+# comment utiliser un masque ?  
+# en pratique, le plus souvent on est intéressés par **les lignes** qui correspondent au masque
+#
+# et pour les "extraire" de la dataframe on va tout simplement  
+# **indexer la dataframe par le masque**  
+# c'est-à-dire en français: écrire `df[mask]`  
+#
+# ```python
+# # pour construire la dataframe réduite aux filles
+# girls_df = df[girls]
+# girls_df.head(2)
+# ->
+#              Survived  Pclass                              Name     Sex  Age  SibSp  Parch Ticket      Fare    Cabin  Embarked  
+# PassengerId                                                                    
+# 238                 1       2  Collyer, Miss. Marjorie "Lottie"  female  8.0  0      2     C.A. 31921  26.250  NaN    S 
+# 375                 0       3        Palsson, Miss. Stina Viola  female  3.0  3      1     349909      21.075  NaN    S   
+# ```
+#
+# ```{admonition} ou encore avec .loc
+# :class: admonition-small
+#
+# en fait on fera même plutôt `df.loc[mask]`, mais bon, on n'a pas encore parlé de `.loc` ...
+# ```
+# ````
+
+# %%
+# le code
+
+girls_df = df[girls]
+girls_df.head(2)
+
+# %%
+# avec .loc (même si on ne l'a pas encore vu...)
+
+girls_df = df.loc[girls]
+girls_df.head(2)
 
 # %% [markdown] tags=["framed_cell"] slideshow={"slide_type": "slide"}
 # ## `value_counts()`
@@ -502,7 +543,6 @@ for c in minidf.columns:
 # prune-cell 1.
 
 df = pd.read_csv('data/titanic.csv', index_col='PassengerId')
-# df.isna().to_numpy().sum(), df.isna().sum(axis=1), df.isna().sum(axis=0),
 
 # %% [markdown]
 # 2. comptez les valeurs manquantes: dans toute la table, par colonne et par ligne
@@ -512,6 +552,8 @@ df = pd.read_csv('data/titanic.csv', index_col='PassengerId')
 
 # %%
 # prune-cell 2.
+
+# df.isna().to_numpy().sum(), df.isna().sum(axis=1), df.isna().sum(axis=0),
 
 print(10*'-', 'par colonne')
 print(df.isna().sum())
@@ -530,6 +572,11 @@ print(df.isna().sum().sum())
 # prune-cell 3.
 
 len(df['Pclass'].unique())
+
+# %%
+# prune-cell 3.
+
+len(df['Pclass'].value_counts())
 
 # %% [markdown]
 # 4. calculez le taux d'hommes et de femmes  
