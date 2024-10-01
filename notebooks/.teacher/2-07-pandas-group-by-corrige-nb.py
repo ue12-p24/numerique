@@ -61,7 +61,7 @@ df.head(3)
 # lors du naufrage du Titanic, valait-il mieux être une femme en première classe ou un enfant en troisième ?
 #
 # on va calculer des regroupements de lignes (des partitions de la dataframe)  
-# en utilisant la méthode `pandas.DataFrame.groupby`  
+# en utilisant la méthode `pandas.DataFrame.groupby()`  
 # à laquelle on indique un ou plusieurs critères.
 # ````
 
@@ -72,7 +72,7 @@ df.head(3)
 # ## groupement par critère unique
 #
 # ````{admonition} →
-# le groupement (la partition) se fait par la méthode `pandas.DataFrame.groupby`
+# le groupement (la partition) se fait par la méthode `pandas.DataFrame.groupby()`
 #
 # prenons le seul critère de genre des passagers  
 # de la colonne `Sex`
@@ -114,7 +114,7 @@ by_sex
 # ### accès aux sous-dataframes
 #
 # ````{admonition} →
-# la méthode `pandas.DataFrameGroupBy.size`  
+# la méthode `pandas.DataFrameGroupBy.size()`  
 # donne la taille des deux partitions  
 # (dans un objet de type `pandas.Series`)
 #
@@ -219,9 +219,9 @@ by_sex.get_group('female').head(4)
 #
 # ````{admonition} →
 # pour des partitions multi-critères  
-# passez à `pandas.DataFrame.groupby` une **liste des colonnes**
+# passez à `pandas.DataFrame.groupby()` une **liste des colonnes**
 #
-# la méthode `pandas.DataFrame.groupby`
+# la méthode `pandas.DataFrame.groupby()`
 #
 # * calcule les valeurs distinctes de chaque colonne (comme dans le cas du critère unique)
 # * mais ensuite il en fait le **produit cartésien**
@@ -296,7 +296,7 @@ by_class_sex.size()
 #
 # ```
 #
-# les index sont les tuples du produit cartésien  
+# les index sont **les tuples** du produit cartésien  
 # on aurait pu aussi les calculer par une compréhension Python comme ceci
 # ```python
 # {(i, j) for i in df['Pclass'].unique() for j in df['Sex'].unique()}
@@ -423,8 +423,7 @@ for group, subdf in by_class_sex:
 #    - *'adulte'* entre 19 (exclus) et 55 ans (inclus)
 #    - *'+55'*  les personnes de strictement plus de 55 ans  
 #
-# afin de compléter la colonne des ages  
-# `pandas` propose la fonction `pandas.cut`
+# afin de classifier ainsi la colonne des ages, `pandas` propose la fonction `pandas.cut`
 #
 # nous allons voir un exemple
 #
@@ -472,8 +471,7 @@ for group, subdf in by_class_sex:
 # remarquez  
 #
 # * on doit donner toutes les bornes des intervalles  
-#   (les bornes se comportent comme des poteaux  
-#   ici 5 bornes produisent 4 intervalles)  
+#   (les bornes se comportent comme des poteaux: ici 5 bornes produisent 4 intervalles)  
 #
 # * les bornes min des intervalles sont bien exclues
 # * la colonne est de type `category` (cette catégorie est ordonnée)
@@ -901,24 +899,40 @@ gb = df.groupby(by=['Sex', 'Pclass'])
 # pour pouvoir vérifier qu'on a bien fait le job
 print(f"===== avant: on a {sum(df['Age'].isna())} âges indéterminés")
 print(f"et les moyennes d'âges par groupe sont de")
-print(df.pivot_table(values="Age", index="Sex", columns="Pclass"))
+IPython.display.display(df.pivot_table(values="Age", index="Sex", columns="Pclass"))
 
+# on remplit
 df['Age'] = df['Age'].fillna(gb['Age'].transform('mean'))
 
 # on n'a plus de NaN et les moyennes sont inchangées
 print(f"===== après: on a {sum(df['Age'].isna())} ages indéterminés")
 print(f"et les moyennes d'âges par groupe sont de")
-print(df.pivot_table(values="Age", index="Sex", columns="Pclass"))
+IPython.display.display(df.pivot_table(values="Age", index="Sex", columns="Pclass"))
 
+
+# %% [markdown]
+# ## pour résumer
+#
+# - pour faire des groupements multi-critères on utilise `df.groupby()`
+#   - qui renvoie un objet de type `GroupBy` ou similaire
+# - qu'on utilise généralement **comme un proxy**
+#   - qui va propager les traitements sur les différents "morceaux"
+#   - que l'on peut agréger ensuite "normalement"
+# - lorsqu'on utilise plusieurs critères les index deviennent des MultiIndex
+#   - c'est-à-dire dont les valeurs sont des tuples
+# - avec `pivot_table()` on peut facilement obtenir des tables de synthèse
+#   - en fait, `pivot_table()` utilise `groupby` sans le dire
+#   - (et remet les résultats en forme grâce à `unstack()`, mais c'est pour les avancés...)
 
 # %% [markdown] {"tags": ["level_advanced"]}
 # ## pour en savoir plus
 #
-# on recommande la lecture de cet article dans la documentation `pandas`, qui approfondit le sujet et notamment la notion de `split-apply-combine`
+# - pour creuser cette notion de `stack()/unstack()`, et comment `pivot_table()` s'en sert, voyez ce document  
+#   <https://flotpython-exos-ds.readthedocs.io/en/main/pandas-howtos/pivot-unstack-groupby/HOWTO-pivot-unstack-groupby-nb.html>
 #
-# (qui rappelle, de loin, la notion de *map-reduce*)
-#
-# <https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html>
+# - on recommande la lecture de cet article dans la documentation `pandas`, qui approfondit le sujet et notamment la notion de `split-apply-combine`  
+#   (qui rappelle, de loin, la notion de *map-reduce*)  
+#   <https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html>
 
 # %% [markdown]
 # ## exercice sur les partitions `groupby`
