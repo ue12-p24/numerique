@@ -34,6 +34,7 @@ parts:
   - file: 2-06-pandas-matplotlib-nb.py
   - file: 2-07-pandas-group-by-nb.py
   - file: 2-08-pandas-create-dataframe-nb.py
+  - file: 2-09-pandas-merge-concat-nb.py
   - file: 2-09-imported-collages-nb.md
     title: TP collages
   # - url: https://flotpython-exos-ds.readthedocs.io/en/main/pandas-tps/collages/README-collages-nb.html
