@@ -207,7 +207,7 @@ df['Mass (lb)'].isna().sum()
 #        (même au prix de valeurs approchées)  
 #     1. vous décidez vaillamment de modifier les `str` en leur enlevant les caractères `<` et `>`  
 #        afin de pouvoir en faire des entiers
-#     - *hint*  
+#     - *hint:*  
 #        les `pandas.Series` formées de chaînes de caractères sont du type `pandas` `object`  
 #        mais elle possèdent un accesseur `str` qui permet de leur appliquer les méthodes python des `str`  
 #        (comme par exemple `replace`)
@@ -262,7 +262,7 @@ df['Mass (kg)'] = (df['Mass (lb) clean'] / 2.205).astype(int)
 # %% [markdown]
 # 12. 1. Quels sont les pays qui ont laissé des objets sur la lune ?
 #     2. Combien en ont-ils laissé en pourcentage (pas en nombre) ?  
-#      *hint* regardez les paramètres de `value_counts`
+#      *hint:* regardez les paramètres de `value_counts`
 
 # %%
 # votre code
@@ -278,7 +278,7 @@ df['Country'].unique()
 df['Country'].value_counts(normalize=True)
 
 # %% [markdown]
-# 13. 1. Quel est le poid total des objets sur la lune en kg ?
+# 13. 1. quel est le poids total des objets sur la lune en kg ?
 #     2. quel est le poids total des objets laissés par les `United States`  ?
 
 # %%
@@ -346,10 +346,10 @@ df.loc[df['Mass (kg)'].argmin(), 'Country']
 
 # %% [markdown]
 # 15. 1. y-a-t-il un Memorial sur la lune ?  
-#      *hint*  
+#      *hint:*  
 #      en utilisant l'accesseur `str` de la colonne `'Artificial object'`  
-#      regardez si une des description contient le terme `'Memorial'`
-#     2. quel pays qui a mis ce mémorial ?  
+#      regardez si une des descriptions contient le terme `'Memorial'`
+#     2. quel est le pays qui a mis ce mémorial ?  
 
 # %%
 # votre code
@@ -364,8 +364,7 @@ df.loc[df['Artificial object'].str.contains('Memorial'), 'Country']
 
 # %% [markdown]
 # 16. 1. faites la liste Python des objets sur la lune  
-#      *hint*  
-#      utilisez la méthode `tolist` des séries
+#      *hint:* voyez la méthode `tolist()` des séries
 
 # %%
 # votre code
