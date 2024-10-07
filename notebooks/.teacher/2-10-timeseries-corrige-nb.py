@@ -88,6 +88,12 @@ from datetime import datetime
 # des versions plus flexibles et plus modernes de ces deux classes, qui s'appellent `np.datetime64` et `np.timedelta64`, qui n'ont pas ces lacunes
 #
 # bref, ce sont **ces types qui seront utilisés** sous le capot, lorsqu'on aura à manipuler des grandeurs temporelles en `pandas`
+#
+# ```{admonition} la précision
+# dans les annexes de ce notebook, vous trouverez une table avec les précisions disponibles
+# ```
+#
+# ````
 
 # %% [markdown]
 # ### la version `pandas`
@@ -108,6 +114,22 @@ from datetime import datetime
 # en `pandas` la fonction [pandas.to_datetime](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html) vous permet de traduire des objets en date   
 # nous allons l'illustrer avec des exercices
 #
+# ````
+
+# %% [markdown]
+# ````{admonition} arithmétique
+#
+# il est possible de faire de l'arithmétique entre ces objets; par exemple (TS = Timestamp, TD = Timedelta)
+#
+# ```text
+# TS + TS -> Erreur     # on ne peut pas ajouter deux dates
+# TS - TS -> TD         # mais on peut les soustraire
+# TS + TD -> TS         # et réciproquement ajouter 
+# TS - TD -> TS         # ou soustraire une durée à une date
+# TD // TD -> int       # ou faire un quotient 
+# TD % TD -> TD         # ou un reste
+# etc..
+# ```
 # ````
 
 # %% [markdown]
@@ -136,10 +158,6 @@ from datetime import datetime
 #    que penser du type de la colonne `Date` ?
 
 # %%
-# prune-cell
-# cols = ['Date', 'High', 'Low']
-
-# %%
 # à vous
 
 # %%
@@ -159,13 +177,14 @@ df.dtypes
 #    1. affichez le nouveau type de la colonne  
 #    1. ça peut être intéressant de regarder à la fois `dtypes` sur la dataframe et `dtype` sur la série (voir la note ci-dessous)  
 #    1. en option (pour les avancés): sauriez-vous passer à `to_datetime` le paramètre `format` qui va bien ?
+#       sachant que c'est une pratique **très recommandée** pour éviter les embrouilles
 #
 # ````{admonition} plusieurs choses là pour les curieux
 # :class: dropdown
 #
 #  - la première est que `pandas` utilise les types de données `numpy`  
 #     en `pandas`, quand vous demandez le type des données d'une colonne, vous pouvez obtenir un nom de type `numpy`
-#  - la seconde est que la `repr` et la `str` `numpy` de son type `np.datetime64` sont différentes  
+#  - la seconde est que la `repr()` et la `str()` du type `np.datetime64` sont différentes  
 #    (la `repr` dépend de votre ordinateur '<' est pour little-endian, 'M' est le le code caractère du type datetime et 8 la taille mémoire en octets) 
 #     ```python
 #     dt = np.datetime64("2023-09-12 15:30:00.000000000") # nano secondes
@@ -188,12 +207,14 @@ df['Date'] = pd.to_datetime(df.Date)
 
 # %%
 # ou encore pour être explicite
+
 df['Date'] = pd.to_datetime(df.Date, "%Y-%m-%d")
 
 # %%
 # ici pandas nous montre que c'est l'objet numpy
 # np.datetime64[ns] et le [ns] indique l'unité
 # (voir le tableau en annexe 2 fin de notebook)
+
 df.dtypes
 
 # %%
@@ -202,6 +223,7 @@ df.dtypes
 # le M signifie datetime
 # le 8 signifie 8 octets
 # le [ns] indique l'unité du timestamp
+
 df.Date.dtype
 
 # %% tags=[]
@@ -215,9 +237,7 @@ df.Date.dtype
 #    que remarquez-vous ?  
 #    1. supprimer les lignes pour lesquelles le champ `Date` est inconnu
 #
-#   il y a au moins deux façons évidentes de s'y prendre  
-#   essayez de les trouver  
-#   pour vérifier vos résultats  le nombre de lignes doit passer de 5852 à 5828
+#   pour vérifier vos résultats: le nombre de lignes doit passer de 5852 à 5828
 
 # %%
 # à vous
@@ -233,20 +253,7 @@ df.head(3)
 # cela signifie que le type `Timestamp` supporte la notion de valeur indéfinie
 
 # %% [markdown]
-# v1 - à la main
-
-# %%
-# on recharge pour être sûr
-df = pd.read_csv('data/Amazon.csv', skiprows=3)
-df['Date'] = pd.to_datetime(df.Date)
-
-# %%
-print(f"avant {df.shape=}")
-df = df[df.Date.notna()]
-print(f"après {df.shape=}")
-
-# %% [markdown]
-# v2 - avec `dropna()`
+# le plus simple c'est avec `dropna()`
 #
 # ici il n'y a des valeurs manquantes que dans la colonne `Date`
 
@@ -278,6 +285,20 @@ print(f"après {df.shape=}")
 #    1. pour les avancés: en utilisant cet accesseur, ajoutez à la dataframe une colonne qui contient le jour de la semaine  
 #    où lundi vaut 0, mardi 1, ...
 
+# %% [markdown]
+# `````{admonition} beaucoup d'attributs disponibles
+# :class: dropdown
+#
+# ````{div}
+# bizarrement on ne trouve pas facilement la liste des attributs disponibles, voici un screenshot qui en montre une (toute petite) partie
+#
+# ```{image} media/Series-dt-screenshot.png
+# :width: 300px
+# :align: center
+# ```
+# ````
+# `````
+
 # %%
 # à vous
 
@@ -292,11 +313,13 @@ df['year'] = df['Date'].dt.year
 
 # %%
 # on peut utiliser dayofweek ou weekday
+
 df['week-day'] = df.Date.dt.dayofweek
 
 # %%
 # également dispo:
-s = df. Date
+s = df.Date
+
 pd.DataFrame({'original': s,
               'year': s.dt.year,
               'dayofyear': s.dt.dayofyear,
@@ -311,7 +334,7 @@ df.head(5)
 # prune-end
 
 # %% [markdown]
-# ### exercice 5: indexing by dates
+# ### exercice 5: indexons par les dates
 
 # %% [markdown] tags=["level_basic"]
 # 5. mettez la colonne `Date` comme index  
@@ -319,25 +342,28 @@ df.head(5)
 #    (ça semble être déjà le cas, mais en est-on bien sûr ?)
 #
 # pour les avancés, question subsidiaire:  
-# le fait de trier les dates va-t-il changer quelque chose à l'affichage des **points** e.g ('Date', valeur de l'action) ?  
-# va-t-il changer quelque chose lorsqu'on va vouloir sélectionner des plages de temps à base de slicing (`.loc) ?  
+# le fait de trier les dates va-t-il changer quelque chose à l'affichage des **points** e.g (`Date`, valeur de l'action) ?  
+# va-t-il changer quelque chose lorsqu'on va vouloir sélectionner des plages de temps à base de slicing (`.loc`) ?  
 
 # %%
 # à vous
 
 # %%
-# prune-cell
+# prune-begin
+
+# %%
 df.set_index('Date', inplace=True)
 df.sort_index(inplace=True)
 
 # %% [markdown]
-# prune-cell
-#
 # imaginons que les données soient toutes mélangées
 #
-# * le plotting des points (scatter plot) ne sera pas affecté, les points (x, y) sont élaborés à partir de l'index, qui est le bon instant)
+# * le plotting des points (scatter plot) ne sera pas affecté, les points (x, y) sont élaborés à partir de l'index, qui est le bon instant
 # * le plotting avec un vrai 'plot' sera affecté, car en plus des points, on va tracer les traits qui joignent deux entrées successives dans la dataframe
 # * le slicing à base de `loc` bien sûr va être affecté également
+
+# %%
+# prune-end
 
 # %% [markdown]
 # ### exercice 6: plotting
@@ -374,10 +400,11 @@ df.sort_index(inplace=True)
 # ceci nécessite un pip install ipympl
 # décommentez pour essayer la visu interactive
 
-# # %matplotlib ipympl
+# %matplotlib ipympl
 
 # %%
 # pour changer la taille des figures par défaut
+
 plt.rcParams["figure.figsize"] = (7, 2)
 
 # %%
@@ -396,24 +423,17 @@ cols = ['High', 'Low']
 # si on met la création de figure, ça fait double emploi
 # avec df.plot() qui de toute évidence le fait aussi
 # plt.figure()
+
 df[cols].plot();
 
 # %% [markdown]
 # (2) séparément
-#
-# il y a l'option d'utiliser `.plot()` directement sur une série; toutefois c'est moins pratique (essayez !); on n'a pas de légende, et aussi il faut appeler `plt.figure()` explicitement
-#
-# bref, c'est plus simple de fabriquer une dataframe avec seulement une colonne  
-#
-# il faut donc se souvenir que
-#
-# * `df[col]` est une série
-# * `df[[col]]` est une dataframe
-#
 
 # %%
-for col in cols:
-    df[[col]].plot()
+# on peut même passer à subplots une liste de listes, etc..
+
+plt.title("les deux séparément")
+df[cols].plot(subplots=True);
 
 # %%
 # prune-end
@@ -428,8 +448,7 @@ for col in cols:
 # ici par exemple nous avons une granularité de la journée (sauf accident il y a une entrée par jour de la semaine)  
 # mais on peut slicer de manière assez naturelle
 #
-# première commodité: on peut utiliser des chaines
-# pas besoin de mettre des objet Timestamp dans le slice
+# première commodité: on peut utiliser des chaines, pas besoin de mettre des objet `Timestamp` dans le slice
 #
 # - voici les entrées entre le 1er avril 2020 et le 30 juin 2020  
 #   (rappel: comme on utilise `.loc` c'est inclus)
@@ -464,6 +483,7 @@ for col in cols:
 
 # %% tags=["raises-exception"]
 # on recharge pour être sûr
+
 df = pd.read_csv('data/Amazon.csv', skiprows=3)
 df['Date'] = pd.to_datetime(df.Date)
 df.dropna(subset=['Date'], inplace=True)
@@ -472,6 +492,7 @@ df.head(2)
 
 # %%
 # et ça va jusque
+
 df.tail(2)
 
 # %% tags=["raises-exception"]
@@ -487,10 +508,12 @@ df.loc['2020-04-01' : '2020-06-30'].head(3)
 # %% tags=["raises-exception"]
 # mais en fait c'est encore plus simple d'écrire ce qui suit
 # qui signifie, de avril à juin, toujours inclusivement
+
 df.loc['2020-04' : '2020-06'].tail(3)
 
 # %%
 # toutes les données de l'année 2019
+
 df.loc['2019'].head(3)
 
 # %%
@@ -499,11 +522,7 @@ df.loc['2019'].head(3)
 
 # %%
 # prune-cell 
-df.loc['2019':'2022']
 
-# %%
-# prune-cell 
-# ou encore + simple
 df.loc['2019':]
 
 # %% [markdown]
@@ -534,7 +553,7 @@ df.loc['2019':]
 # ```{note}
 #
 # dans l'illustration ci-dessus, chaque point bleu illustre **la moyenne** de chaque corbeille  
-# mais souvenez-vous que `rolling()` ne fait que les corbeilles, pas l'agrégation  
+# mais souvenez-vous que `resample()` ne fait que les corbeilles, pas l'agrégation  
 # aussi on a choisi d'attacher chaque point bleu au moment correspondant **au début** de chaque corbeille (et bien sûr c'est réglable..)
 # ```
 # ````
@@ -564,6 +583,7 @@ df.loc['2019':]
 
 # %%
 # une table contenant des données éparpillées sur l'année 2024
+
 ticks = pd.read_csv('data/ticks.csv')
 ticks['time'] = pd.to_datetime(ticks.time)
 ticks.head(4)
@@ -621,10 +641,15 @@ ticks.dtypes
 # si on appelle $f$ la fonction de départ, et $F$ le rolling sur un an  
 # (avec la somme comme agrégation pour simplifier les équations), on va avoir
 #
+# ```{image} media/rolling-logic.png
+# :width: 300px
+# :align: right
+# ```
+#
 # $$
 # F(01/01/2021) = \sum_{j=01/01/2021}^{31/12/2021} f(j) \\
 # \;et\; \\
-# F(02/01/2022) = \sum_{j=02/01/2021}^{01/01/2022} f(j)
+# F(02/01/2021) = \sum_{j=02/01/2021}^{01/01/2022} f(j)
 # $$
 #
 # et donc la différence pour F entre deux jours consécutifs vaut
@@ -633,8 +658,9 @@ ticks.dtypes
 # F(02/01/2021) - F(01/01/2021) = f(02/01/20\textbf{22}) - f(01/01/20\textbf{21})
 # $$
 #
-# ce qui signifie que la dérivée de $F$ (la différence d'un jour à l'autre)  
-# c'est l'évolution de $f$ mais **d'une année sur l'autre**
+# ce qui signifie que la dérivée de $F$ (la différence d'un jour à l'autre), c'est l'évolution de $f$ mais **d'une année sur l'autre**
+#
+#
 
 # %% [markdown]
 # ### exemple 2: effet lissant
@@ -645,9 +671,9 @@ ticks.dtypes
 import numpy as np
 
 # %% scrolled=true
-# c'est l'occasion de voir comment créer des timeseries
-# par programme
+# c'est l'occasion de voir comment créer des timeseries par programme
 # ici 100 jours consécutifs
+
 date_index = pd.date_range('2018-01-01', periods=100)
 
 # un battement
@@ -682,17 +708,18 @@ pd.DataFrame({
 #
 # juste pour bien illustrer le comportement aux bornes, voici
 #
-# * le nombre de points dans la rolling: **autant de corbeilles que de points**  
-#   (on le voit déjà ci-dessus)
+# * le nombre de points dans la rolling: **autant de corbeilles que de points** (on le voit déjà ci-dessus)
 #
 # * et le nombre de points par corbeille: **constant, sauf aux extrémités**
 
 # %%
 # exactement autant de corbeilles que de points
+
 len(s), len(rolling_7)
 
 # %%
 # le nombre de points par corbeille
+
 count_28 = s.rolling(window=pd.Timedelta(28, 'D'),
                      center=True).count()
 pd.DataFrame({'points-per-bin-28': count_28}).plot();
@@ -788,12 +815,14 @@ expected, len(df_res)
 
 # %%
 # un peu de calcul avec les dates
+
 begin, end = df2.index[0], df2.index[-1]
 begin, end
 
 # %%
 # cette fois c'est mieux
 # on doit ajouter 1 car toute semaine commencée est due ;)
+
 (end-begin) // pd.Timedelta('1w') + 1
 
 # %%
@@ -828,8 +857,39 @@ expected, len(df_rol)
 # %%
 # prune-end
 
+# %% [markdown] tags=["level_intermediate"]
+# ## Annexe 1 - les échelles de précision
+
+# %% [markdown] tags=["level_intermediate"]
+# un objet `datetime64` est créé avec un paramètre *`unit`*, qui permet de choisir la précision des calculs; et l'intervalle des dates possibles varie bien entendu avec cette précision :
+
+# %% [markdown] tags=["level_intermediate"]
+# ````{admonition} les échelles de précision
+# :class: note
+#
+# le plus souvent on manipule des Timestamp qui ont une précision de la **ns**
+#
+# Unit Code |	Meaning |	Time span (relative) |	Time span (absolute) |
+# -----|----------|------------------------|-----------------------|
+# Y |	year | 		+/- 9.2e18 years | 	[9.2e18 BC, 9.2e18 AD]
+# M |	month | 		+/- 7.6e17 years | 	[7.6e17 BC, 7.6e17 AD]
+# W |	week | 		+/- 1.7e17 years | 	[1.7e17 BC, 1.7e17 AD]
+# D |	day | 		+/- 2.5e16 years | 	[2.5e16 BC, 2.5e16 AD]
+#   |      |                       |
+# h |	hour | 		+/- 1.0e15 years | 	[1.0e15 BC, 1.0e15 AD]
+# m |	minute | 	+/- 1.7e13 years | 	[1.7e13 BC, 1.7e13 AD]
+# s |	second | 	+/- 2.9e11 years | 	[2.9e11 BC, 2.9e11 AD]
+# ms| millisecond | 	+/- 2.9e8 years | 	[ 2.9e8 BC, 2.9e8 AD]
+# us| microsecond | 	+/- 2.9e5 years | 	[290301 BC, 294241 AD]
+# **ns** | **nanosecond** | 	**+/- 292 years**  |	**[ 1678 AD, 2262 AD]**
+# ps| picosecond | 	+/- 106 days | 		[ 1969 AD, 1970 AD]
+# fs| femtosecond | 	+/- 2.6 hours | 		[ 1969 AD, 1970 AD]
+# as| attosecond | 	+/- 9.2 seconds | 	[ 1969 AD, 1970 AD]
+# ````
+
+
 # %% [markdown]
-# ## Annexe 1 - le type de base Python `datetime`
+# ## Annexe 2 - le type de base Python `datetime`
 #
 # ````{admonition} →
 #
@@ -853,11 +913,13 @@ from datetime import (
 
 # %%
 # pour modéliser un instant
+
 t1 = DateTime.fromisoformat('2021-12-31T22:30:00')
 t1
 
 # %%
 # et une durée
+
 d1 = TimeDelta(hours=4)
 d1
 
@@ -908,32 +970,3 @@ f"{t1:%H==%M}"
 #
 # pour une liste complète des formats, voir
 # <https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes>
-
-# %% [markdown] tags=["level_intermediate"]
-# ## Annexe 2 - les échelles de précision
-
-# %% [markdown] tags=["level_intermediate"]
-# un objet `datetime64` est créé avec un paramètre *`unit`*, qui permet de choisir la précision des calculs; et l'intervalle des dates possibles varie bien entendu avec cette précision :
-
-# %% [markdown] tags=["level_intermediate"]
-# ````{admonition} les échelles de précision
-# :class: note
-#
-# Unit Code |	Meaning |	Time span (relative) |	Time span (absolute) |
-# -----|----------|------------------------|-----------------------|
-# Y |	year | 		+/- 9.2e18 years | 	[9.2e18 BC, 9.2e18 AD]
-# M |	month | 		+/- 7.6e17 years | 	[7.6e17 BC, 7.6e17 AD]
-# W |	week | 		+/- 1.7e17 years | 	[1.7e17 BC, 1.7e17 AD]
-# D |	day | 		+/- 2.5e16 years | 	[2.5e16 BC, 2.5e16 AD]
-#   |      |                       |
-# h |	hour | 		+/- 1.0e15 years | 	[1.0e15 BC, 1.0e15 AD]
-# m |	minute | 	+/- 1.7e13 years | 	[1.7e13 BC, 1.7e13 AD]
-# s |	second | 	+/- 2.9e11 years | 	[2.9e11 BC, 2.9e11 AD]
-# ms| 	millisecond | 	+/- 2.9e8 years | 	[ 2.9e8 BC, 2.9e8 AD]
-# us| 	microsecond | 	+/- 2.9e5 years | 	[290301 BC, 294241 AD]
-# ns| 	nanosecond | 	+/- 292 years  |		[ 1678 AD, 2262 AD]
-# ps| 	picosecond | 	+/- 106 days | 		[ 1969 AD, 1970 AD]
-# fs| 	femtosecond | 	+/- 2.6 hours | 		[ 1969 AD, 1970 AD]
-# as| 	attosecond | 	+/- 9.2 seconds | 	[ 1969 AD, 1970 AD]
-# ````
-
