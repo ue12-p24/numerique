@@ -1006,30 +1006,22 @@ df[mask]
 
 # %% {"tags": ["level_basic"]}
 # prune-cell
-D = {}
-groups_sex_class = df.groupby(['Sex', 'Pclass'])
-for group, subdf in groups_sex_class:
-    survived_series = subdf.Survived
-    total = len(survived_series)
-    survived = sum(survived_series)
-    D[group] = survived / total
 
+# the simplest
+
+D = df.pivot_table(
+    index=['Sex', 'Pclass'], values='Survived', aggfunc="mean")['Survived'].to_dict()
 D
 
 # %% {"tags": ["level_basic"]}
 # prune-cell
-# la même chose en plus court
+# franchement plus poussif
+
 D = {}
 for group, subdf in df.groupby(['Sex', 'Pclass']):
     D[group] = subdf.Survived.sum() / len(subdf)
-D
 
-# %% {"tags": ["level_basic"]}
-# prune-cell
-# encore plus court avec une compréhension
-# bon bien sûr, ce n'est pas forcément plus lisible...
-{group: subdf.Survived.sum() / len(subdf)
- for group, subdf in df.groupby(['Sex', 'Pclass'])}
+D
 
 # %% [markdown]
 # 6.  **pour les élèves avancés**  
