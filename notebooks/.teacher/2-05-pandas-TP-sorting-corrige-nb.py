@@ -210,8 +210,19 @@ df_sorted_isna
 len(df_sorted_isna)
 
 # %% [markdown]
-# 5. où sont placés ces passagers dans la data-frame globale triée ?  
-# en début (voir avec `head`) ou en fin (voir avec `tail`) de dataframe ?
+# 5. où sont placés ces passagers dans la data-frame globale triée ?
+#    - [ ] en début (voir avec `head`)
+#    - [ ] ou en fin (voir avec `tail`)
+#    - [ ] ou c'est plus compliqué que ça ?
+#
+# ````{admonition} *hint*
+# :class: dropdown
+#
+# la façon standard d'afficher un dataframe consiste à montrer le début et la fin  
+# il y a des situations, comme celle-ci, où on veut avoir une *vision globale* des données,
+# et pour cela le bon réflexe consiste à se ramener à un tableau numpy  
+# pour cela voyez par exemple `df.no_numpy()`
+# ````
 
 # %%
 # votre code
@@ -219,9 +230,26 @@ len(df_sorted_isna)
 # %%
 # prune-cell
 
-# à la fin
+# les nan vont plutôt à la fin
 
 df_sorted.tail() 
+
+# %%
+# prune-cell
+
+# pour voir un aperçu de tous les résultats, et visualiser 
+# les 3 blocs de nan (un par classe)
+# situés effectivement à la fin de chaque groupe de Pclass
+
+df_sorted['Age'].isna().astype(int).to_numpy()
+
+# %%
+# prune-cell
+
+# ou encore, pour afficher les positions des lignes en question, et 
+#  nouveau matérialiser les 3 blocs
+
+np.nonzero(df_sorted['Age'].isna())
 
 # %% [markdown]
 # 6. trouvez le paramètre de `sort_values()`  

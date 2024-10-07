@@ -146,8 +146,19 @@ HTML(filename="_static/style.html")
 # votre code
 
 # %% [markdown]
-# 5. où sont placés ces passagers dans la data-frame globale triée ?  
-# en début (voir avec `head`) ou en fin (voir avec `tail`) de dataframe ?
+# 5. où sont placés ces passagers dans la data-frame globale triée ?
+#    - [ ] en début (voir avec `head`)
+#    - [ ] ou en fin (voir avec `tail`)
+#    - [ ] ou c'est plus compliqué que ça ?
+#
+# ````{admonition} *hint*
+# :class: dropdown
+#
+# la façon standard d'afficher un dataframe consiste à montrer le début et la fin  
+# il y a des situations, comme celle-ci, où on veut avoir une *vision globale* des données,
+# et pour cela le bon réflexe consiste à se ramener à un tableau numpy  
+# pour cela voyez par exemple `df.no_numpy()`
+# ````
 
 # %%
 # votre code
