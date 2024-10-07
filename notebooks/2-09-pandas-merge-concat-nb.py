@@ -33,13 +33,11 @@ import numpy as np
 
 # %% [markdown] tags=["framed_cell"] jp-MarkdownHeadingCollapsed=true
 # ````{admonition} →
-# parfois on obtient les données par plusieurs canaux  
-# qu'il faut agréger dans une seule dataframe
+# parfois on obtient les données par **plusieurs canaux**, qu'il faut agréger dans une seule dataframe
 #
 # les outils à utiliser pour cela sont multiples  
-# pour bien choisir, il est utile de se poser en priorité  
-# la question de savoir si les différentes sources à assembler  
-# concernent les **mêmes colonnes** ou au contraire les **mêmes lignes**  (*)
+# pour bien choisir, il est utile de se poser en priorité la question de savoir 
+# si les différentes sources à assembler concernent les **mêmes colonnes** ou au contraire les **mêmes lignes**  (*)
 #
 #
 # illustrations:
@@ -62,7 +60,7 @@ import numpy as np
 # ### en hauteur `pd.concat()`
 #
 # ````{admonition} →
-# pour l'accumulation de donnée utilisez la fonction `pandas` suivante
+# pour l'accumulation de données (en hauteur donc), préférez la fonction `pandas` suivante
 #
 # * la fonction `pd.concat([df1, df2, ..])`  
 #   qui a vocation à accumuler des données en hauteur  
@@ -115,20 +113,17 @@ pd.concat([df1.set_index('name'), df2.set_index('name')])
 # %% [markdown]
 # ### alignements
 #
-# dans les deux cas, `pandas` va *aligner* les données  
-# par exemple on peut concaténer deux tables qui ont les mêmes colonnes  
-# même si elles sont dans le désordre
+# dans les deux cas, `pandas` va ***aligner*** les données  
+# par exemple on peut concaténer deux tables qui ont les mêmes colonnes, même si elles sont dans le désordre
 #
-# l'usage typique de `merge()`/`join()`  
-# est l'équivalent d'un JOIN en SQL  
-# pour ceux à qui ça dit quelque chose  
-# sans indication, `merge()` calcule les **colonnes communes**  
-# et se sert de ça pour aligner les lignes
+# l'usage typique de `merge()`/`join()` est l'équivalent d'un JOIN en SQL (pour ceux à qui ça dit quelque chose)  
 #
+# **sans indication**, `merge()` calcule les **colonnes communes** et se sert de ça pour aligner les lignes
 
 # %%
 # exemple 1
-# les deux dataframes ont exactement une colonne en commun
+# les deux dataframes ont exactement une colonne en commun: 'name'
+
 df1 = pd.DataFrame(
     data={
         'name': ['Bob', 'Lisa', 'Sue'],
@@ -146,10 +141,13 @@ df1
 df2
 
 # %%
+# sans rien préciser, on JOIN sur la colonne commune 'name'
+
 df1.merge(df2)
 
 # %%
 # on peut aussi l'écrire comme ceci
+
 pd.merge(df1, df2)
 
 # %%
@@ -172,79 +170,21 @@ df1
 df2
 
 # %%
-# du coup ici sans préciser de paramètres
-# ça ne fonctionnerait pas
+# du coup ici sans préciser de paramètres, ça ne fonctionnerait pas
+# il faut être explicite
+
 df1.merge(df2, left_index=True, right_on='name')
 
 # %%
 # ou encore
+
 pd.merge(df1, df2, left_index=True, right_on='name')
-
-# %% [markdown] tags=[] jp-MarkdownHeadingCollapsed=true
-# ### concat() *vs* merge()
-#
-# ````{admonition} concat() *vs* merge()
-# les deux fonctionnalités sont assez similaires sauf que
-#
-# * `merge` peut aligner les index ou les colonnes  
-#   alors que `concat` ne considère que les index
-#
-# * `merge` est une opération binaire  
-#    alors que `concat` est n-aire  
-#    ce qui explique d'ailleurs la différence de signatures  
-#    `concat([d1, d2])` *vs* `merge(d1, d2)`
-#
-# * seule `concat()` supporte un paramètre `axis=`
-# ````
-
-# %% [markdown]
-# ### exercice - collage de datatables
-#
-# voici 3 jeux de données qu'on vous demande d'assembler  
-# pour décrire à la fin 4 caractéristiques à propos de 5 élèves
-
-# %% cell_style="split"
-df1 = pd.read_csv('pupils1.csv')
-df1
-
-# %% cell_style="split"
-df2 = pd.read_csv('pupils2.csv')
-df2
-
-# %%
-df3 = pd.read_csv('pupils3.csv')
-df3
-
-# %%
-# votre code
-
-# %% [markdown] tags=[]
-# ### exercice 2 - idem avec un index
-#
-# l'énoncé est le même, sauf que cette fois on a choisi
-# d'indexer toutes les tables par la colonne `name`
-
-# %% cell_style="split" tags=[]
-df1i = pd.read_csv('pupils1.csv',
-                  index_col='name')
-df1i
-
-# %% cell_style="split" tags=[]
-df2i = pd.read_csv('pupils2.csv',
-                  index_col='name')
-df2i
-
-# %% tags=[]
-df3i = pd.read_csv('pupils3.csv', index_col='name')
-df3i
-
-# %% tags=[]
-# votre code
 
 # %% [markdown]
 # ## optionnel: plusieurs stratégies pour le merge/join
 #
 # comme en SQL, on a à notre disposition plusieurs stratégies pour le `merge` (ou `join`, donc)
+# le paramètre `how` peut prendre les valeurs suivantes:
 #
 # * `left`: on garde les clés qui sont dans la première dataframe
 # * `right`: on garde les clés qui sont dans la seconde dataframe
@@ -253,36 +193,14 @@ df3i
 #
 # (il y a aussi `cross`, mais c'est plus particulier comme usage..)
 
-# %%
-# voyons cela sur un exemple
-
-df_left = pd.read_csv("pupils-left.csv", index_col="name")
-df_left
-
-# %%
-df_right = pd.read_csv("pupils-right.csv", index_col="name")
-df_right
-
-# %% [markdown]
-# ### left
-
-# %%
-df_left.merge(df_right, how='left', left_index=True, right_index=True) # the default
-
-# %% [markdown]
-# ### right
-
-# %%
-df_left.merge(df_right, how='right', left_index=True, right_index=True) # the default
-
-# %% [markdown]
-# ### inner
-
-# %%
-df_left.merge(df_right, how='inner', left_index=True, right_index=True) # the default
-
-# %% [markdown]
-# ### outer
-
-# %%
-df_left.merge(df_right, how='outer', left_index=True, right_index=True) # the default
+# %% [markdown] tags=[]
+# ### concat() *vs* merge()
+#
+# ````{admonition} concat() *vs* merge()
+# les deux fonctionnalités sont assez similaires sauf que
+#
+# * `merge` est une opération **binaire**, alors que `concat` est **n-aire**  
+#    ce qui explique d'ailleurs la différence de signatures: `concat([d1, d2])` *vs* `merge(d1, d2)`
+#
+# * seule `concat()` supporte un paramètre `axis=`
+# ````
