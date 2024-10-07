@@ -156,7 +156,12 @@ HTML(filename="_static/style.html")
 
 # %% [markdown]
 # 14. 1. quel pays a laissé l'objet le plus léger ?  
-#      *hint* comme il existe une méthode `min` des séries, il existe une méthode `argmin` 
+#
+# ````{admonition} tip
+# :class: dropdown tip
+#
+# voyez les méthodes `Series.idxmin()` et `Series.argmin()`
+# ````
 
 # %%
 # votre code

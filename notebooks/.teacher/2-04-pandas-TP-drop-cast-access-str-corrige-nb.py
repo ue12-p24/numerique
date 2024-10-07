@@ -302,13 +302,46 @@ df.groupby(by=['Country'], axis=0)['Mass (kg)'].sum()
 
 # %% [markdown]
 # 14. 1. quel pays a laissé l'objet le plus léger ?  
-#      *hint* comme il existe une méthode `min` des séries, il existe une méthode `argmin` 
+#
+# ````{admonition} tip
+# :class: dropdown tip
+#
+# voyez les méthodes `Series.idxmin()` et `Series.argmin()`
+# ````
 
 # %%
 # votre code
 
 # %%
 # prune-cell
+
+# using .loc: we need the index, so idxmin()
+
+df.loc[df['Mass (kg)'].idxmin(), 'Country']
+
+# %%
+# prune-cell
+
+# we can also use argmin() that returns a position (integer rank)
+# but then, if we want to use the column name there are 2 options
+
+df.iloc[df['Mass (kg)'].argmin()].loc['Country']
+
+# %%
+# prune-cell
+
+# or,
+
+df.iloc[df['Mass (kg)'].argmin(), df.columns.get_loc('Country')]
+
+# %%
+# prune-cell
+
+# note that this approach seems to work in this context
+# because we're lucky enough to have a RangeIndex
+# but that is "coding by accident", and it's *wrong* 
+
+# WORKS, BUT WRONG nonetheless
 df.loc[df['Mass (kg)'].argmin(), 'Country']
 
 # %% [markdown]
