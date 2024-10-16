@@ -378,7 +378,7 @@ df.loc['2019'].head(3)
 # filtrer à partir du 1er janvier 2019 jusqu'à la fin des données
 
 # %% [markdown]
-# ## aggrégations avec `resample()` et `rolling()`
+# ## aggrégations: `resample()` et `rolling()`
 #
 # ````{admonition} →
 # ces deux fonctions travaillent de la même façon:
@@ -476,6 +476,14 @@ ticks.dtypes
 # ````
 
 # %% [markdown]
+# ````{admonition} au centre ou à droite
+# :class: dropdown tip
+#
+# par défaut `rolling` attache la valeur *à la fin* de l'intervalle, ou dit autrement il va grouper les données qui sont à gauche du point dont on parle  
+# (on peut demander aussi de l'attacher au centre de l'intervalle, comme on l'a fait sur la figure)
+# ````
+
+# %% [markdown]
 # ````{admonition} attention aux unités !
 # :class: dropdown
 #
@@ -494,23 +502,26 @@ ticks.dtypes
 # (avec la somme comme agrégation pour simplifier les équations), on va avoir
 #
 # ```{image} media/rolling-logic.png
-# :width: 300px
+# :width: 400px
 # :align: right
 # ```
 #
+# calculons le rolling pour deux jours consécutifs; avec la convention qu'on fait une rolling sur le passé (le défaut, donc) on a
+#
 # $$
-# F(01/01/2021) = \sum_{j=01/01/2021}^{31/12/2021} f(j) \\
+# F(31/12/2021) = \sum_{j=01/01/2021}^{31/12/2021} f(j) \\
 # \;et\; \\
-# F(02/01/2021) = \sum_{j=02/01/2021}^{01/01/2022} f(j)
+# F(01/01/2022) = \sum_{j=02/01/2021}^{01/01/2022} f(j)
 # $$
 #
 # et donc la différence pour F entre deux jours consécutifs vaut
 #
 # $$
-# F(02/01/2021) - F(01/01/2021) = f(02/01/20\textbf{22}) - f(01/01/20\textbf{21})
+# F(01/01/2022) - F(31/12/2021) = f(01/01/20\textbf{22}) - f(01/01/20\textbf{21}) \\
 # $$
 #
-# ce qui signifie que la dérivée de $F$ (la différence d'un jour à l'autre), c'est l'évolution de $f$ mais **d'une année sur l'autre**
+# ce qui signifie que  
+# la dérivée de $F$ (la différence d'**un jour à l'autre**), c'est l'évolution de $f$ mais **d'une année sur l'autre**
 #
 #
 
