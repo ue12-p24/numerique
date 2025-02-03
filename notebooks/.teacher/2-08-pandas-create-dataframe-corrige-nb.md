@@ -17,16 +17,18 @@ nbhosting:
   title: manipulations de base
 ---
 
+# création de dataframe
+
+*ne pas faire en cours, lire en autonomie*
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# création de dataframe
-
-*ne pas faire en cours, lire en autonomie*
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -35,7 +37,7 @@ import numpy as np
 
 de très nombreuses voies sont possibles pour créer une dataframe par programme  
 en voici quelques-unes à titre d'illustration  
-voyez la documentation de `pd.DataFrame?` pour les détails  
+voyez la documentation de `pd.DataFrame?` pour les détails
 
 +++ {"tags": ["framed_cell"]}
 

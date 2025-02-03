@@ -18,6 +18,10 @@ nbhosting:
   title: '`matplotlib` et `pandas`'
 ---
 
+# `matplotlib` et `pandas`
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -33,8 +37,6 @@ import pandas as pd
 import numpy as np
 import IPython
 ```
-
-# `matplotlib` et `pandas`
 
 +++ {"tags": ["framed_cell"]}
 

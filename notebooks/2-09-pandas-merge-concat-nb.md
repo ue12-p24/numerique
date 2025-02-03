@@ -17,14 +17,16 @@ nbhosting:
   title: manipulations de base
 ---
 
+# agrégations des données
+
++++
+
 Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# agrégations des données
 
 ```{code-cell} ipython3
 import pandas as pd

@@ -16,16 +16,18 @@ nbhosting:
   title: "intro \xE0 seaborn"
 ---
 
+# courte introduction à seaborn
+
+une librairie de visualisation plus évoluée que matplotlib pour faire de l'exploration de données
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# courte introduction à seaborn
-
-une librairie de visualisation plus évoluée que matplotlib pour faire de l'exploration de données
 
 ```{code-cell} ipython3
 ---

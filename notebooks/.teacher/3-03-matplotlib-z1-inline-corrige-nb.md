@@ -16,16 +16,16 @@ nbhosting:
   title: '`%matplotlib inline`'
 ---
 
+# `%matplotlib inline`
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# `%matplotlib inline`
-
-+++
 
 de la bonne utilisation de `plt.figure()`, `plt.show()` en fonction du driver `%matplotlib` - épisode 1
 

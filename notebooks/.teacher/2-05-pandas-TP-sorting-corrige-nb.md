@@ -18,16 +18,16 @@ nbhosting:
   title: TP sur le tri d'une dataframe
 ---
 
+# TP sur le tri d'une dataframe
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# TP sur le tri d'une dataframe
-
-+++
 
 **Notions intervenant dans ce TP**
 
@@ -55,7 +55,7 @@ import numpy as np
 import pandas as pd
 ```
 
-2. importez la librairie `matplotlib.pyplot` avec le nom `plt` 
+2. importez la librairie `matplotlib.pyplot` avec le nom `plt`
 
 ```{code-cell} ipython3
 # votre code
@@ -108,7 +108,7 @@ df[['Age']].plot(style='rv');
    2. pour constater qu'elles sont triées, affichez les 4 premières lignes de la dataframe  
       la colonne des `Age` est triée  
       les lignes ont changé de place dans la table
-   3. remarquez que l'indexation a été naturellement conservée 
+   3. remarquez que l'indexation a été naturellement conservée
 
 ```{code-cell} ipython3
 # votre code
@@ -184,7 +184,7 @@ df = pd.read_csv('data/titanic.csv', index_col='PassengerId', usecols=cols)
 ```
 
 2. utilisez `df.sort_values()` pour trier la dataframe suivant la colonne (`'Pclass'`)  
-   et trier les lignes identiques (passagers de même classe) suivant la colonne (`'Age'`)  
+   et trier les lignes identiques (passagers de même classe) suivant la colonne (`'Age'`)
 
 ```{code-cell} ipython3
 # votre code
@@ -199,7 +199,7 @@ df_sorted.head(3)
 
 3. sélectionnez, dans la nouvelle dataframe, la sous-dataframe des gens dont les ages ne sont pas définis  
 
-*hint*: utiliser la méthode `isna` sur une série, pour créer un masque de booléens, et appliquer ce masque à la dataframe   
+*hint*: utiliser la méthode `isna` sur une série, pour créer un masque de booléens, et appliquer ce masque à la dataframe
 
 ```{code-cell} ipython3
 # votre code
@@ -296,12 +296,12 @@ df[df.Age.notna()].sort_values(by=['Age', 'Fare'])
 ## tri d'une dataframe selon l'index
 
 en utilisant `df.sort_index()` il est possible de trier une dataframe  
-dans l'axe de ses index de ligne (ou même de colonnes)  
+dans l'axe de ses index de ligne (ou même de colonnes)
 
 +++ {"tags": [], "cell_style": "center"}
 
 1. reprenez la dataframe du Titanic, en choisissant toujours comme index `PassengerId`  
-   utilisez la méthode des dataframe `sort_index` pour la trier dans l'ordre des index 
+   utilisez la méthode des dataframe `sort_index` pour la trier dans l'ordre des index
 
 ```{code-cell} ipython3
 :tags: []

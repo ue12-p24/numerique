@@ -16,16 +16,18 @@ nbhosting:
   title: "intro \xE0 seaborn"
 ---
 
+# courte introduction à seaborn
+
+une librairie de visualisation plus évoluée que matplotlib pour faire de l'exploration de données
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# courte introduction à seaborn
-
-une librairie de visualisation plus évoluée que matplotlib pour faire de l'exploration de données
 
 ```{code-cell} ipython3
 ---
@@ -161,7 +163,7 @@ df[(df.day == 'Thur') & (df.time == 'Dinner')]
 
 +++
 
-signalons enfin, pour le même genre de figures, que `seaborn` permet aussi de visualiser les variations pour les données multiples 
+signalons enfin, pour le même genre de figures, que `seaborn` permet aussi de visualiser les variations pour les données multiples
 
 ```{code-cell} ipython3
 # un exemple de données où on a plusieurs valeurs (signal) pour le méme X (ici timepoint)
@@ -223,7 +225,7 @@ pour en savoir plus: <https://seaborn.pydata.org/tutorial/distributions.html>
 
 ## `catplot()`
 
-par exemple, la même donnée mais avec d'autres représentations 
+par exemple, la même donnée mais avec d'autres représentations
 
 ```{code-cell} ipython3
 # en x une valeur catégorielle

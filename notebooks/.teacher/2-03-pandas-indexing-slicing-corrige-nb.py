@@ -19,14 +19,14 @@
 # ---
 
 # %% [markdown]
+# # indexation et accès aux sous-tableaux
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # indexation et accès aux sous-tableaux
 
 # %%
 import pandas as pd

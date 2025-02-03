@@ -18,6 +18,10 @@ nbhosting:
   title: "Les v\xE9los sur le pont de Fremont"
 ---
 
+# timeseries en pandas
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -26,8 +30,6 @@ License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# timeseries en pandas
 
 ```{code-cell} ipython3
 import pandas as pd
@@ -384,7 +386,7 @@ df.head(5)
 
 pour les avancés, question subsidiaire:  
 le fait de trier les dates va-t-il changer quelque chose à l'affichage des **points** e.g (`Date`, valeur de l'action) ?  
-va-t-il changer quelque chose lorsqu'on va vouloir sélectionner des plages de temps à base de slicing (`.loc`) ?  
+va-t-il changer quelque chose lorsqu'on va vouloir sélectionner des plages de temps à base de slicing (`.loc`) ?
 
 ```{code-cell} ipython3
 # à vous
@@ -527,7 +529,6 @@ non (et un peu oui)
 - non parce que `pandas` ne sélectionnera bien sûr que les dates incluses dans l'intervalle indiqué
 - oui parce que, dans la sous-dataframe obtenue, les dates seront ordonnées comme dans l'index
 ````
-
 
 ```{code-cell} ipython3
 :tags: [raises-exception]
@@ -738,7 +739,6 @@ $$
 
 ce qui signifie que  
 la dérivée de $F$ (la différence d'**un jour à l'autre**), c'est l'évolution de $f$ mais **d'une année sur l'autre**
-
 
 +++
 
@@ -1083,7 +1083,7 @@ t1.year, t1.hour
 d1.days, d1.seconds
 ```
 
-à titre plus anecdotique, on peut aussi appliquer directement un format à un instant dans une f-string  
+à titre plus anecdotique, on peut aussi appliquer directement un format à un instant dans une f-string
 
 ```{code-cell} ipython3
 # %H c'est pour extraire l'heure

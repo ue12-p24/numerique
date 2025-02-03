@@ -16,6 +16,10 @@ nbhosting:
   title: '`%matplotlib notebook`'
 ---
 
+# `%matplotlib ipympl`
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -42,10 +46,6 @@ et c'est donc ce qu'on a choisi d'illustrer ici
 
 l'invariant là dedans, c'est que ça vaut vraiment la peine de passer un peu de temps à s'assurer **que vos graphiques sont bien interactifs**
 ````
-
-+++
-
-# `%matplotlib ipympl`
 
 +++
 

@@ -18,6 +18,9 @@
 # ---
 
 # %% [markdown]
+# # `%matplotlib ipympl`
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
@@ -44,9 +47,6 @@ HTML(filename="_static/style.html")
 #
 # l'invariant là dedans, c'est que ça vaut vraiment la peine de passer un peu de temps à s'assurer **que vos graphiques sont bien interactifs**
 # ````
-
-# %% [markdown]
-# # `%matplotlib ipympl`
 
 # %% [markdown]
 # de la bonne utilisation de `plt.figure()`, `plt.show()` en fonction du driver `%matplotlib` - épisode 2

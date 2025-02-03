@@ -19,14 +19,14 @@
 # ---
 
 # %% [markdown]
+# # agrégations des données
+
+# %% [markdown]
 # Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # agrégations des données
 
 # %%
 import pandas as pd

@@ -18,6 +18,10 @@ nbhosting:
   title: '`matplotlib` et `pandas`'
 ---
 
+# `matplotlib` et `pandas`
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -33,8 +37,6 @@ import pandas as pd
 import numpy as np
 import IPython
 ```
-
-# `matplotlib` et `pandas`
 
 +++ {"tags": ["framed_cell"]}
 
@@ -433,7 +435,6 @@ df['Name-code'] = df['Name'].astype('category').cat.codes
 ## nuages de points `df.plot.scatter`
 
 +++
-
 
 pour mettre en valeur des informations sur nos données  
 on peut dessiner en 2D les colonnes les unes par rapport aux autres  

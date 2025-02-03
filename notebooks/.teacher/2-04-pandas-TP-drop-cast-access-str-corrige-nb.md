@@ -18,6 +18,10 @@ nbhosting:
   title: TP sur le tri d'une dataframe
 ---
 
+# TP on the moon
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -26,10 +30,6 @@ License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# TP on the moon
-
-+++
 
 **Notions intervenant dans ce TP**
 
@@ -235,7 +235,7 @@ df['Mass (lb)'].isna().sum()
         df['Mass (lb) orig'].str
         ```
         remplacer les `<` et les `>` par des '' (chaîne vide)
-     3. utilisez la méthode `astype` des `Series` pour la convertir finalement en `int` 
+     3. utilisez la méthode `astype` des `Series` pour la convertir finalement en `int`
 
 ```{code-cell} ipython3
 # votre code
@@ -388,7 +388,7 @@ df.loc[df['Mass (kg)'].argmin(), 'Country']
      *hint:*  
      en utilisant l'accesseur `str` de la colonne `'Artificial object'`  
      regardez si une des descriptions contient le terme `'Memorial'`
-    2. quel est le pays qui a mis ce mémorial ?  
+    2. quel est le pays qui a mis ce mémorial ?
 
 ```{code-cell} ipython3
 # votre code

@@ -20,6 +20,9 @@
 # ---
 
 # %% [markdown]
+# # `matplotlib` et `pandas`
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %% {"scrolled": true}
@@ -31,9 +34,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import IPython
-
-# %% [markdown]
-# # `matplotlib` et `pandas`
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## introduction

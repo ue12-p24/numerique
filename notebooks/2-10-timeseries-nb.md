@@ -18,6 +18,10 @@ nbhosting:
   title: "Les v\xE9los sur le pont de Fremont"
 ---
 
+# timeseries en pandas
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -26,8 +30,6 @@ License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# timeseries en pandas
 
 ```{code-cell} ipython3
 import pandas as pd

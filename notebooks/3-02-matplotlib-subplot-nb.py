@@ -20,14 +20,14 @@
 # ---
 
 # %% [markdown]
+# # grilles de figures
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # grilles de figures
 
 # %%
 import matplotlib.pyplot as plt

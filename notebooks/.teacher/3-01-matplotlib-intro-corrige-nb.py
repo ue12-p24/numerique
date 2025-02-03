@@ -20,14 +20,14 @@
 # ---
 
 # %% [markdown]
+# # Python-numérique - visualisation des données
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # Python-numérique - visualisation des données
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## introduction

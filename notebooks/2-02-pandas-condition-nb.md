@@ -17,14 +17,16 @@ nbhosting:
   title: conditions et masques
 ---
 
+# conditions et masques
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# conditions et masques
 
 ```{code-cell} ipython3
 import pandas as pd

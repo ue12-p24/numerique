@@ -18,16 +18,16 @@
 # ---
 
 # %% [markdown]
+# # courte introduction à seaborn
+#
+# une librairie de visualisation plus évoluée que matplotlib pour faire de l'exploration de données
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # courte introduction à seaborn
-#
-# une librairie de visualisation plus évoluée que matplotlib pour faire de l'exploration de données
 
 # %% slideshow={"slide_type": ""} tags=[]
 import seaborn as sns

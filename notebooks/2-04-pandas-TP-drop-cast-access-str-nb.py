@@ -20,14 +20,14 @@
 # ---
 
 # %% [markdown]
+# # TP on the moon
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %% {"scrolled": true}
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # TP on the moon
 
 # %% [markdown]
 # **Notions intervenant dans ce TP**

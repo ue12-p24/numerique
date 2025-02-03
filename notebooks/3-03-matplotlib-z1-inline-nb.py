@@ -18,14 +18,14 @@
 # ---
 
 # %% [markdown]
+# # `%matplotlib inline`
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # `%matplotlib inline`
 
 # %% [markdown]
 # de la bonne utilisation de `plt.figure()`, `plt.show()` en fonction du driver `%matplotlib` - épisode 1
