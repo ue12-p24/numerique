@@ -20,6 +20,9 @@
 # ---
 
 # %% [markdown]
+# # algèbre linéaire
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
@@ -28,9 +31,6 @@ HTML(filename="_static/style.html")
 
 # %%
 import numpy as np
-
-# %% [markdown]
-# # algèbre linéaire
 
 # %% [markdown]
 # ## contenu de ce notebook (notebook à sauter)

@@ -17,6 +17,10 @@ nbhosting:
   title: "Python-num\xE9rique - introduction"
 ---
 
+# Python-numérique - introduction
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -34,10 +38,6 @@ HTML(filename="_static/style.html")
 pip install -r requirements.txt
 ```
 ````
-
-+++
-
-# Python-numérique - introduction
 
 +++ {"tags": []}
 

@@ -17,14 +17,16 @@ nbhosting:
   title: "la m\xE9moire"
 ---
 
+# la mémoire
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# la mémoire
 
 +++ {"tags": ["framed_cell"]}
 
@@ -516,6 +518,7 @@ deux fonctions pour *réindexer* un tableau: `ndarray.reshape` et `ndarray.resiz
 
 * `np.ndarray.reshape`  
   renvoie un tableau contenant les mêmes données avec une nouvelle forme
+
 * `np.ndarray.resize`  
   modifie la forme du tableau *en-place* (directement dans le tableau)  
   et ne renvoie donc rien

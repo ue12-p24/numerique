@@ -19,14 +19,14 @@
 # ---
 
 # %% [markdown]
+# # vectorisation
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # vectorisation
 
 # %% [markdown] tags=["framed_cell"]
 # ## contenu de ce notebook (sauter si déjà acquis)

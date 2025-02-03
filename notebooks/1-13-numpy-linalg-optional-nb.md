@@ -18,6 +18,10 @@ nbhosting:
   title: "alg\xE8bre lin\xE9aire"
 ---
 
+# algèbre linéaire
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -28,10 +32,6 @@ HTML(filename="_static/style.html")
 ```{code-cell} ipython3
 import numpy as np
 ```
-
-# algèbre linéaire
-
-+++
 
 ## contenu de ce notebook (notebook à sauter)
 

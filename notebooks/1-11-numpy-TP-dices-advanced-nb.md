@@ -18,6 +18,10 @@ nbhosting:
   title: exercice sur le *broadcasting*
 ---
 
+# exercice sur le *broadcasting*
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -26,8 +30,6 @@ License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# exercice sur le *broadcasting*
 
 ```{code-cell} ipython3
 import numpy as np
@@ -78,6 +80,7 @@ Oui:
   - 4
   - 5
   - 6
+
 * - 1
   - 2
   - 3
@@ -85,6 +88,7 @@ Oui:
   - 5
   - 6
   - 7
+
 * - 2
   - 3
   - 4
@@ -92,6 +96,7 @@ Oui:
   - 6
   - 7
   - 8
+
 * - 3
   - 4
   - 5
@@ -99,6 +104,7 @@ Oui:
   - 7
   - 8
   - 9
+
 * - 4
   - 5
   - 6
@@ -106,6 +112,7 @@ Oui:
   - 8
   - 9
   - 10
+
 * - 5
   - 6
   - 7
@@ -113,6 +120,7 @@ Oui:
   - 9
   - 10
   - 11
+
 * - 6
   - 7
   - 8

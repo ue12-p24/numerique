@@ -19,14 +19,14 @@
 # ---
 
 # %% [markdown]
+# # la mémoire
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
-
-# %% [markdown]
-# # la mémoire
 
 # %% [markdown] tags=["framed_cell"]
 # ## contenu de ce notebook (sauter si déjà acquis)
@@ -455,6 +455,7 @@ mat.nbytes
 #
 # * `np.ndarray.reshape`  
 #   renvoie un tableau contenant les mêmes données avec une nouvelle forme
+#
 # * `np.ndarray.resize`  
 #   modifie la forme du tableau *en-place* (directement dans le tableau)  
 #   et ne renvoie donc rien

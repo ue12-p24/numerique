@@ -20,6 +20,9 @@
 # ---
 
 # %% [markdown]
+# # indexation et *slicing*
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
@@ -29,9 +32,6 @@ HTML(filename="_static/style.html")
 # %%
 import numpy as np
 from matplotlib import pyplot as plt
-
-# %% [markdown]
-# # indexation et *slicing*
 
 # %% [markdown] {"tags": ["framed_cell"]}
 # ## contenu de ce notebook (sauter si déjà acquis)
@@ -200,6 +200,7 @@ tab1[0].dtype, tab1[0]
 #
 # * en dimension >=2, les deux dernières dimensions sont les lignes et les colonnes, dans cet ordre  
 #   (enfin plus exactement, c'est la convention pour l'affichage des tableaux)  
+#
 # * du coup en dimension 2, voici un idiome pour ranger ça dans deux variables:  
 #   ```python
 #   rows, columns = tab.shape

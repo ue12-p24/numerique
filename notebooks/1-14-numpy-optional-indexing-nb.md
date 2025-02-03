@@ -19,14 +19,16 @@ nbhosting:
   title: "indexation avanc\xE9e"
 ---
 
+# indexation avancée
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# indexation avancée
 
 ```{code-cell} ipython3
 import numpy as np

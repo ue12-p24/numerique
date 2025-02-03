@@ -18,6 +18,10 @@ nbhosting:
   title: indexation et *slicing*
 ---
 
+# indexation et *slicing*
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
@@ -29,8 +33,6 @@ HTML(filename="_static/style.html")
 import numpy as np
 from matplotlib import pyplot as plt
 ```
-
-# indexation et *slicing*
 
 +++ {"tags": ["framed_cell"]}
 
@@ -208,6 +210,7 @@ alors `a[i, j]` va, bien sûr, désigner .. un tableau de `shape=(4, 5)`
 
 * en dimension >=2, les deux dernières dimensions sont les lignes et les colonnes, dans cet ordre  
   (enfin plus exactement, c'est la convention pour l'affichage des tableaux)  
+
 * du coup en dimension 2, voici un idiome pour ranger ça dans deux variables:  
   ```python
   rows, columns = tab.shape

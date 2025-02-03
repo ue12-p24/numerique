@@ -17,14 +17,16 @@ nbhosting:
   title: vectorisation
 ---
 
+# vectorisation
+
++++
+
 License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```{code-cell} ipython3
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 ```
-
-# vectorisation
 
 +++ {"tags": ["framed_cell"]}
 
@@ -35,7 +37,6 @@ la **vectorisation** (c'est-à-dire appliquer une fonction `numpy` à tout un ta
 les `ufunc`
 
 `numpy.vectorize`
-
 
 ```{code-cell} ipython3
 # on importe la librairie numpy

@@ -19,6 +19,9 @@
 # ---
 
 # %% [markdown]
+# # Python-numérique - introduction
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
@@ -34,9 +37,6 @@ HTML(filename="_static/style.html")
 # pip install -r requirements.txt
 # ```
 # ````
-
-# %% [markdown]
-# # Python-numérique - introduction
 
 # %% [markdown] tags=[]
 # ## contenu de ce notebook

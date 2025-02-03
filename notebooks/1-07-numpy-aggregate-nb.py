@@ -20,15 +20,15 @@
 # ---
 
 # %% [markdown]
+# # fonctions d'agrégation
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 
-
-# %% [markdown]
-# # fonctions d'agrégation
 
 # %%
 import numpy as np

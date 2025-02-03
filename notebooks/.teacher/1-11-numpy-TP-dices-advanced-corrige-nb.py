@@ -20,15 +20,15 @@
 # ---
 
 # %% [markdown]
+# # exercice sur le *broadcasting*
+
+# %% [markdown]
 # License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 # %%
 from IPython.display import HTML
 HTML(filename="_static/style.html")
 
-
-# %% [markdown]
-# # exercice sur le *broadcasting*
 
 # %%
 import numpy as np
@@ -80,6 +80,7 @@ S1
 #   - 4
 #   - 5
 #   - 6
+#
 # * - 1
 #   - 2
 #   - 3
@@ -87,6 +88,7 @@ S1
 #   - 5
 #   - 6
 #   - 7
+#
 # * - 2
 #   - 3
 #   - 4
@@ -94,6 +96,7 @@ S1
 #   - 6
 #   - 7
 #   - 8
+#
 # * - 3
 #   - 4
 #   - 5
@@ -101,6 +104,7 @@ S1
 #   - 7
 #   - 8
 #   - 9
+#
 # * - 4
 #   - 5
 #   - 6
@@ -108,6 +112,7 @@ S1
 #   - 8
 #   - 9
 #   - 10
+#
 # * - 5
 #   - 6
 #   - 7
@@ -115,6 +120,7 @@ S1
 #   - 9
 #   - 10
 #   - 11
+#
 # * - 6
 #   - 7
 #   - 8
