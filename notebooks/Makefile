@@ -13,5 +13,3 @@ NBNORMFLAGS = -l1 -s2 -t h1 -L License -S 'HTML\('
 include Makefile.norm
 
 include Makefile.prune
-
-include Makefile.toc
