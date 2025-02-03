@@ -3,6 +3,7 @@
 # jupyter:
 #   jupytext:
 #     cell_metadata_json: true
+#     formats: py:percent,md:myst
 #     text_representation:
 #       extension: .py
 #       format_name: percent

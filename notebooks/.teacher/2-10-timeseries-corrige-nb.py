@@ -3,6 +3,7 @@
 # jupyter:
 #   jupytext:
 #     custom_cell_magics: kql
+#     formats: py:percent,md:myst
 #     text_representation:
 #       extension: .py
 #       format_name: percent
