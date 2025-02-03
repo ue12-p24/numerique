@@ -16,10 +16,10 @@ jupyter:
     title: cheat sheets
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-
 # cheat sheets
+
+
+License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 ```python
 from IPython.display import HTML
