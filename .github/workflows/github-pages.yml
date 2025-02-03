@@ -1,3 +1,8 @@
+# NOTE THAT in addition to this file, you need to check on github.com
+# the Settings -> Environments tab
+# then select the 'github-pages' environment
+# and make sure the branch of interest (here myst) is allowed in the 'Branch protection rules' area
+
 # This file was created automatically with `myst init --gh-pages` 🪄 💚
 
 name: MyST GitHub Pages Deploy
@@ -10,7 +15,8 @@ env:
   # You may need to change this to `BASE_URL: ''`
   BASE_URL: /${{ github.event.repository.name }}
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# the following sets permissions of the GITHUB_TOKEN
+# to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
