@@ -6,3 +6,6 @@ jupyter-book
 # local dep
 sphinxcontrib_mermaid
 sphinx-exercise
+
+# toggable left sidebar
+pydata-sphinx-theme<0.16
