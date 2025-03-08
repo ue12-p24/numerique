@@ -571,7 +571,6 @@ print("après", df.columns)
 
 +++ {"tags": ["framed_cell"]}
 
-
 ###  groupement avec ces intervalles
 
 ````{admonition} →
@@ -1051,7 +1050,7 @@ IPython.display.display(df.pivot_table(values="Age", index="Sex", columns="Pclas
 on veut calculer la partition avec, dans cet ordre, la classe `Pclass`, le genre `Sex`, et l'état de survie `Survived`
 
 1. sans calculer la partition  
-proposez une manière de calculez le nombre probable de sous parties dans la partition  
+proposez une manière de calculez le nombre probable de sous parties dans la partition
 
 ```{code-cell} ipython3
 # votre code
@@ -1155,7 +1154,7 @@ D
    avec comme nom `'taux de survie par genre dans chaque classe'`  
    **indice:** comme tous les types en Python  
    `pd.Series()` permet de créer des objets par programme  
-   voyez la documentation avec `pd.Series?`  
+   voyez la documentation avec `pd.Series?`
 
 ```{code-cell} ipython3
 # votre code

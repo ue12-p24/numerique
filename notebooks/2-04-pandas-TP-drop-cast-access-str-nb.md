@@ -128,7 +128,7 @@ HTML(filename="_static/style.html")
         df['Mass (lb) orig'].str
         ```
         remplacer les `<` et les `>` par des '' (chaîne vide)
-     3. utilisez la méthode `astype` des `Series` pour la convertir finalement en `int` 
+     3. utilisez la méthode `astype` des `Series` pour la convertir finalement en `int`
 
 ```{code-cell} ipython3
 # votre code
@@ -173,7 +173,7 @@ voyez les méthodes `Series.idxmin()` et `Series.argmin()`
      *hint:*  
      en utilisant l'accesseur `str` de la colonne `'Artificial object'`  
      regardez si une des descriptions contient le terme `'Memorial'`
-    2. quel est le pays qui a mis ce mémorial ?  
+    2. quel est le pays qui a mis ce mémorial ?
 
 ```{code-cell} ipython3
 # votre code

@@ -34,7 +34,7 @@ import numpy as np
 
 de très nombreuses voies sont possibles pour créer une dataframe par programme  
 en voici quelques-unes à titre d'illustration  
-voyez la documentation de `pd.DataFrame?` pour les détails  
+voyez la documentation de `pd.DataFrame?` pour les détails
 
 +++ {"tags": ["framed_cell"]}
 

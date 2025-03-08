@@ -81,6 +81,7 @@ si tout cela est bien en place il ne vous reste plus alors que deux choses à fa
   git clone git@github.com:ue12-p24/numerique.git
   ```
   ````
+
 * installer les dépendances
   ````{admonition} exercice
   on fait comment déjà ?

@@ -35,7 +35,6 @@ les `ufunc`
 
 `numpy.vectorize`
 
-
 ```{code-cell} ipython3
 # on importe la librairie numpy
 import numpy as np

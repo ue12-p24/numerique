@@ -594,7 +594,6 @@ zorro1
 
 +++ {"tags": ["framed_cell"]}
 
-
 ````{admonition} exercice
 
 * affichez le type des éléments de `zorro`

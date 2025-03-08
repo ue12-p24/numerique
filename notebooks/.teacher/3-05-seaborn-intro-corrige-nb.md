@@ -160,7 +160,7 @@ df[(df.day == 'Thur') & (df.time == 'Dinner')]
 
 +++
 
-signalons enfin, pour le même genre de figures, que `seaborn` permet aussi de visualiser les variations pour les données multiples 
+signalons enfin, pour le même genre de figures, que `seaborn` permet aussi de visualiser les variations pour les données multiples
 
 ```{code-cell} ipython3
 # un exemple de données où on a plusieurs valeurs (signal) pour le méme X (ici timepoint)
@@ -222,7 +222,7 @@ pour en savoir plus: <https://seaborn.pydata.org/tutorial/distributions.html>
 
 ## `catplot()`
 
-par exemple, la même donnée mais avec d'autres représentations 
+par exemple, la même donnée mais avec d'autres représentations
 
 ```{code-cell} ipython3
 # en x une valeur catégorielle

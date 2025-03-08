@@ -230,7 +230,7 @@ Ils sont présentés en 3 niveaux: ***débutant***, ***moyen*** et ***avancé***
    1. que se passe-t-il ?
 
 **moyens**
-   1. pourquoi ? 
+   1. pourquoi ?
 
 ```{code-cell} ipython3
 # votre code

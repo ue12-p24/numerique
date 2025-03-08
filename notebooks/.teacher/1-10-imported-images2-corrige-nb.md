@@ -42,8 +42,10 @@ from matplotlib import pyplot as plt
   * `reshape()`, masques booléens, *ufunc*, agrégation, opérations linéaires
   * pour l'exercice `patchwork`:  
     on peut le traiter sans, mais l'exercice se prête bien à l'utilisation d'une [indexation d'un tableau par un tableau - voyez par exemple ceci](https://ue12-p24-numerique.readthedocs.io/en/main/1-14-numpy-optional-indexing-nb.html)
+
   * pour l'exercice `sepia`:  
     ici aussi on peut le faire "naivement" mais l'utilisation de `np.dot()` peut rendre le code beaucoup plus court
+
 * pour la lecture, l'écriture et l'affichage d'images
   * utilisez `plt.imread()`, `plt.imshow()`
   * utilisez `plt.show()` entre deux `plt.imshow()` si vous affichez plusieurs images dans une même cellule
@@ -55,6 +57,7 @@ from matplotlib import pyplot as plt
   * nous ne signifions pas là du tout que ce sont les meilleures!  
     par exemple `matplotlib.pyplot.imsave` ne vous permet pas de donner la qualité de la compression  
     alors que la fonction `save` de `PIL` le permet
+
   * vous êtes libres d'utiliser une autre librairie comme `opencv`  
     si vous la connaissez assez pour vous débrouiller (et l'installer), les images ne sont qu'un prétexte...
   ```
@@ -114,6 +117,7 @@ for c in ['Red', 'Lime', 'Blue']:
 ```
 
 3. Faites une fonction `patchwork` qui prend deux paramètres obligatoires:
+
    * une liste de couleurs
    * et la structure donnant le code des couleurs RGB qu'on a obtenue à l'étape 1  
    et retourne un tableau `numpy` avec un patchwork de ces couleurs
@@ -121,8 +125,10 @@ for c in ['Red', 'Lime', 'Blue']:
    Testez votre fonction en affichant le résultat obtenu sur un jeu de couleurs fourni
 
 ````{admonition} consignes supplémentaires
+
 * chacun des carrés de couleur a une certaine "épaisseur" - pour fixer les idées disons 10 pixels  
   ça pourrait être - comme on le suggère ci-dessous - un paramètre optionnel de la fonction `patchwork`
+
 * si besoin de compléter l'image, mettez du blanc; ici aussi si vous voulez améliorer un peu,
   vous pouvez accepter un paramètre optionnel qui est le nom de la couleur de remplissage
 ````
@@ -189,7 +195,7 @@ def patchwork(colors, colormap, side=10):
     ...
 ```
 
-```{code-cell} ipython3
+````{code-cell} ipython3
 # prune-cell 3.b
 
 def patchwork (col_list, col_dict, side=5, background='White'):
@@ -249,7 +255,7 @@ colors = [
 ]
 
 # plt.imshow(...)
-```
+````
 
 ```{code-cell} ipython3
 # prune-cell

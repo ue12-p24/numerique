@@ -478,6 +478,7 @@ deux fonctions pour *réindexer* un tableau: `ndarray.reshape` et `ndarray.resiz
 
 * `np.ndarray.reshape`  
   renvoie un tableau contenant les mêmes données avec une nouvelle forme
+
 * `np.ndarray.resize`  
   modifie la forme du tableau *en-place* (directement dans le tableau)  
   et ne renvoie donc rien

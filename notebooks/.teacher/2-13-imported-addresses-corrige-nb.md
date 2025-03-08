@@ -156,6 +156,7 @@ localize_one(18, 'rue', 'BERNARDINS')
 ***MAIS*** on ne va pas faire comme ça... pourquoi d'après vous ?
 
 ```{hint}
+
 * mesurez combien de temps ça a pris de résoudre cette adresse
     * pour cela vous pouvez utiliser la *magic* `%%timeit`
     * ou encore le module `time`, sachant que `time.time()` compte des secondes
@@ -231,6 +232,7 @@ curl -X POST -F data=@path/to/file.csv -F columns=voie -F columns=ville https://
   ```bash
   curl -o lapageweb.html http://github.com/flotpython/
   ```
+
 * quand on utilise une API, comme on vient de le faire pour aller chercher la position de la rue des bernardins, on doit **passer des paramètres** à l'API; pour faire ça dans une requête http, il y a deux mécanismes: GET et POST
 
 +++ {"tags": ["framed_cell"]}
@@ -272,6 +274,7 @@ sauf que nous, on ne veut pas utiliser `curl`, on veut faire cette requête en P
 2. le résultat - toujours au format csv - pourra être également transformé en dataframe
 3. qu'il ne restera plus qu'à `merge` (ou `join` si vous préférez) avec la dataframe de départ, pour ajouter les résultats de la géolocalisation dans les données de départ
    pour cette étape on peut envisager de ne garder que certaines colonnes de la géolocalisation (assez bavarde par ailleurs), je vous recommande de conserver uniquement:
+
    * `latitude`, `longitude` - *of course*
    * `result_city` pour pouvoir vérifier la validité des résultats - ici on devrait toujours avoir `Paris`
    * `result_type` qui devrait toujours renvoyer `housenumber`, ça permet à nouveau de vérifier qu'on a bien une adresse connue
@@ -279,14 +282,17 @@ sauf que nous, on ne veut pas utiliser `curl`, on veut faire cette requête en P
 +++
 
 ````{tip}
+
 * pour envoyer un POST avec des paramètres, on peut faire
   ```python
   response = requests.post(url, file=some_dict, data=another_dict)
   ```
+
 * et donc dans notre cas, puisque `data` est un paramètre de type fichier, alors que `columns` est un paramètre usuel, on fera
   ```python
   response = requests.post(url, file={'data': filename}, data={'columns': ['col1', ...]})
   ```
+
 * enfin, `pd.read_csv` s'attend à un paramètre de type fichier, i.e. du genre de ce qu'on obtient avec `open()`  
   et du coup pour reconstruire une dataframe à partir du texte obtenu dans la requête http, on a deux choix
   1. soit on commence par sauver le texte dans un fichier temporaire (juste faire attention à choisir un nom de fichier qui n'existe pas, de préférence dans un dossier temporaire, voir le module `tempfile`)

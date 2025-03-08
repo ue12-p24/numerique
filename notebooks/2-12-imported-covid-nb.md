@@ -45,6 +45,7 @@ comme vous le voyez on a choisi:
 
 ````{admonition} →
 les données sur le corona virus sont publiées par le département *Center for Systems Science and Engineering* (CSSE), de l'Université Johns Hopkins
+
 * sur le dépôt github <https://github.com/CSSEGISandData/COVID-19>
 * dans un format brut, détaillé et touffu - un peu trop compliqué pour l'utiliser ici
 ````
@@ -853,10 +854,12 @@ du coup on a souvent seulement besoin de **mettre en forme** les données pour
 qu'elles puissent être directement plottées par cette logique simple
 
 imaginons que dans notre cas on veuille comparer sur un graphique l'évolution de
+
 * 2 mesures : `deaths`, `confirmed`
 * entre 3 pays: `France`, `Italy` et `Germany`  
 
 il nous faut donc construire une dataframe qui a:
+
 * six colonnes - le produit cartésien des 2 mesures et 3 pays  
 * et autant de lignes que de dates - indexé par les dates  
 

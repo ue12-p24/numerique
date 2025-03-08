@@ -333,6 +333,7 @@ im = plt.imread(file)
 (ne dupliquez pas le code)
 
 **[indices]**
+
 * vous pouvez créer plusieurs figures depuis une seule cellule
 * vous pouvez ensuite choisir de 'replier' ou non la zone *output* en hauteur;  
   c'est-à-dire d'afficher soit toute la hauteur, soit une zone de taille fixe avec une scrollbar pour naviguer  

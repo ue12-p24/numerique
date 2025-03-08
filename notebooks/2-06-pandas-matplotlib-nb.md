@@ -433,7 +433,6 @@ df['Name-code'] = df['Name'].astype('category').cat.codes
 
 +++
 
-
 pour mettre en valeur des informations sur nos données  
 on peut dessiner en 2D les colonnes les unes par rapport aux autres  
 avec `pandas.DataFrame.plot.scatter`

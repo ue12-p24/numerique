@@ -1056,6 +1056,7 @@ on va utiliser matplotlib pour afficher le signal
 affichez le signal du morceau (la position de la membrane) en fonction du temps à l'aide de la fonction `plt.plot()`
 
 ````{tip}
+
 * c'est important d'avoir un rendu interactif (souvenez vous de `%matplotlib`)
 * pour pouvoir zoomer dans le diagramme
 * notamment utiles: pour zoomer (icône carrée), déplacer (les deux flêches croisées), revenir au point de vue de départ (la maison)..
@@ -1085,6 +1086,7 @@ sauf que si on s'y prend comme cela:
 
 * les deux signaux apparaissent avec le même niveau sonore  
   or un effet d'echo sous-entend une atténuation du signal tardif
+
 * en plus avec le type `int16`, on risque de causer des erreurs de débordement  
   en effet si au même instant les deux signaux contiennent tous deux  
   une valeur >= 20_000, la somme va dépasser $2^{15}$ et donc provoquer  
@@ -1103,6 +1105,7 @@ c'est ce qu'on essaie d'illustrer ici
 * et on applique à chacun une pondération  
   par exemple 70% pour le signal de départ,
   et 30% pour le signal retardé
+
 * avant de les ajouter
 
 ```{code-cell} ipython3

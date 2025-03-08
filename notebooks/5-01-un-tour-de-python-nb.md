@@ -200,7 +200,7 @@ voir un [convertisseur en ligne](http://www.binaryconvert.com/convert_double.htm
 
 ## définir une variable
 
-pour définir une variable, il suffit de l'affecter avec le signe `=` 
+pour définir une variable, il suffit de l'affecter avec le signe `=`
 
 ```{code-cell} ipython3
 ---
@@ -281,7 +281,7 @@ print("la somme de", x, "et", 13, "vaut", x+13)
 ## formatage
 
 pour construire des chaines lisibles,  
-le plus simple est la *f-string* 
+le plus simple est la *f-string*
 
 ```{code-cell} ipython3
 :cell_style: split
@@ -346,7 +346,7 @@ def P(x):
 ```
 
 vous remarquez que le code de la fonction est indenté  
-en effet python utilise l'**indentation** pour déterminer le bloc auquel appartient une instruction  
+en effet python utilise l'**indentation** pour déterminer le bloc auquel appartient une instruction
 
 ```{code-cell} ipython3
 :cell_style: split
@@ -513,7 +513,7 @@ np.sin(np.pi)
 
 +++ {"slideshow": {"slide_type": "notes"}}
 
-Remarquez qu'ici on devrait obtenir 0, mais les calculs sur les flottants sont faits de manière approchée. 
+Remarquez qu'ici on devrait obtenir 0, mais les calculs sur les flottants sont faits de manière approchée.
 
 +++
 
@@ -521,7 +521,7 @@ Remarquez qu'ici on devrait obtenir 0, mais les calculs sur les flottants sont f
 
 +++
 
-listes, ensembles, dictionnaires ... Python vous permet de définir des containeurs d'objets 
+listes, ensembles, dictionnaires ... Python vous permet de définir des containeurs d'objets
 
 ```{code-cell} ipython3
 # la liste permet de préserver l'ordre, avec d'éventuels duplicats
@@ -629,7 +629,7 @@ len(d)
 ## textes plus longs
 
 si vous avez besoin d'écrire des textes de plusieurs lignes  
-utilisez `"""` au lieu de `"`  -- (ou `'''`) 
+utilisez `"""` au lieu de `"`  -- (ou `'''`)
 
 ```{code-cell} ipython3
 :cell_style: split
@@ -873,7 +873,7 @@ chaine.capitalize()
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-deux méthodes très utiles sur les chaines : `split` et `join` 
+deux méthodes très utiles sur les chaines : `split` et `join`
 
 ```{code-cell} ipython3
 longue_chaine = "une liste de mots à découper"
@@ -902,7 +902,7 @@ mots
 
 +++
 
-tout code Python *est censé* obéir à un style très précis décrit ici https://www.python.org/dev/peps/pep-0008/  
+tout code Python *est censé* obéir à un style très précis décrit ici https://www.python.org/dev/peps/pep-0008/
 
 +++
 
