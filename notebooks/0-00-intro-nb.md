@@ -1,24 +1,25 @@
 ---
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .md
-      format_name: markdown
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
-  language_info:
-    name: python
-    nbconvert_exporter: python
-    pygments_lexer: ipython3
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+language_info:
+  name: python
+  nbconvert_exporter: python
+  pygments_lexer: ipython3
 ---
+
+# Python numérique: numpy, pandas et matplotlib
+
++++
 
 Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
-
-
-# Python numérique: numpy, pandas et matplotlib
++++
 
 ## contenu de ce module:
 
@@ -29,12 +30,14 @@ le corpus principal porte sur:
 * matplotlib: pour les affichages de données scientifiques.
 * un module optionnel, et assez court, qui contient des rappels essentiels sur le Python dit "de base"
 
++++
 
 ## mode d'emploi / rappels
 
 pour être sûr que vous avez tout ce qu'il faut pour travailler  
 on suppose [les installations faites lors du cours d'introduction](https://ue12-p24-intro.readthedocs.io/en/main/1-01-installations-nb.html#les-installations) (bash - vscode - conda - jupyter - jupytext - git)
 
++++
 
 ### convention (sachez à qui vous parlez)
 
