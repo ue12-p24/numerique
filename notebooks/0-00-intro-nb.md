@@ -13,22 +13,21 @@ language_info:
   pygments_lexer: ipython3
 ---
 
-# Python numérique: numpy, pandas et matplotlib
-
+# Python numérique
 +++
 
 Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
 
 +++
 
-## contenu de ce module:
+## contenu de ce module: numpy, pandas et matplotlib
 
 le corpus principal porte sur:
 
-* numpy: le tableau homogène , pour le calcul scientifique;
-* pandas: la dataframe (similaire à une table SQL), pour le traitement de données;
-* matplotlib: pour les affichages de données scientifiques.
-* un module optionnel, et assez court, qui contient des rappels essentiels sur le Python dit "de base"
+* **`numpy`**: le tableau homogène , pour le calcul scientifique;
+* **`pandas`**: la dataframe (similaire à une table SQL), pour le traitement de données;
+* **`matplotlib`**: pour les affichages de données scientifiques.
+* (et aussi un module optionnel, qui contient des rappels essentiels sur le Python dit "de base")
 
 +++
 
