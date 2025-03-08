@@ -17,10 +17,6 @@ nbhosting:
   title: TP simple avec des images
 ---
 
-Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-+++
-
 # TP images (1/2)
 
 merci à Wikipedia et à stackoverflow

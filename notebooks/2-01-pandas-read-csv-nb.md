@@ -16,13 +16,6 @@ nbhosting:
   title: "Python-num\xE9rique - les tables de donn\xE9es"
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
-
 # Python-numérique - les tables de données
 
 +++ {"tags": ["framed_cell"]}

@@ -16,15 +16,6 @@ nbhosting:
   title: les tableaux
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-:lines_to_next_cell: 2
-
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
-
 # les tableaux
 
 +++

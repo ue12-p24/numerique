@@ -17,13 +17,6 @@ nbhosting:
   title: tests et masques sur tableaux
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
-
 (label-numpy-mask)=
 
 # tests et masques sur tableaux

@@ -17,19 +17,12 @@ nbhosting:
   title: indexation et *slicing*
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
+# indexation et *slicing*
 
 ```{code-cell} ipython3
 import numpy as np
 from matplotlib import pyplot as plt
 ```
-
-# indexation et *slicing*
 
 +++ {"tags": ["framed_cell"]}
 

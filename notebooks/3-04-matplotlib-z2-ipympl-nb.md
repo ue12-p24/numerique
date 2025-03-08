@@ -15,12 +15,9 @@ nbhosting:
   title: '`%matplotlib notebook`'
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
+# `%matplotlib ipympl`
 
-```{code-cell} ipython3
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
++++
 
 ````{admonition} avertissement
 :class: warning
@@ -41,10 +38,6 @@ et c'est donc ce qu'on a choisi d'illustrer ici
 
 l'invariant là dedans, c'est que ça vaut vraiment la peine de passer un peu de temps à s'assurer **que vos graphiques sont bien interactifs**
 ````
-
-+++
-
-# `%matplotlib ipympl`
 
 +++
 

@@ -16,13 +16,6 @@ nbhosting:
   title: vectorisation
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
-
 # vectorisation
 
 +++ {"tags": ["framed_cell"]}

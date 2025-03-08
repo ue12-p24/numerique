@@ -17,15 +17,6 @@ nbhosting:
   title: exercice sur le *broadcasting*
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-:lines_to_next_cell: 2
-
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
-
 # exercice sur le *broadcasting*
 
 ```{code-cell} ipython3

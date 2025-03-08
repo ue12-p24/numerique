@@ -18,10 +18,6 @@ nbhosting:
   title: TP - un peu de musique
 ---
 
-Licence CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-+++
-
 # TP - un peu de musique
 
 +++

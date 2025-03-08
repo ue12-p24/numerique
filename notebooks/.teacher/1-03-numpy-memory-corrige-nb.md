@@ -16,13 +16,6 @@ nbhosting:
   title: "la m\xE9moire"
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
-
 # la mémoire
 
 +++ {"tags": ["framed_cell"]}
