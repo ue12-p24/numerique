@@ -16,17 +16,6 @@ nbhosting:
   title: classes
 ---
 
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-:lines_to_next_cell: 2
-
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
-
-+++ {"slideshow": {"slide_type": ""}}
-
 # classes
 
 +++ {"slideshow": {"slide_type": "slide"}}

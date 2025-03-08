@@ -16,19 +16,6 @@ nbhosting:
   title: "objets, types et m\xE9thodes"
 ---
 
-+++ {"slideshow": {"slide_type": "slide"}}
-
-License CC BY-NC-ND, Valérie Roy & Thierry Parmentelat
-
-```{code-cell} ipython3
-:lines_to_next_cell: 2
-
-from IPython.display import HTML
-HTML(filename="_static/style.html")
-```
-
-+++ {"slideshow": {"slide_type": ""}}
-
 # objets, types et méthodes
 
 +++ {"slideshow": {"slide_type": "slide"}}
