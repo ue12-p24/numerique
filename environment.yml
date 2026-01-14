@@ -1,0 +1,26 @@
+name: UE12
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # un Python récent
+  - python>=3.10
+  # les deps présentes sur conda-forge
+  - numpy>=2.1
+  - pandas>=2.2
+  - scipy>=1.14
+  - pillow>=10.4
+  - seaborn>=0.13
+  - openpyxl>=3.1
+  - jupyter>=1.0
+  - jupytext>=1.16
+  - jupyterlab-myst>=2.4
+  - ipywidgets>=8.1
+  - ipympl>=0.9
+  - ruamel.yaml>=0.18
+  # Scikit-learn sur conda (!= scikit_learn sur pip !)
+  - scikit-learn>=1.5
+  # Les dépendances pip-only
+  - pip:
+      - jupyterlab-courselevels
+      - ipythontutor
